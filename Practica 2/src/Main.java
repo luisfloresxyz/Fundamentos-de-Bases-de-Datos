@@ -5,8 +5,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Luis
+ * Modela el comportamiento entre dueños y choferes con su relación entre taxis.
+ * 
+ * @author Flores González Luis.
+ * @version 1.0 - Febrero 2017
+ * @see Asociacion
  */
 public class Main {
 

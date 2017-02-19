@@ -3,8 +3,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * Modela el comportamiento entre dueños y choferes con su relación entre taxis.
- * 
+ * Modela el comportamiento entre dueños y choferes con su relación con taxis.
+ *
  * @author Flores González Luis.
  * @version 1.0 - Febrero 2017
  * @see Taxi, Dueño, Chofer
@@ -15,6 +15,12 @@ public class Asociacion {
     private Dueño dueños[];
     private Chofer choferes[];
 
+    /**
+     * Construye una asociación con una cantidad fija de espacios disponibles
+     * para taxis, dueños y choferes. Tales espacios serán llenados
+     * respectivamente con sus archivos, si hay espacios libres estos contendran
+     * null.
+     */
     public Asociacion() {
         taxis = new Taxi[10];
         dueños = new Dueño[40];
@@ -24,13 +30,17 @@ public class Asociacion {
         ArchivoChofer archivoChofer = new ArchivoChofer();
         try {
             System.out.println("Leyendo datos de taxis....");
-            taxis = archivoTaxi.leeTaxis();            
+            System.arraycopy(archivoTaxi.leeTaxis(), 0, taxis,
+                    0, archivoTaxi.leeTaxis().length);
+            //taxis = archivoTaxi.leeTaxis();Me marca error, si lo implemento así.
             System.out.println(Arrays.toString(taxis));
             System.out.println("Leyendo datos de dueños....");
-            dueños = archivoDueño.leeDueños();
+            System.arraycopy(archivoDueño.leeDueños(), 0, dueños,
+                    0, archivoDueño.leeDueños().length);
             System.out.println(Arrays.toString(dueños));
             System.out.println("Leyendo datos de choferes");
-            choferes = archivoChofer.leeChofer();
+            System.arraycopy(archivoChofer.leeChofer(), 0, choferes,
+                    0, archivoChofer.leeChofer().length);
             System.out.println(Arrays.toString(choferes));
             System.out.println("Datos leidos....");
         } catch (ArchivoLecturaNoCreadoException e) {
@@ -42,7 +52,7 @@ public class Asociacion {
      * Todos los vehiculos dados de alta en el sistema tienen dueño.
      */
     public void agregarTaxi(Taxi nuevo) throws ExcesoException {
-         if (!lugarTaxiDisponible()) {
+        if (!lugarTaxiDisponible()) {
             throw new ExcesoException("Ya no hay espacios disponible para agregar un Taxi");
         } else {
             taxis[getCantidadTaxi()] = nuevo;
@@ -50,10 +60,20 @@ public class Asociacion {
         }
     }
 
+    /**
+     * Verifica que exista lugar para un Taxi mas.
+     *
+     * @return
+     */
     private boolean lugarTaxiDisponible() {
         return getCantidadTaxi() < taxis.length;
     }
 
+    /**
+     * Calcula los lugares ocupados por taxis.
+     *
+     * @return
+     */
     private int getCantidadTaxi() {
         int cantidad = 0;
         for (Taxi t : taxis) {
@@ -63,7 +83,7 @@ public class Asociacion {
         }
         return cantidad;
     }
-    
+
     public void agregarDueño(Dueño nuevo) throws ExcesoException {
         if (!lugarDueñoDisponible()) {
             throw new ExcesoException("Ya no hay espacios disponible para agregar un Dueño");
@@ -73,7 +93,7 @@ public class Asociacion {
     }
 
     /**
-     * Verifica que exista lugar para un medico mas
+     * Verifica que exista lugar para un dueño mas
      *
      * @return
      */
@@ -109,20 +129,20 @@ public class Asociacion {
 
     private int getCantidadChofer() {
         int cantidad = 0;
-        for (Chofer c:  choferes) {
+        for (Chofer c : choferes) {
             if (c != null) {
                 cantidad++;
             }
         }
         return cantidad;
     }
-    
+
     public void modificarTaxi() {
 
     }
 
     /**
-     * 
+     *
      * @param email Actua como el id del dueño a modificar.
      * @param nuevo Dato que se quiere modificar.
      */
@@ -150,31 +170,31 @@ public class Asociacion {
      * elimina del registro de taxis, la unidad que le pertenece al dueño.
      */
     public void eliminarDueño(String email) {
-        
+
     }
 
     public void elminarChofer() {
 
     }
-    
+
     /**
-     * 
-     * 
-     * @return 
+     *
+     *
+     * @return
      */
     public Taxi buscarTaxi(String id) {
-         for (Taxi t : taxis) {
+        for (Taxi t : taxis) {
             if (t.getId().equals(id)) {
                 return t;
             }
         }
-        return null; 
+        return null;
     }
 
     /**
-     * 
+     *
      * @param email Este actua como el id del dueño.
-     * @return 
+     * @return
      */
     public Dueño buscarDueño(String email) {
         for (Dueño d : dueños) {
@@ -184,14 +204,15 @@ public class Asociacion {
         }
         return null;
     }
-    
+
     /**
      * Busca el indice en el arreglo de dueños.
+     *
      * @param email
-     * @return 
+     * @return
      */
-    public Integer buscarIndiceDueño(String email){
-        for(int i = 0; i < dueños.length; i++){
+    public Integer buscarIndiceDueño(String email) {
+        for (int i = 0; i < dueños.length; i++) {
             if (dueños[i].getCorreo().equals(email)) {
                 return i;
             }
@@ -217,8 +238,8 @@ public class Asociacion {
     public void contratarChofer() {
 
     }
-    
-    public Taxi[] getTaxis(){
+
+    public Taxi[] getTaxis() {
         return this.taxis;
     }
 }
