@@ -3,8 +3,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- *
- * @author Flores González Luis Brandon
+ * Modela el comportamiento entre dueños y choferes con su relación entre taxis.
+ * 
+ * @author Flores González Luis.
+ * @version 1.0 - Febrero 2017
+ * @see Taxi, Dueño, Chofer
  */
 public class Asociacion {
 
@@ -123,7 +126,7 @@ public class Asociacion {
     public void modificarDueño(String email) {
         buscarDueño(email).setCelular(0);
         buscarDueño(email).setDomicilio(email);
-        buscarDueño(email).setEmail(email);
+        buscarDueño(email).setCorreo(email);
         buscarDueño(email).setFechaIngreso(email);
         buscarDueño(email).setLicenciaConducir(0);
         buscarDueño(email).setNombre(email);
@@ -172,7 +175,7 @@ public class Asociacion {
      */
     public Dueño buscarDueño(String email) {
         for (Dueño d : dueños) {
-            if (d.getEmail().equals(email)) {
+            if (d.getCorreo().equals(email)) {
                 return d;
             }
         }
@@ -186,7 +189,7 @@ public class Asociacion {
      */
     public Integer buscarIndiceDueño(String email){
         for(int i = 0; i < dueños.length; i++){
-            if (dueños[i].getEmail().equals(email)) {
+            if (dueños[i].getCorreo().equals(email)) {
                 return i;
             }
         }
@@ -195,7 +198,7 @@ public class Asociacion {
 
     public Chofer buscarChofer(String email) {
         for (Chofer c : choferes) {
-            if (c.getEmail().equals(email)) {
+            if (c.getCorreo().equals(email)) {
                 return c;
             }
         }

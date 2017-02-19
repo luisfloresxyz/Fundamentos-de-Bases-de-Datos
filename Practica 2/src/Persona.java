@@ -1,100 +1,105 @@
 
 /**
+ * Representación de una persona con datos de trabajo que tiene por 
+ * identificación un correo.
  *
  * @author Flores González Luis.
+ * @version 1.0 - Febrero 2017
  */
 public class Persona {
-    
+
     protected int celular;
-    protected String email;
+    protected String correo;
     protected String fechaIngreso;
     protected int licenciaConducir;
     protected String domicilio;
-    protected String nombre;   
-    
+    protected String nombre;
+
     /**
+     * Datos de una persona con licencia de conducir.
      * 
      * @param celular
-     * @param email
+     * @param correo
      * @param fechaIngreso
      * @param licenciaConducir
      * @param domicilio
-     * @param nombre 
+     * @param nombre
      */
-    public Persona(int celular, String email, String fechaIngreso,
-            int licenciaConducir, String domicilio, String nombre){
+    public Persona(int celular, String correo, String fechaIngreso,
+            int licenciaConducir, String domicilio, String nombre) {
         this.celular = celular;
-        this.email = email;
+        this.correo = correo;
         this.fechaIngreso = fechaIngreso;
         this.licenciaConducir = licenciaConducir;
         this.domicilio = domicilio;
         this.nombre = nombre;
     }
-    
+
     /**
-     * Persona sin licencia de conducir.
+     * Persona sin licencia de conducir, ya que no siempre es requerida.
+     *
      * @param celular
-     * @param email
+     * @param correo
      * @param fechaIngreso
      * @param domicilio
-     * @param nombre 
+     * @param nombre
      */
-    public Persona(int celular, String email, String fechaIngreso, 
-            String domicilio, String nombre){
+    public Persona(int celular, String correo, String fechaIngreso,
+            String domicilio, String nombre) {
         this.celular = celular;
-        this.email = email;
+        this.correo = correo;
         this.fechaIngreso = fechaIngreso;
         this.domicilio = domicilio;
         this.nombre = nombre;
         this.licenciaConducir = 0;
     }
-    
-    public int getCelular(){
+
+    public int getCelular() {
         return this.celular;
     }
-    
-    public String getEmail(){
-        return this.email;
+
+    public String getCorreo() {
+        return this.correo;
     }
-    
-    public String getFechaIngreso(){
+
+    public String getFechaIngreso() {
         return this.fechaIngreso;
     }
-    
-    public int getLicenciaConducir(){
+
+    public int getLicenciaConducir() {
         return this.licenciaConducir;
     }
-    
-    public String getDomicilio(){
+
+    public String getDomicilio() {
         return this.domicilio;
     }
-    
-    public String getNombre(){
+
+    public String getNombre() {
         return this.nombre;
     }
-    
-    public void setCelular(int celular){
+
+    public void setCelular(int celular) {
         this.celular = celular;
     }
-    
-    public void setEmail(String email){
-        this.email = email;
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
-    
-    public void setFechaIngreso(String fechaIngreso){
+
+    public void setFechaIngreso(String fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
-    
-    public void setLicenciaConducir(int licenciaConducir){
+
+    public void setLicenciaConducir(int licenciaConducir) {
         this.licenciaConducir = licenciaConducir;
     }
-    
-    public void setDomicilio(String domicilio){
+
+    public void setDomicilio(String domicilio) {
         this.domicilio = domicilio;
     }
-    
-    public void setNombre(String nombre){
+
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
 }

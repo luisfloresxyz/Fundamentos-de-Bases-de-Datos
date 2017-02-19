@@ -1,13 +1,18 @@
 
 /**
- *
+ * Representación del dueño de un vehiculo(taxi).
+ * 
  * @author Flores González Luis.
+ * @version 1.0 - Febrero 2017
+ * @see Persona
  */
 public class Dueño extends Persona{
     
     private String RFC;
 
     /**
+     * Datos de un dueño que incluye atributos de una persona con licencia de 
+     * conducir además de tener RFC.
      * 
      * @param celular
      * @param email
@@ -24,7 +29,9 @@ public class Dueño extends Persona{
     }
     
     /**
-     * Dueño sin licencia de conducir.
+     * Datos de un dueño que incluye atributos de una persona sin licencia de 
+     * conducir además de tener RFC.
+     * 
      * @param celular
      * @param email
      * @param fechaIngreso
@@ -49,7 +56,7 @@ public class Dueño extends Persona{
     
     @Override
     public String toString(){
-        return celular + " " + email + " " + fechaIngreso + " " 
+        return celular + " " + correo + " " + fechaIngreso + " " 
                 + licenciaConducir + " " + domicilio + " " + nombre + " " + RFC;
     }
 }
