@@ -1,2 +1,2 @@
-Prueba,Platina,Sentra,2016,true,4,5,iluis@ciencias.unam.mx
-Prueba2,Clio,Sentra,2016,true,4,5,iluis.bfg@gmail.com
+Prueba,Platina,Sentra,2016,true,4,5,true,iluis@ciencias.unam.mx
+Prueba2,Clio,Sentra,2016,true,4,5,true,iluis.bfg@gmail.com

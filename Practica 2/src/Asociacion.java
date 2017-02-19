@@ -16,9 +16,9 @@ public class Asociacion {
     private Chofer choferes[];
 
     public Asociacion() {
-        taxis = new Taxi[100];
+        taxis = new Taxi[10];
         dueños = new Dueño[40];
-        choferes = new Chofer[200];
+        choferes = new Chofer[20];
         ArchivoTaxi archivoTaxi = new ArchivoTaxi();
         ArchivoDueño archivoDueño = new ArchivoDueño();
         ArchivoChofer archivoChofer = new ArchivoChofer();
@@ -28,8 +28,10 @@ public class Asociacion {
             System.out.println(Arrays.toString(taxis));
             System.out.println("Leyendo datos de dueños....");
             dueños = archivoDueño.leeDueños();
+            System.out.println(Arrays.toString(dueños));
             System.out.println("Leyendo datos de choferes");
             choferes = archivoChofer.leeChofer();
+            System.out.println(Arrays.toString(choferes));
             System.out.println("Datos leidos....");
         } catch (ArchivoLecturaNoCreadoException e) {
             System.out.println(e.getMessage());
@@ -44,6 +46,7 @@ public class Asociacion {
             throw new ExcesoException("Ya no hay espacios disponible para agregar un Taxi");
         } else {
             taxis[getCantidadTaxi()] = nuevo;
+            System.out.println(Arrays.toString(taxis));
         }
     }
 
