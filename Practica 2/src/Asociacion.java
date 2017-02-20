@@ -410,7 +410,15 @@ public class Asociacion {
         //Método inecesario, eliminar.
     }
 
-    public Taxi[] getTaxis() {
-        return this.taxis;
+    public String getTaxis() {
+        return Arrays.toString(taxis);
+    }
+    
+    public String getChoferes(){
+        return Arrays.toString(choferes);
+    }
+    
+    public String getDueños(){
+        return Arrays.toString(dueños);
     }
 }
