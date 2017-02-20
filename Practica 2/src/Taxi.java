@@ -111,7 +111,23 @@ public class Taxi {
     public void setDueño(String emailDueño) {
         this.correoDueño = emailDueño;
     }
-
+    
+    public void setNumPuertas(int puertas){
+        this.puertas = puertas;
+    }
+    
+    public void setNumCilindros(int cilindros){
+        this.cilindros = cilindros;
+    }
+    
+    /**
+     * Indica si es miembro de la asociación o no.
+     * @param esMiembro True si es miembro de la asociación, false en otro caso.
+     */
+    public void setMiembro(boolean esMiembro){
+        this.esMiembroAsociacion = esMiembro;
+    }
+    
     public void tieneLlantaRefaccion(boolean llantaRefaccion) {
         this.llantaRefaccion = llantaRefaccion;
     }

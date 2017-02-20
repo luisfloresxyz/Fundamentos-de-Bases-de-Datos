@@ -38,6 +38,10 @@ public class Chofer extends Persona {
         return this.estaActivo;
     }
 
+    public void asignarEstado(boolean estaActivo){
+        this.estaActivo = estaActivo;
+    }
+    
     /**
      * Sale del modo de espera.
      */

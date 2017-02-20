@@ -61,7 +61,7 @@ public class Main {
                         System.out.println("Aquí va código.");
                         break;
                     case 4:
-                        System.out.println("Aquí va código.");
+                        UNAM.modificarTaxi("Prueba");                        
                         break;
                     case 5:
                         System.out.println("Aquí va código.");
