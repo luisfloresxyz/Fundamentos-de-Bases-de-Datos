@@ -45,6 +45,10 @@ public class Taxi {
         this.esMiembroAsociacion = miembro;
         this.correoDueño = emailDueño;
     }
+    
+    public Taxi(){
+        
+    }
 
     /**
      * Motivo por el cual se dio de baja.
@@ -169,8 +173,8 @@ public class Taxi {
 
     @Override
     public String toString() {
-        return id + " " + modelo + " " + marca + " " + año + " "
-                + llantaRefaccion + " " + puertas + " " + cilindros + " "
-                + esMiembroAsociacion + " " + correoDueño;
+        return id + "," + modelo + "," + marca + "," + año + ","
+                + llantaRefaccion + "," + puertas + "," + cilindros + ","
+                + esMiembroAsociacion + "," + correoDueño;
     }
 }

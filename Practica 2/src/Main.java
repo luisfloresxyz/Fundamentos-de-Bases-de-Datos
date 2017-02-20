@@ -35,15 +35,10 @@ public class Main {
                     + "12-Buscar chofer\n"
                     + "13-Mostrar taxis/dueños/choferes\n"
                     + "14-Salir\n");
-            try {
-                opcion = scan.nextInt();
-            } catch (InputMismatchException e) {
-                scan.next();
-                System.out.println("Ingresa un número como opción");
-            }
+            opcion = scan.nextInt();
             if (opcion > 0 && opcion < 15) {
                 switch (opcion) {
-                    case 1:                        
+                    case 1:
                         System.out.println("Agregar el ID del nuevo taxi:");
                         String id = scan.nextLine();
                         System.out.println("Agregar el modelo del nuevo taxi:\n");
@@ -62,7 +57,7 @@ public class Main {
                         boolean miembro = scan.nextBoolean();
                         System.out.println("Agregar el correo electronico del dueño del taxi:\n");
                         String mail = scan.nextLine();
-                        Taxi nuevo = new Taxi(id, modelo, marca, año, llanta, 
+                        Taxi nuevo = new Taxi(id, modelo, marca, año, llanta,
                                 puertas, cilindros, miembro, mail);
                          {
                             try {
@@ -70,69 +65,70 @@ public class Main {
                             } catch (ExcesoException ex) {
                                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                        }                      
+                        }
                         break;
-                    case 2:                        
-			    System.out.println("Celular del dueño:\n");
-			    int cel = scan.nextInt();
-			    System.out.println("Correo del dueño:\n");
-			    String correo = scan.nextLine();
-			    System.out.println("Fecha de ingreso del dueño:\n");
-			    String fechain = scan.nextLine ();
-			    System.out.println("Domicilio del dueño:\n");
-			    String direccion = scan.nextLine ();
-                            System.out.println("Licencia de conducir:(Solo números)\n");
-                            int licencia = scan.nextInt();
-			    System.out.println("Nombre del dueño:\n");
-			    String nombre = scan.nextLine ();
-			    System.out.println("RFC del dueño:\n");
-			    String rfc = scan.nextLine ();
-			    Dueño nuevoDueño = new Dueño(cel,correo,fechain, 
-                                    licencia,direccion,nombre,rfc);
-                {
-                    try {
-                        UNAM.agregarDueño(nuevoDueño);
-                    } catch (ExcesoException ex) {
-                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
+                    case 2:
+                        System.out.println("Celular del dueño:\n");
+                        int cel = scan.nextInt();
+                        System.out.println("Correo del dueño:\n");
+                        String correo = scan.nextLine();
+                        System.out.println("Fecha de ingreso del dueño:\n");
+                        String fechain = scan.nextLine();
+                        System.out.println("Domicilio del dueño:\n");
+                        String direccion = scan.nextLine();
+                        System.out.println("Licencia de conducir:(Solo números)\n");
+                        int licencia = scan.nextInt();
+                        System.out.println("Nombre del dueño:\n");
+                        String nombre = scan.nextLine();
+                        System.out.println("RFC del dueño:\n");
+                        String rfc = scan.nextLine();
+                        Dueño nuevoDueño = new Dueño(cel, correo, fechain,
+                                licencia, direccion, nombre, rfc);
+                         {
+                            try {
+                                UNAM.agregarDueño(nuevoDueño);
+                            } catch (ExcesoException ex) {
+                                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
                         break;
-                    case 3:                        
-			    System.out.println("Celular del chofer:\n");
-			    int celChofer = scan.nextInt();
-			    System.out.println("Correo del chofer:\n");
-			    String mailChofer = scan.nextLine();
-			    System.out.println("Fecha de ingreso:\n");
-			    String fechainChofer = scan.nextLine();
-			    System.out.println("Licencia de conducir:(Solo números)\n");
-			    int licenciaChofer = scan.nextInt();
-			    System.out.println("Nombre del chofer:\n");
-			    String nombreChofer = scan.nextLine();
-			    System.out.println("Domicilio del chofer:\n");
-			    String domicilioChofer = scan.nextLine();
-			    System.out.println("Estatus del chofer, es decir,"
-                                    + "esta en espera o esta activo. s = si esta "
-                                    + "activo n = no esta activo\n");
-			    String activoChofer = scan.nextLine();
-                            boolean act;
-                            act = activoChofer.equals(activoChofer);
-			    Chofer nuevochofer = new Chofer(celChofer,mailChofer,
-                                    fechainChofer,licenciaChofer,domicilioChofer,
-                                    nombreChofer,act);
-                {
-                    try {
-                        UNAM.agregarChofer(nuevochofer);
-                    } catch (ExcesoException ex) {
-                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
+                    case 3:
+                        System.out.println("Celular del chofer:\n");
+                        int celChofer = scan.nextInt();
+                        System.out.println("Correo del chofer:\n");
+                        String mailChofer = scan.nextLine();
+                        System.out.println("Fecha de ingreso:\n");
+                        String fechainChofer = scan.nextLine();
+                        System.out.println("Licencia de conducir:(Solo números)\n");
+                        int licenciaChofer = scan.nextInt();
+                        System.out.println("Nombre del chofer:\n");
+                        String nombreChofer = scan.nextLine();
+                        System.out.println("Domicilio del chofer:\n");
+                        String domicilioChofer = scan.nextLine();
+                        System.out.println("Estatus del chofer, es decir,"
+                                + "esta en espera o esta activo. s = si esta "
+                                + "activo n = no esta activo\n");
+                        String activoChofer = scan.nextLine();
+                        boolean act;
+                        act = activoChofer.equals(activoChofer);
+                        Chofer nuevochofer = new Chofer(celChofer, mailChofer,
+                                fechainChofer, licenciaChofer, domicilioChofer,
+                                nombreChofer, act);
+                         {
+                            try {
+                                UNAM.agregarChofer(nuevochofer);
+                            } catch (ExcesoException ex) {
+                                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
                         break;
                     case 4:                        
-			System.out.println("Ingresa el Id del taxi para hacer "
+                        System.out.println("Ingresa el Id del taxi para hacer "
                                 + "la modificacion:\n");
-			String idTaxi = scan.nextLine ();                                                                    
-			UNAM.modificarTaxi(idTaxi);
-                        break;                      
+                        Scanner leerIdTaxi = new Scanner(System.in);
+                        String idTaxi = leerIdTaxi.nextLine();                                                                    
+                        UNAM.modificarTaxi(idTaxi);
+                        break;
                     case 5:
                         System.out.println("Ingrese el correo del dueño para "
                                 + "modificar a ese mismo dueño:");
@@ -145,10 +141,10 @@ public class Main {
                         String correoChofer = scan.nextLine();
                         UNAM.modificarChofer(correoChofer);
                         break;
-                    case 7:                        
-			System.out.println("Ingresa el Id del taxi para hacer "
+                    case 7:
+                        System.out.println("Ingresa el Id del taxi para hacer "
                                 + "la eliminacion:\n");
-			String idTaxiElim = scan.nextLine ();
+                        String idTaxiElim = scan.nextLine();
                         UNAM.eliminarTaxi(idTaxiElim);
                         break;
                     case 8:
@@ -161,21 +157,21 @@ public class Main {
                         System.out.println("Ingresa el correo del chofer a"
                                 + "eliminar:");
                         String correoChoferElim = scan.nextLine();
-                        UNAM.elminarChofer(correoChoferElim);                        
+                        UNAM.elminarChofer(correoChoferElim);
                         break;
                     case 10:
                         System.out.println("Ingresa el ID del taxi para buscarlo:\n");
-			String taxiEncontrado = scan.nextLine();
+                        String taxiEncontrado = scan.nextLine();
                         System.out.println(UNAM.buscarTaxi(taxiEncontrado));
                         break;
                     case 11:
                         System.out.println("Ingresa el correo del dueño para buscarlo:\n");
-			String dueñoEncontrado = scan.nextLine();
+                        String dueñoEncontrado = scan.nextLine();
                         System.out.println(UNAM.buscarDueño(dueñoEncontrado));
                         break;
                     case 12:
                         System.out.println("Ingresa el correo del chofer para buscarlo:\n");
-			String choferEncontrado = scan.nextLine();
+                        String choferEncontrado = scan.nextLine();
                         System.out.println(UNAM.buscarChofer(choferEncontrado));
                         break;
                     case 13:
@@ -183,8 +179,8 @@ public class Main {
                         System.out.println(UNAM.getTaxis());
                         System.out.println("Registro de Dueños.");
                         System.out.println(UNAM.getDueños());
-                        System.out.println("Registro de choferes.");                        
-                        System.out.println(UNAM.getChoferes());                       
+                        System.out.println("Registro de choferes.");
+                        System.out.println(UNAM.getChoferes());
                         break;
                     case 14:
                         System.out.println("Adios :).");

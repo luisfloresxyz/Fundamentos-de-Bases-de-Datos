@@ -60,6 +60,7 @@ public class Asociacion {
         } else {
             taxis[getCantidadTaxi()] = nuevo;
             System.out.println(Arrays.toString(taxis));
+            archivoTaxi.escribeTaxi(taxis);
         }
     }
 
@@ -92,6 +93,7 @@ public class Asociacion {
             throw new ExcesoException("Ya no hay espacios disponible para agregar un Dueño");
         } else {
             dueños[getCantidadDueño()] = nuevo;
+            archivoDueño.escribeDueño(dueños);
         }
     }
 
@@ -123,6 +125,7 @@ public class Asociacion {
             throw new ExcesoException("Ya no hay espacios disponible para agregar un Chofer");
         } else {
             choferes[getCantidadChofer()] = nuevo;
+            archivoChofer.escribeChofer(choferes);
         }
     }
 
@@ -143,8 +146,7 @@ public class Asociacion {
     public void modificarTaxi(String id) {
         //buscarTaxi(id).setAño(69);
         //System.out.println(Arrays.toString(taxis));Inecesario
-        System.out.println("¿Qué dato quieres modificar?");
-        Scanner leer = new Scanner(System.in);
+        System.out.println("¿Qué dato quieres modificar?");        
         System.out.println("Ingresa la opción deseada\n"
                 + "1-ID\n"
                 + "2-Modelo\n"
@@ -155,6 +157,7 @@ public class Asociacion {
                 + "7-Número de cilindros\n"
                 + "8-¿Es miembro de la asociación?\n"
                 + "9-Cambiar de dueño(correo del nuevo dueño)\n");
+        Scanner leer = new Scanner(System.in);
         int opcion = leer.nextInt();
         switch (opcion) {
             case 1:
@@ -375,21 +378,6 @@ public class Asociacion {
         return null;
     }
 
-    /**
-     * Busca el indice en el arreglo de dueños.
-     *
-     * @param email
-     * @return
-     */
-    public Integer buscarIndiceDueño(String email) {
-        for (int i = 0; i < dueños.length; i++) {
-            if (dueños[i].getCorreo().equals(email)) {
-                return i;
-            }
-        }
-        return 1000;
-    }
-
     public Chofer buscarChofer(String email) {
         for (Chofer c : choferes) {
             if (c.getCorreo().equals(email)) {
@@ -397,17 +385,6 @@ public class Asociacion {
             }
         }
         return null;
-    }
-
-    /**
-     * Un dueño puede contratar a una persona que se encuentre en el listado de
-     * choferes, no importando el estatus que este tenga. Ya que se debe
-     * actualizar la información del nuevo jefe del chofer y la unidad que
-     * manejará.
-     * @param correo Identificador del chofer.
-     */
-    public void contratarChofer(String correo) {
-        //Método inecesario, eliminar.
     }
 
     public String getTaxis() {

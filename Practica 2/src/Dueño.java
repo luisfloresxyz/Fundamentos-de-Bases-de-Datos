@@ -56,7 +56,7 @@ public class Dueño extends Persona{
     
     @Override
     public String toString(){
-        return celular + " " + correo + " " + fechaIngreso + " " 
-                + licenciaConducir + " " + domicilio + " " + nombre + " " + RFC;
+        return celular + "," + correo + "," + fechaIngreso + "," 
+                + licenciaConducir + "," + domicilio + "," + nombre + "," + RFC;
     }
 }

@@ -58,7 +58,7 @@ public class Chofer extends Persona {
 
     @Override
     public String toString() {
-        return celular + " " + correo + " " + fechaIngreso + " " + licenciaConducir
-                + " " + domicilio + " " + nombre + " " + estaActivo;
+        return celular + "," + correo + "," + fechaIngreso + "," + licenciaConducir
+                + "," + domicilio + "," + nombre + "," + estaActivo;
     }
 }
