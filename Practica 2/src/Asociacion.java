@@ -404,9 +404,10 @@ public class Asociacion {
      * choferes, no importando el estatus que este tenga. Ya que se debe
      * actualizar la información del nuevo jefe del chofer y la unidad que
      * manejará.
+     * @param correo Identificador del chofer.
      */
-    public void contratarChofer() {
-
+    public void contratarChofer(String correo) {
+        //Método inecesario, eliminar.
     }
 
     public Taxi[] getTaxis() {
