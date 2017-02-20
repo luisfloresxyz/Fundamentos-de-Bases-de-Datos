@@ -1,4 +1,7 @@
 
+import java.util.Scanner;
+
+
 /**
  * Representación de un vehiculo.
  *
@@ -45,9 +48,27 @@ public class Taxi {
         this.esMiembroAsociacion = miembro;
         this.correoDueño = emailDueño;
     }
-    
-    public Taxi(){
-        
+
+    public Taxi() {
+        Scanner scanTaxi = new Scanner(System.in);
+        System.out.println("Agregar el ID del nuevo taxi:");
+        this.id = scanTaxi.nextLine();
+        System.out.println("Agregar el modelo del nuevo taxi:\n");
+        this.modelo = scanTaxi.nextLine();
+        System.out.println("Agregar la marca del nuevo taxi:\n");
+        this.marca = scanTaxi.nextLine();
+        System.out.println("Agregar el año del nuevo taxi:\n");
+        this.año = Integer.parseInt(scanTaxi.nextLine());
+        System.out.println("¿El taxi tiene llanta de refaccion?(true, false)\n");
+        this.llantaRefaccion = Boolean.parseBoolean(scanTaxi.nextLine());
+        System.out.println("Numero de puertas del nuevo taxi:\n");
+        this.puertas = Integer.parseInt(scanTaxi.nextLine());
+        System.out.println("Indique el numero de cilindros del nuevo taxi:\n");
+        this.cilindros = Integer.parseInt(scanTaxi.nextLine());
+        System.out.println("¿El taxista es miembro de la Asociacion?(true, false)\n");
+        this.esMiembroAsociacion = Boolean.parseBoolean(scanTaxi.nextLine());
+        System.out.println("Agregar el correo electronico del dueño del taxi:\n");
+        this.correoDueño = scanTaxi.nextLine();        
     }
 
     /**
@@ -115,23 +136,24 @@ public class Taxi {
     public void setDueño(String emailDueño) {
         this.correoDueño = emailDueño;
     }
-    
-    public void setNumPuertas(int puertas){
+
+    public void setNumPuertas(int puertas) {
         this.puertas = puertas;
     }
-    
-    public void setNumCilindros(int cilindros){
+
+    public void setNumCilindros(int cilindros) {
         this.cilindros = cilindros;
     }
-    
+
     /**
      * Indica si es miembro de la asociación o no.
+     *
      * @param esMiembro True si es miembro de la asociación, false en otro caso.
      */
-    public void setMiembro(boolean esMiembro){
+    public void setMiembro(boolean esMiembro) {
         this.esMiembroAsociacion = esMiembro;
     }
-    
+
     public void tieneLlantaRefaccion(boolean llantaRefaccion) {
         this.llantaRefaccion = llantaRefaccion;
     }

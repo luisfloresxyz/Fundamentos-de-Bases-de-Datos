@@ -54,6 +54,10 @@ public class Persona {
         this.licenciaConducir = 0;
     }
 
+    public Persona(){
+        
+    }
+    
     public int getCelular() {
         return this.celular;
     }
