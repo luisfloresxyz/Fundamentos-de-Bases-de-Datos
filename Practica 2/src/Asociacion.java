@@ -25,16 +25,17 @@ public class Asociacion {
      * null.
      */
     public Asociacion() {
-        taxis = new Taxi[100];
-        dueños = new Dueño[100];
-        choferes = new Chofer[100];
+        taxis = new Taxi[200];
+        dueños = new Dueño[200];
+        choferes = new Chofer[200];
         archivoTaxi = new ArchivoTaxi();
         archivoDueño = new ArchivoDueño();
         archivoChofer = new ArchivoChofer();
         try {
             System.out.println("Leyendo datos de taxis....");
             System.arraycopy(archivoTaxi.leeTaxis(), 0, taxis,
-                    0, archivoTaxi.leeTaxis().length);            
+                    0, archivoTaxi.leeTaxis().length);
+            //taxis = archivoTaxi.leeTaxis();Me marca error, si lo implemento así.
             System.out.println(Arrays.toString(taxis));
             System.out.println("Leyendo datos de dueños....");
             System.arraycopy(archivoDueño.leeDueños(), 0, dueños,
@@ -143,6 +144,8 @@ public class Asociacion {
     }
 
     public void modificarTaxi(String id) {
+        //buscarTaxi(id).setAño(69);
+        //System.out.println(Arrays.toString(taxis));Inecesario
         System.out.println("¿Qué dato quieres modificar?");        
         System.out.println("Ingresa la opción deseada\n"
                 + "1-ID\n"
@@ -155,7 +158,7 @@ public class Asociacion {
                 + "8-¿Es miembro de la asociación?\n"
                 + "9-Cambiar de dueño(correo del nuevo dueño)\n");
         Scanner leer = new Scanner(System.in);
-        int opcion = Integer.parseInt(leer.nextLine());
+        int opcion = leer.nextInt();
         switch (opcion) {
             case 1:
                 String nuevoId = leer.nextLine();
@@ -170,7 +173,7 @@ public class Asociacion {
                 buscarTaxi(id).setMarca(nuevaMarca);
                 break;
             case 4:
-                int nuevoAño = Integer.parseInt(leer.nextLine());
+                int nuevoAño = leer.nextInt();
                 buscarTaxi(id).setAño(nuevoAño);
                 break;
             case 5:
@@ -178,15 +181,15 @@ public class Asociacion {
                 buscarTaxi(id).tieneLlantaRefaccion(tieneLlantaRefaccion);
                 break;
             case 6:
-                int numPuertas = Integer.parseInt(leer.nextLine());
+                int numPuertas = leer.nextInt();
                 buscarTaxi(id).setNumPuertas(numPuertas);
                 break;
             case 7:
-                int numCilindros = Integer.parseInt(leer.nextLine());
+                int numCilindros = leer.nextInt();
                 buscarTaxi(id).setNumCilindros(numCilindros);
                 break;
             case 8:
-                boolean esMiembro = Boolean.parseBoolean(leer.nextLine());
+                boolean esMiembro = leer.nextBoolean();
                 buscarTaxi(id).setMiembro(esMiembro);
                 break;
             case 9:
@@ -207,7 +210,8 @@ public class Asociacion {
      */
     public void modificarDueño(String correo) {
         //celular,correo,fechaIngreso,licenciaConducir,domicilio,nombre,RFC
-        System.out.println("¿Qué dato quieres modificar?");       
+        System.out.println("¿Qué dato quieres modificar?");
+        Scanner leer = new Scanner(System.in);
         System.out.println("Ingresa la opción deseada\n"
                 + "1-Celular\n"
                 + "2-Correo\n"
@@ -216,11 +220,10 @@ public class Asociacion {
                 + "5-Domicilio\n"
                 + "6-Nombre\n"
                 + "7-RFC\n");
-        Scanner leer = new Scanner(System.in);
-        int opcion = Integer.parseInt(leer.nextLine());
+        int opcion = leer.nextInt();
         switch (opcion) {
             case 1:
-                int nuevoCelular = Integer.parseInt(leer.nextLine());
+                int nuevoCelular = leer.nextInt();
                 buscarDueño(correo).setCelular(nuevoCelular);
                 break;
             case 2:
@@ -232,7 +235,7 @@ public class Asociacion {
                 buscarDueño(correo).setFechaIngreso(nuevaFechaIngreso);
                 break;
             case 4:
-                int nuevaLicenciaConducir = Integer.parseInt(leer.nextLine());
+                int nuevaLicenciaConducir = leer.nextInt();
                 buscarDueño(correo).setLicenciaConducir(nuevaLicenciaConducir);
                 break;
             case 5:
@@ -256,7 +259,8 @@ public class Asociacion {
 
     public void modificarChofer(String correo) {
         //celular,correo,fechaIngreso,licenciaConducir,domicilio,nombre,estaActivo
-        System.out.println("¿Qué dato quieres modificar?");        
+        System.out.println("¿Qué dato quieres modificar?");
+        Scanner leer = new Scanner(System.in);
         System.out.println("Ingresa la opción deseada\n"
                 + "1-Celular\n"
                 + "2-Correo\n"
@@ -265,11 +269,10 @@ public class Asociacion {
                 + "5-Domicilio\n"
                 + "6-Nombre\n"
                 + "7-Cambiar estatus(Esta descansando o activo)\n");
-        Scanner leer = new Scanner(System.in);
-        int opcion = Integer.parseInt(leer.nextLine());
+        int opcion = leer.nextInt();
         switch (opcion) {
             case 1:
-                int nuevoCelular = Integer.parseInt(leer.nextLine());
+                int nuevoCelular = leer.nextInt();
                 buscarChofer(correo).setCelular(nuevoCelular);
                 break;
             case 2:
@@ -281,7 +284,7 @@ public class Asociacion {
                 buscarChofer(correo).setFechaIngreso(nuevaFechaIngreso);
                 break;
             case 4:
-                int nuevaLicenciaConducir = Integer.parseInt(leer.nextLine());
+                int nuevaLicenciaConducir = leer.nextInt();
                 buscarChofer(correo).setLicenciaConducir(nuevaLicenciaConducir);
                 break;
             case 5:
@@ -293,7 +296,7 @@ public class Asociacion {
                 buscarChofer(correo).setNombre(nuevoNombre);
                 break;
             case 7:
-                boolean nuevoEstado = Boolean.parseBoolean(leer.nextLine());
+                boolean nuevoEstado = leer.nextBoolean();
                 buscarChofer(correo).asignarEstado(nuevoEstado);
                 break;
             default:
@@ -304,7 +307,8 @@ public class Asociacion {
     }
 
     public void eliminarTaxi(String id) {        
-        //id,modelo,marca,año,llantaRefaccion,puertas,cilindros,esMiembro,correoDueño        
+        //id,modelo,marca,año,llantaRefaccion,puertas,cilindros,esMiembro,correoDueño
+        buscarTaxi(id).setId(null);
         buscarTaxi(id).setModelo(null);
         buscarTaxi(id).setMarca(null);
         buscarTaxi(id).setAño(0);
@@ -313,7 +317,6 @@ public class Asociacion {
         buscarTaxi(id).setNumCilindros(0);
         buscarTaxi(id).setMiembro(false);
         buscarTaxi(id).setDueño(null);
-        buscarTaxi(id).setId(null);
         archivoTaxi.escribeTaxi(taxis);
     }
 
@@ -324,25 +327,25 @@ public class Asociacion {
      */
     public void eliminarDueño(String correo) {                
         //celular,correo,fechaIngreso,licenciaConducir,domicilio,nombre,RFC
-        buscarDueño(correo).setCelular(0);        
+        buscarDueño(correo).setCelular(0);
+        buscarDueño(correo).setCorreo(null);
         buscarDueño(correo).setFechaIngreso(null);
         buscarDueño(correo).setLicenciaConducir(0);
         buscarDueño(correo).setDomicilio(null);
         buscarDueño(correo).setNombre(null);
         buscarDueño(correo).setRFC(null);
-        buscarDueño(correo).setCorreo(null);
         archivoDueño.escribeDueño(dueños);
     }
 
     public void elminarChofer(String correo) {
         //celular,correo,fechaIngreso,licenciaConducir,domicilio,nombre,estaActivo
-        buscarChofer(correo).setCelular(0);        
+        buscarChofer(correo).setCelular(0);
+        buscarChofer(correo).setCorreo(null);
         buscarChofer(correo).setFechaIngreso(null);
         buscarChofer(correo).setLicenciaConducir(0);
         buscarChofer(correo).setDomicilio(null);
         buscarChofer(correo).setNombre(null);
         buscarChofer(correo).asignarEstado(false);
-        buscarChofer(correo).setCorreo(null);
         archivoChofer.escribeChofer(choferes);
     }
 
