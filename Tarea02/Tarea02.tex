@@ -22,20 +22,14 @@
 
 \usepackage[spanish]{babel}
 \usepackage[utf8x]{inputenc}
-\title{Fundamentos de Bases de Datos \\ Modelo Entidad – Relación}
-\author{Flores González Luis Brandon}
+\author{Flores González Luis Brandon - 312218342 \\ García Argueta Jaime Daniel - 312104739 \\ Tarea 2. Modelo Entidad – Relación}
+\title{}
 \date{01 de marzo de 2017}
 
 
 \begin{document}
 
-	\maketitle
-	Para los que requieran un modelo E/R deberás elaborar un diseño para la base de datos solicitada
-	utilizando la notación vista en clase. Para cada problema tendrás que incluir además un texto en el
-	que indiques las restricciones del modelo: cardinalidad, participación, identificadores, etcétera; será
-	importante que documentes las decisiones y consideraciones de diseño que hayas asumido. Es posible
-	que exista información incompleta, en ese caso debes completarla especificando las decisiones que
-	tomaste.
+	\maketitle	
 	
 	\begin{enumerate}
 		\item \textbf{Repaso de conceptos generales}
@@ -43,9 +37,9 @@
 				\item Un conjunto de \textbf{entidades débiles} siempre se puede convertir en un conjunto de \textbf{entidades fuertes}
 				añadiéndole a sus atributos la \textbf{llave primaria} del conjunto de entidades fuertes a las que está
 				asociado. Describe qué tipo de redundancia resultaría si se realizara dicha conversión.
-				\\\\Por redundancia entendemos al almacenamiento de los mismos datos varias veces en diferentes lugares. En este caso tendríamos el mismo valor(llave primaria) tanto en la entidad fuerte como en la debil(fuerte cuando se agregue) esto produciría los siguientes incovenientes:
+				\\\\Por redundancia entendemos al almacenamiento de los mismos datos varias veces en diferentes lugares. En este caso tendríamos el mismo valor(llave primaria) tanto en la entidad fuerte como en la débil(fuerte cuando se agregue) esto produciría los siguientes inconvenientes:
 					\begin{itemize}
-						\item Incrementro de trabajo: como un mismo dato está almacenado en dos o más lugares, esto hace que cuando se graben o actualicen datos, deban hacerse en todos los lugares a la vez.
+						\item Incremento de trabajo: como un mismo dato está almacenado en dos o más lugares, esto hace que cuando se graben o actualicen datos, deban hacerse en todos los lugares a la vez.
 						\item Desperdicio de espacio de almacenamiento, ya que los mismos datos están almacenados en varios lugares distintos.
 						\item Inconsistencia de datos: esto sucede cuando los datos redundantes no son iguales entre sí. Esto puede suceder, por ejemplo, cuando se actualiza el dato en un lugar, pero el dato duplicado en otro lugar no es actualizado.\\
 					\end{itemize}
@@ -67,9 +61,23 @@
 				\end{itemize}
 				\item Explica el concepto de \textbf{agregación} en el \textbf{modelo E/R} y proporciona un par de ejemplos.
 				\\\\Es una abstracción a través de la cual las relaciones se tratan como entidades de un nivel más alto. Se utiliza para expresar relaciones entre relaciones o entre entidades y relaciones. Se representa englobando la relación abstraída y las entidades que participan en ella en un rectángulo.\\
-				\textbf{Poner imágenes}
+					\begin{figure}[H]
+					\centering
+					\includegraphics[width=1\textwidth]{imagenes/Agregacion1}
+					\caption{Ejemplo 1}
+					\end{figure}
+					\begin{figure}[H]
+						\centering
+						\includegraphics[width=1\textwidth]{imagenes/Agregacion2}
+						\caption{Ejemplo 2}						
+					\end{figure}
 				\item Diseña un \textbf{modelo E/R} en donde reflejes los conceptos vistos para el tema de \textbf{Modelo E/R} (no
 				tienes que considerar el modelo E/R extendido).
+				\\\\Se necesita administrar la información de los grupos de una escuela, estos necesitan conocer la información de sus profesores tal como nombre, edad, etc. Además se necesita conocer las materias que imparten, queda claro que todo profesor imparte al menos una materia. Además se necesita conocer tanto los alumnos que pertenecen a un grupo como los profesores que le dan clase a esos alumnos.
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=1\textwidth]{imagenes/EjemploDiagrama}										
+				\end{figure}				
 			\end{enumerate}
 		\item \textbf{Modelo Entidad/Relación}
 			\begin{enumerate}
@@ -89,8 +97,9 @@
 			conocer la deuda actual. En cuanto a las agencia solo se necesita almacenar: \textbf{el nombre, RFC y
 			la dirección donde se ubica}. Se pide considerar que se trata de una empresa en expansión y que,
 			en algún momento, puede haber más de una sucursal operando a lo largo de la república.
+			\\\\\\ \textbf{El diagrama se encuentra al final en orden respectivo.}\\\\		
 			\item \textbf{Juego de computadora}
-			Se desea construir una base de datos para modelar \textbf{un juego de
+			\\Se desea construir una base de datos para modelar \textbf{un juego de
 			computadora}. En el juego se utilizan conceptos como: \textbf{personajes,
 			objetos} y \textbf{escenarios}. Las especificaciones del diseño son:
 				\begin{itemize}
@@ -115,10 +124,14 @@
 					particulares del escenario en que el jugador se ubique.
 					\item Se deben almacenar todas las estadísticas del juego para cada jugador, como, por ejemplo,
 					\textbf{nombre del jugador, puntos alcanzados, nivel de avance, tiempo de juego}, y algún aspecto
-					adicional que se considere pertinente.
+					adicional que se considere pertinente.\\\\
+					
 				\end{itemize}
+			\textbf{El diagrama se encuentra al final en orden respectivo.}\\\\
+			
+			
 			\item \textbf{Sitio social de fotografías}
-			Hoy en día, son muy populares los sitios web sociales que almacenan
+			\\Hoy en día, son muy populares los sitios web sociales que almacenan
 			fotografías (p. e. \textbf{Instagram}) y eres contratado para realizar un sitio similar
 			considerando las siguientes características:
 				\begin{itemize}
@@ -135,8 +148,44 @@
 					fotos como favoritas.
 					\item Los usuarios pueden ser \textbf{amigos de otros usuarios}, los cuales pueden ser \textbf{familiares, compañeros
 					de trabajo o amigos} (reales y/o virtuales). Los usuarios pueden dejar \textbf{comentarios} en las
-					fotografías y un mismo usuario puede realizar varios comentarios.
+					fotografías y un mismo usuario puede realizar varios comentarios.\\\\
 				\end{itemize}
+			\textbf{El diagrama se encuentra al final en orden respectivo.}\\\\
 			\end{enumerate}
+		\item \textbf{Ingeniería inversa.}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=1\textwidth]{imagenes/IngenieraInversa}
+				\caption{Base de datos Películas.}
+			\end{figure}
+			\begin{itemize}
+				\item En esta base de datos no hay ningún actor que no haya actuado en ninguna película.
+				\\\\Verdadero, ya que hay al menos un actor que haya actuado en al menos una película.\\
+				\item Hay algunos actores que han actuado en más de diez películas.
+				\\\\Quizá, ya que debe haber al menos uno que haya actuado pero no podemos saber la cantidad de cuantas peliculas a actuado.\\
+				\item Algunos actores han sido protagonistas en varias películas.
+				\\\\Quiza, ya que algunos pudieran haber no protagonizado varias peliculas o algunos pudierón protagonizar varias peliculas.\\				
+				\item Una película sólo puede tener un máximo de dos protagonistas.
+				\\\\Falso ya que un actor puede protagonizar varias peliculas, y puede haber mas de dos actores.\\
+				\item Cada director ha sido actor en alguna película.
+				\\\\Falso, ya que puede haber aunque sea uno que no haya actuado.\\
+				\item Ningún productor ha sido actor alguna vez.
+				\\\\Quiza, ya que la participación es parcial.\\
+				\item Un productor no puede ser actor en alguna otra película.
+				\\\\Falso, ya que la cardinalidad es de muchos a muchos.\\
+				\item Hay películas con más de una docena de actores.
+				\\\\Quiza, ya que la cardinalidad es de muchos a muchos.\\
+				\item Algunos productores también han sido directores.
+				\\\\Quiza, ya que esta expresado con traslape. Es decir, puede ser director y productor\\
+				\item La mayoría de las películas tienen un director y un productor.
+				\\\\Verdadero, ya que de la de entidad película a la relación producir y dirigir la participación es total.\\ 
+				\item Algunas películas tienen un director, pero varios productores.
+				\\\\Falso, ya que la cardinalidad de directo y productor es 1 a muchos.\\
+				\item Hay algunos actores que han interpretado el papel de protagonista, dirigido una película y
+				producido alguna película.
+				\\\\Quiza, ya que las sub-entidades no son disjuntas y hay un relación hacía todas estas.\\
+				\item Ninguna película tiene un director que también haya actuado en ella.
+				\\\\Quiza, ya que la especialización es paracial y puede que se cumpla esta condición o no.\\
+			\end{itemize}
 	\end{enumerate}
 \end{document}
