@@ -1,0 +1,142 @@
+\documentclass{article}
+
+\usepackage{amsfonts} 
+\usepackage{amsmath} 
+\usepackage{graphicx} 
+\usepackage{float} 
+\usepackage{natbib} 
+\usepackage{slashbox} 
+\usepackage{graphicx} 
+\usepackage{flushend} 
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsxtra} 
+\usepackage{amstext} 
+\usepackage{amsthm} 
+\usepackage{amsbsy} 
+\usepackage{latexsym} 
+\usepackage{mathrsfs} 
+\usepackage{eucal} 
+\usepackage{synttree} 
+
+
+\usepackage[spanish]{babel}
+\usepackage[utf8x]{inputenc}
+\title{Fundamentos de Bases de Datos \\ Modelo Entidad – Relación}
+\author{Flores González Luis Brandon}
+\date{01 de marzo de 2017}
+
+
+\begin{document}
+
+	\maketitle
+	Para los que requieran un modelo E/R deberás elaborar un diseño para la base de datos solicitada
+	utilizando la notación vista en clase. Para cada problema tendrás que incluir además un texto en el
+	que indiques las restricciones del modelo: cardinalidad, participación, identificadores, etcétera; será
+	importante que documentes las decisiones y consideraciones de diseño que hayas asumido. Es posible
+	que exista información incompleta, en ese caso debes completarla especificando las decisiones que
+	tomaste.
+	
+	\begin{enumerate}
+		\item \textbf{Repaso de conceptos generales}
+			\begin{enumerate}
+				\item Un conjunto de \textbf{entidades débiles} siempre se puede convertir en un conjunto de \textbf{entidades fuertes}
+				añadiéndole a sus atributos la \textbf{llave primaria} del conjunto de entidades fuertes a las que está
+				asociado. Describe qué tipo de redundancia resultaría si se realizara dicha conversión.
+				\\\\Por redundancia entendemos al almacenamiento de los mismos datos varias veces en diferentes lugares. En este caso tendríamos el mismo valor(llave primaria) tanto en la entidad fuerte como en la debil(fuerte cuando se agregue) esto produciría los siguientes incovenientes:
+					\begin{itemize}
+						\item Incrementro de trabajo: como un mismo dato está almacenado en dos o más lugares, esto hace que cuando se graben o actualicen datos, deban hacerse en todos los lugares a la vez.
+						\item Desperdicio de espacio de almacenamiento, ya que los mismos datos están almacenados en varios lugares distintos.
+						\item Inconsistencia de datos: esto sucede cuando los datos redundantes no son iguales entre sí. Esto puede suceder, por ejemplo, cuando se actualiza el dato en un lugar, pero el dato duplicado en otro lugar no es actualizado.\\
+					\end{itemize}
+				\item Responde a las siguientes cuestiones, deberás indicar \textbf{si son posibles o no}, justificando tu
+				respuesta. Cuando no sea posible deberás indicar alguna recomendación al respecto:
+				\begin{itemize}
+					\item ¿Un \textbf{atributo compuesto} puede ser \textbf{llave}?
+					\\Si, este se designa como llave además todos los atributos componentes de la llave compuesta deben estar incluidos para tener la propiedad de unicidad. 
+					\item ¿Un \textbf{atributo multivaluado} puede ser \textbf{llave}? 
+					\\No, ya que debe ser único.
+					\item ¿Un \textbf{atributo derivado} puede ser \textbf{llave}? 
+					\\No, ya que el valor no es estático. Un ejemplo puede ser que se calcule una edad a partir de una fecha, este cambiara. 
+					\item ¿Un \textbf{atributo multivaluado} puede ser \textbf{compuesto}? 
+					\\Si, ya que cada valor puede estar compuesto. Por ejemplo un nombre que esta en un atributo multivaluado.
+					\item ¿Un \textbf{atributo multivaluado} puede ser \textbf{derivado}? 
+					\\Si, por ejemplo una fecha de nacimiento.
+					\item ¿Qué implicaría la existencia de una \textbf{entidad} cuyos atributos sean \textbf{todos derivados}?				
+					\\En caso de que no haya otra entidad, no sería posible ya que no habría un atributo del cual derivar. Pero si existiera tal entidad los costos serían muy superiores.\\
+				\end{itemize}
+				\item Explica el concepto de \textbf{agregación} en el \textbf{modelo E/R} y proporciona un par de ejemplos.
+				\\\\Es una abstracción a través de la cual las relaciones se tratan como entidades de un nivel más alto. Se utiliza para expresar relaciones entre relaciones o entre entidades y relaciones. Se representa englobando la relación abstraída y las entidades que participan en ella en un rectángulo.\\
+				\textbf{Poner imágenes}
+				\item Diseña un \textbf{modelo E/R} en donde reflejes los conceptos vistos para el tema de \textbf{Modelo E/R} (no
+				tienes que considerar el modelo E/R extendido).
+			\end{enumerate}
+		\item \textbf{Modelo Entidad/Relación}
+			\begin{enumerate}
+				\item \textbf{Venta de automóviles}
+				\\Se desea construir una base de datos para una agencia de venta de autos, la cual requiere tener control de las ventas que realiza, así como los trabajadores que laboran en ella.
+				Para los trabajadores requiere almacenar: \textbf{nombre, CURP, fecha de nacimiento, sueldo, fecha de ingreso a la agencia} y su \textbf{dirección}. Necesita además almacenar información específica para los distintos trabajadores:		
+				\begin{itemize}
+					\item Vendedores $\rightarrow$ comisión.
+					\item Asesor de ventas $\rightarrow$ los accesorios que vende.
+					\item Guardias de seguridad $\rightarrow$ su turno y área.
+					\item Limpieza $\rightarrow$ el turno que labora así como el área.
+				\end{itemize}		
+			Es importante paras la agencia tener información de sus clientes para próximas ofertas. En este
+			caso se necesita conocer: \textbf{nombre, CURP, fecha de nacimiento, dirección} y la \textbf{forma de pago}; si el
+			cliente pide un \textbf{crédito} a la agencia, se necesita tener un \textbf{control de los pagos} (el total de monto
+			a financiar, la fecha de las parcialidades y el monto) para que en todo momento se pueda
+			conocer la deuda actual. En cuanto a las agencia solo se necesita almacenar: \textbf{el nombre, RFC y
+			la dirección donde se ubica}. Se pide considerar que se trata de una empresa en expansión y que,
+			en algún momento, puede haber más de una sucursal operando a lo largo de la república.
+			\item \textbf{Juego de computadora}
+			Se desea construir una base de datos para modelar \textbf{un juego de
+			computadora}. En el juego se utilizan conceptos como: \textbf{personajes,
+			objetos} y \textbf{escenarios}. Las especificaciones del diseño son:
+				\begin{itemize}
+					\item Cada \textbf{personaje} tiene un nombre único y lleva asociados \textbf{5 valores}
+					que indican: \textbf{vida, nivel de fuerza, inteligencia, habilidad y rapidez}.
+					Interesa saber cada momento en qué escenario se encuentra. Cada
+					personaje tiene un rol en el juego (p.e. enemigos, aliados, etc.) y cada
+					personaje puede dominar a otros personajes (a cero o más), pero sólo
+					puede ser dominado por otro, o por ninguno.
+					\item Los personajes tienen en cada momento algunos \textbf{objetos} en su poder. Los objetos pueden
+					incrementar alguna de sus características (p.e. pócimas para aumentar la fuerza) o bien puede
+					ser armas. Cada objeto tiene un \textbf{nombre} y un \textbf{tipo}, además de un valor numérico que indica el
+					porcentaje en que puede incrementar una característica o bien el daño en el nivel de vida que
+					puede reducir.
+					\item Además de saber qué objetos tiene cada personaje hay que guardar información acerca de
+					en qué momento (\textbf{hora, minuto y segundo}) tomó el personaje el objeto. Puede haber objetos
+					que no estén en posesión de ningún personaje (no los ha encontrado nadie aún), pero ninguno
+					puede pertenecer a dos personajes al mismo tiempo.
+					\item Los objetos se deben poder distinguir entre sí y están determinados por el escenario en que se
+					encuentran situados al comienzo del juego. Cada escenario puede contener 0 o más objetos.
+					\item Cada escenario es único y tiene 2 factores: \textbf{riesgo y tiempo}, mismos que indican características
+					particulares del escenario en que el jugador se ubique.
+					\item Se deben almacenar todas las estadísticas del juego para cada jugador, como, por ejemplo,
+					\textbf{nombre del jugador, puntos alcanzados, nivel de avance, tiempo de juego}, y algún aspecto
+					adicional que se considere pertinente.
+				\end{itemize}
+			\item \textbf{Sitio social de fotografías}
+			Hoy en día, son muy populares los sitios web sociales que almacenan
+			fotografías (p. e. \textbf{Instagram}) y eres contratado para realizar un sitio similar
+			considerando las siguientes características:
+				\begin{itemize}
+					\item Los \textbf{usuarios} que se registran en el sitio tienen \textbf{nombre de usuario,
+					contraseña, correo electrónico, un nombre real, un alias y una fecha de
+					nacimiento}. Todos los usuarios deben tener una \textbf{foto de perfil} e interesa
+					mantener un histórico de todas las fotos que han sido elegidas para este fin.
+					\item Los usuarios pueden subir cualquier \textbf{número de fotografías} y es importante
+					para los usuarios saber el número de fotografías que se han publicado en el sitio.
+					\item Una fotografía tiene un \textbf{nombre, un identificador, una fecha y hora} en que se subió al sitio, \textbf{título
+					y descripción}. Los usuarios pueden crear \textbf{álbumes} con las fotografías que ha subido, los álbumes tienen un \textbf{nombre y una fecha de creación}; un usuario no puede tener álbumes con nombres
+					repetidos, pero dos distintos usuarios podrían tener un álbum con el mismo nombre.
+					\item Los usuarios pueden \textbf{calificar las fotos} de cualquier otro usuario. Los usuarios pueden marcar
+					fotos como favoritas.
+					\item Los usuarios pueden ser \textbf{amigos de otros usuarios}, los cuales pueden ser \textbf{familiares, compañeros
+					de trabajo o amigos} (reales y/o virtuales). Los usuarios pueden dejar \textbf{comentarios} en las
+					fotografías y un mismo usuario puede realizar varios comentarios.
+				\end{itemize}
+			\end{enumerate}
+	\end{enumerate}
+\end{document}
