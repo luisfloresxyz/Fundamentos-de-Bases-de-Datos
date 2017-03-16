@@ -1,0 +1,71 @@
+\documentclass{article}
+
+\usepackage{amsfonts} 
+\usepackage{amsmath} 
+\usepackage{graphicx} 
+\usepackage{float} 
+\usepackage{natbib} 
+\usepackage{slashbox} 
+\usepackage{graphicx} 
+\usepackage{flushend} 
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsxtra} 
+\usepackage{amstext} 
+\usepackage{amsthm} 
+\usepackage{amsbsy} 
+\usepackage{latexsym} 
+\usepackage{mathrsfs} 
+\usepackage{eucal} 
+\usepackage{synttree} 
+
+
+\usepackage[spanish]{babel}
+\usepackage[utf8x]{inputenc}
+\author{Flores González Luis Brandon - 312218342 
+	\\ García Argueta Jaime Daniel - 312104739
+	\\ Pérez Villanueva Francisco Javier - 308200430}
+\title{Practica 4. Modelo Entidad – Relación}
+\date{6 de marzo de 2017}
+
+
+\begin{document}
+
+	\maketitle	
+	
+	\section{Reporte}
+	
+    Usamos \textbf{Persona} como entidad padre y agregamos los atributos correo(puede tener varios), fecha en que ingreso(no es un atributo propio de una persona pero dado el problema es conveniente hacerlo así), celular(puede tener varios), fotografía, CURP(esta es el identificador) y el nombre.
+    
+    De esta entidad tenemos dos sub-entidades \textbf{Chofer} con numero de licencia y \textbf{Dueño} con RFC, estas se pueden traslapar. 
+    	
+    Un chofer puede conducir varios taxis, pero un taxi no puede ser conducido por varios choferes.
+    
+    Un dueño puede tener muchos taxis pero un taxi no puede tener muchos dueños. Además es forzoso que un taxi siempre tenga un dueño.
+    
+    Además se hizo uso de herencia múltiple. Con alumno, académico y trabajador de la universidad donde sus atributos son facultad, instituto y unidad respectivamente. Pero aquí usamos disyunción, es decir, no puede ser más de una entidad a la vez. 
+   
+   	La entidad \textbf{Cliente} agrega a esta la hora de entrada y salida además agregar un ID UNAM como atributo.
+    
+    La entidad \textbf{taxi} tiene como identificador el número de motor, esto no lo indica los requerimientos. Además este tiene año, marca, modelo, si tiene llanta de refacción y número de cilindros.
+    
+    Por otra parte necesitamos conocer si el taxi pertenece a la asociación o no y cual es su razón, lo cual se creo una entidad con este nombre cuyo identificador es su nombre. Además se estable una relación contratar donde todo taxi debe participar, en esta se debe conocer el tipo de seguro que tiene y los riesgos que cubre.  Esta relación va hacía \textbf{Aseguradora}.
+    	
+	Ya que se deben conocer todas las ganancias que genera un taxi, se creo una relación registrar entre el taxi y una entidad \textbf{Contador} este tiene como atributo ganancia que no se debe confundir con lo que gana el contador, más bien, este es la \textbf{ganancia registrada por el taxi}. Se relaciona la misma entidad, ya que un contador debe ser responsable de muchos contadores.
+	
+	Por otro lado un taxi puede \textbf{cometer}(tener) muchas multas, para esto creamos un relación con este mismo nombre que lleva por atributos hora y lugar, esta relación es entre taxi y multa, esta ultima necesitamos saber el monto y porque fue la infracción, además agregamos un identificador. Al igual creamos una entidad \textbf{agente} que uno puede imponer varias multas, este tiene como identificado el número de placa y hereda los atributos de persona agregándole sector como especialización.
+	
+	La otra entidad que fasta por explicar es la de \textbf{Viaje}, esta contiene los datos del número de personas, el destino, el tiempo que puede durar y la dista y un identificador. Además tiene atributos calculadores ya que depende del cliente que se sea y otros factores para poder dar un descuento y costo del viaje.
+	
+	Hay dos relaciones muy importantes, la primera es pedir... esta se encarga de definir que muchos clientes pueden estar en un viaje y comenzar que indica que un taxi solo puede estar un viaje.
+
+	\section{Bitácora}
+	El 28 de febrero acordamos como mejoraríamos el diagrama usando especialización y generalización.
+	
+	El 4 de marzo mostramos nuestros diseños para ver que ideas eran mejor para así tener un mejor modelo. 
+	
+	El 5 de marzo acordamos quien y como crearíamos el diagrama UML.
+	
+	El 6 de marzo verificamos que el trabajo estuviera en orden para entregarlo.
+	
+\end{document}
