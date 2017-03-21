@@ -18,3 +18,12 @@ Se agregaron los archivos de la práctica 4, a los directorios correspondientes.
 ------
 
 Se agregarón los archivos de la práctica 5, a los directorios correspondientes.
+
+------
+
+Se agrego el archivo, DDL.sql a la carpeta sql
+Para correr este script, tan solo se debe seguir los siguientes pasos:
+1. Abrir terminal de windows 
+2. Posicionarse en el directorio sql
+3. Usar el comando sqlcmd -i DDL.sql
+4. La base de datos se creara ya que todo esta incluido dentro del script.
