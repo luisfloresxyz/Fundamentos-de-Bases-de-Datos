@@ -1,0 +1,230 @@
+\documentclass{article}
+
+\usepackage{amsfonts} 
+\usepackage{amsmath} 
+\usepackage{graphicx} 
+\usepackage{float} 
+\usepackage{natbib} 
+\usepackage{slashbox} 
+\usepackage{graphicx} 
+\usepackage{flushend} 
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsxtra} 
+\usepackage{amstext} 
+\usepackage{amsthm} 
+\usepackage{amsbsy} 
+\usepackage{latexsym} 
+\usepackage{mathrsfs} 
+\usepackage{eucal} 
+\usepackage{synttree} 
+
+
+\usepackage[spanish]{babel}
+\usepackage[utf8x]{inputenc}
+\author{Flores González Luis Brandon - 312218342 \\ García Argueta Jaime Daniel - 312104739 \\ Tarea 4. Algebra relacional}
+\title{}
+\date{29 de marzo de 2017}
+
+\begin{document}
+
+	\maketitle	
+	
+	\begin{enumerate}
+		\item Para el problema de la base de datos del Museo que transformaste a Modelo Relacional
+		en la tarea anterior, verifica que con éste puedas satisfacer las siguientes consultas:
+			\begin{enumerate}
+				\item Toda la información de las obras, nombre del artista que la realizó y país de las obras que se
+				realizaron con estilo Surrealista o Impresionista.
+				
+				\item Una lista con el nombre de los artistas y la cantidad de obras que realizó (entre pinturas,
+				esculturas y miscelánea).
+						
+				\item Lista con la cantidad de obras que se tiene por cada estilo (entre pinturas, esculturas y
+				miscelánea).
+										
+				\item Obtener el año en que menos obras se realizaron y la obra más costosa de ese año.
+				
+				\item Toda la información (obras y artistas) de las obras que se obtuvieron en préstamo el 28 de
+				noviembre de año 2014 y que no han sido devueltas.
+			\end{enumerate}
+		En caso de que el esquema no cubra los puntos anteriores, indica la modificación (o
+		modificaciones) que se tendrían que hacer. Incluye Modelo Relacional modificado (sí es el caso).
+		Debes indicar la solución en álgebra relacional para las consultas que se solicitan.
+		\item Si tienes el siguiente esquema para una Base de Datos:\\
+
+		\textbf{Empleado}(CURP, nombre, calle, ciudad)\\
+		\textbf{Trabaja}(CURP, idEmpresa, sueldo)\\
+		\textbf{Empresa}(idEmpresa, nombre, ciudad)\\
+		\textbf{Jefe}(CURPJ, CURPE)\\
+		
+		Considera que el sueldo que reciben los empleados es mensual. Escribe una expresión en Álgebra Relacional para cada una de las siguientes consultas:
+		
+			\begin{enumerate}
+				\item Lista con la CURP y nombre de cada empleado que trabaja en Compumundo Hipermega Red(CHR).\\
+				
+				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
+				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
+				$s \leftarrow \sigma_{Empresa.nombre = 'CHR'}((Empleado \bowtie Trabaja) \bowtie Empresa)$\\
+				$\Pi_{CURP, Empleado.nombre}(s)$\\
+				
+				\item Averiguar el nombre y la ciudad de residencia de todos los empleados que trabajar para el
+				Flanders Ship Asociados (FSA).\\
+				
+				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
+				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
+				$\Pi_{Empleado.nombre, Empleado.ciudad}((Empleado \bowtie Trabaja) \bowtie Empresa)$\\
+				
+				\item El nombre, la calle y la ciudad de residencia de todos los empleados que trabajan para el CHR
+				y ganan más de \$240,000 anuales.\\
+				
+				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
+				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
+				$s \leftarrow \sigma_{(Empresa.nombre = 'CHR') \land ((sueldo \times 12) > 240 000)}((Empleado \bowtie Trabaja) \bowtie Empresa)$\\
+				$\Pi_{Empleado.nombre, Empleado.ciudad, Empleado.calle}(s)$\\
+				
+				\item Encontrar el nombre y CURP de los empleados que vivan en la misma ciudad en que está
+				ubicada la compañía a la que prestan sus servicios.\\
+				
+				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
+				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
+				$\Pi_{Empleado.nombre, Empleado.CURP}(\sigma_{Empleado.ciudad = Empresa.ciudad}((Empleado \bowtie Trabaja) \bowtie Empresa))$\\
+				
+				\item Lista con el nombre de los empleados que viven en la misma calle y ciudad que su jefe.\\
+				
+				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
+				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
+				$J \leftarrow \Pi_{CURPJ}(Jefe)$\\
+				$E \leftarrow \Pi_{CURPE}(Jefe)$\\
+				$\rho_{J}(CURP)(J)$\\
+				$\rho_{E}(CURP)(E)$\\
+				$A \leftarrow J \bowtie Empleado$\\			
+				$B \leftarrow E \bowtie Empleado$\\
+				$A \bowtie B$\\
+				
+				\item Averiguar la CURP de los empleados que no trabajan para FSA pero si para CHR.\\
+				
+				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
+				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
+				$f \leftarrow ((Empleado \bowtie Trabaja) \bowtie Empresa)$\\
+				$\Pi_{CURP}(\sigma_{(Empresa.nombre = 'CHR') \land \lnot(Empresa.nombre = 'FSA')}(f))$\\
+				
+				\item Encontrar el nombre, CURP y ciudad de residencia de todos los jefes registrados en la base de
+				datos.\\
+				
+				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
+				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
+				$j \leftarrow \Pi_{CURPJ}(Jefe)$\\
+				$\rho_{j(CURP)}(j)$\\
+				$\Pi_{CURP, Empleado.nombre, Empleado.ciudad}(j \bowtie Empleado)$\\
+				
+				\item Una lista con el nombre de todos los empleados que no trabajan para CHR o para FSA.\\
+				
+				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
+				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
+				$\Pi_{Empleado.nombre}(\sigma_{\lnot(Empresa.nombre = 'CHR' \lor Empresa.nombre = 'FSA')}((Empleado \bowtie Trabaja) \bowtie Empresa))$\\
+				
+				\item Lista con la CURP de los empleados que ganan más que cualquier empleado CHR.\\
+				
+				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
+				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
+				$s \leftarrow \sigma_{Empresa.nombre = 'CHR'}((Empleado \bowtie Trabaja) \bowtie Empresa))$\\
+				$m \leftarrow \Pi_{max}(CURP \Upsilon max(sueldo)(s))$\\
+				$\Pi_{CURP}(\sigma_{sueldo > m}((Empleado \bowtie Trabaja) \bowtie Empresa) - s)$\\
+				
+				\item Lista con el nombre de las compañías de que están instaladas en cada ciudad en la que haya
+				un Krusty Burguer.\\
+				
+				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
+				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
+				$b \leftarrow \Pi_{idEmpresa}(\sigma_{Empresa.nombre = 'Krusty Burguer'}(Empresa))$\\
+				$\Pi_{Empresa.nombre}(b \bowtie Empresa)$\\
+				
+				\item Borrar toda la información de la compañía Mapple.\\
+				
+				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
+				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
+				$r \leftarrow \sigma_{Empresa.nombre = 'Maple'}(Empresa)$\\
+				$Empresa \leftarrow Empresa - r$\\
+				$s \leftarrow \Pi_{idEmpresa}(r \bowtie Trabaja)$\\
+				$Trabaja \leftarrow Trabaja - s$\\
+				$Empleado \leftarrow Empleado - ((\Pi_{CURP}(s)) \bowtie Empleado)$\\
+				
+				\item Aumentar el sueldo de los empleados que trabajan en Mr. Plow en un 10\%. \textbf{Revisar :(}\\ 
+				
+				$a' \leftarrow \Pi_{CURP, ideEmpresa, sueldo}(\sigma_{Empresa.nombre = 'Mr. Plow'}(Trabaja \bowtie Empresa))$
+				
+				\item Una lista con la cantidad de empleados que se tienen por compañía\\
+				
+				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
+				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
+				$s \leftarrow Trabaja \bowtie Empresa$\\
+				${Empresa.nombre} \hspace{1mm} Y \hspace{1mm} {count(CURP.Trabaja)(s)}$\\
+				
+				\item Cambiar la ubicación de Ziffcorp (y de todos sus empleados) a Shelbyville.\\
+				
+				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
+				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
+				$r \leftarrow \sigma_{Empresa.ciudad = 'Ziffcorp'}(Empresa)$\\
+				$Empresa \leftarrow Empresa - r$\\
+				$s \leftarrow (\Pi_{idEmpresa, Empresa.nombre}(r) \times 'Shelbyville')$\\
+				$Empresa \leftarrow Empresa \cup S$\\
+				$h \leftarrow \sigma_{Empresa.ciudad = 'Sherbyville}((Empleado \bowtie Trabaja) \bowtie Empresa)$\\
+				$n \leftarrow \Pi_{CURP, Empleado.nombre}(h) \times ('null', 'Shellbyville')$\\
+				$Empleado \leftarrow Empleado - \Pi_{CURP, Empleado.nombre, calle, Empleado.ciudad}(h)$\\
+				$Empleado \leftarrow Empleado \cup n$
+				
+				\item
+				\item A los empleados que trabajan en Sorny y que ganen \$10,000 mensuales hacer un incremento
+				del 7\%, mientras que a los que trabajan en Panaphonics y que ganen más de \$15,000
+				mensuales reducir su sueldo en un 8\%.\\
+				
+				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
+				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
+				$s \leftarrow \Pi_{CURP,idEmpresa, sueldo}(\sigma_{Empresa.nombre = 'Sony' \land sueldo = 10000}((Empleado \bowtie trabaja) \bowtie Empresa))$\\
+				$p \leftarrow \Pi_{CURP, ideEmpresa, sueldo}(\sigma_{Empresa.nombre = 'Panasonic' \land sueldo > 15000}((Empleado \bowtie trabaja) \bowtie Empresa))$\\
+				$Trabaja \leftarrow Trabaja - s$\\
+				$Trabaja \leftarrow Trabaja - p$\\
+				$Trabaja \leftarrow Trabaja\cup \Pi_{CURP, ideEmpresa, sueldo + sueldo \times .08}(p)$\\
+				
+				\item Lista de los empleados que trabajan en más de dos compañías y el número de compañías en
+				que laboran.\\
+				
+				$s \leftarrow CURP \hspace{1mm} Y \hspace{1mm} count(idEmpresa)(Trabaja)$\\
+				$f \leftarrow \sigma_{count \geq 2}(s)$\\
+				$Empleado \bowtie f$\\
+				
+				\item Lista que muestre la CURP del jefe y el número de empleados que están a su cargo, agrupados
+				por compañía.
+				
+				
+				
+				\item Una lista de los empleados que ganan más de \$140,000 anuales y que no viven en Springfield.\\
+				
+				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
+				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
+				$\Pi_{CURP}(\sigma_{(sueldo \times 12) > 140 000 \land \lnot(Empleado.ciudad = 'Springfield')})$\\
+				
+				\item La empresa que paga el mayor sueldo promedio.\\
+				
+				$p \leftarrow (idEmpresa \hspace{1mm} Y \hspace{1mm} avg(sueldo)(Trabaja))$\\
+				$\Pi_{idEmpresa}((idEmpresa \hspace{1mm} Y \hspace{1mm} max(avg)(p)))$\\
+				
+				\item Moe Szyslak decide dejar su bar y entrar a trabajar a la planta nuclear, siendo su nuevo jefe
+				Carl Carlson. Refleja estos cambios en la base datos.\\
+				
+				Como Moe Szyslak no esta en la base de datos, necesitamos insertar.\\
+				
+				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
+				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
+				$Empleado \leftarrow Empleado \cup ('8541521456', 'Moe Szyslak', 'Una calle', 'Springfield')$\\
+				
+				Además suponemos que solo hay un Carl Carlson.\\
+				
+				$n \leftarrow \Pi_{CURP}(\sigma_{Empleado.nombre = 'Carl Carlson'}(Empleado))$\\
+				$\rho_{n(CURPE)}(n)$\\
+				$Jefe \leftarrow \Pi_{CURPJ}(Jefe) \times n$
+							
+			\end{enumerate}
+	\end{enumerate}	
+\end{document}
