@@ -35,18 +35,103 @@
 		en la tarea anterior, verifica que con éste puedas satisfacer las siguientes consultas:
 			\begin{enumerate}
 				\item Toda la información de las obras, nombre del artista que la realizó y país de las obras que se
-				realizaron con estilo Surrealista o Impresionista.
+				realizaron con estilo Surrealista o Impresionista.\\
+				
+				Solo puede ser pintura, escultura o miscelanea. Y permanente o prestada. Además se entiende que son los atributos de cada obra.\\
+				
+					\begin{enumerate}
+						\item Información de las pinturas\\
+						$((Pintura \bowtie_{idObra=PinturaidObra}(Pintura\_Tipo)) \bowtie_{idObra=PinturaidObra} Pintura\_Estilo) \bowtie_{idObra=PinturaidObra}(Pintura\_Material)$
+						\item Información de las esculturas\\
+						$(Escultura \bowtie_{idObra=EsculturaidObra}(Escultura\_Tipo))$
+						\item Información miscelanea\\
+						$Miscelanea \bowtie_{idObra=MiscelaneaidObra} Miscelanea\_Estilo$
+						\item Información prestadas\\
+						$Prestadas$
+						\item Información permanentes\\
+						$Permanentes$\\
+						
+						En cuanto al nombre del artista, se regresara el idObra y nombre, ya que queremos saber el nombre quien hizo esa obra.\\
+						
+						\item Nombre del artista que realizo la pintura\\
+						
+						$\Pi_{Nombre, idObra}(Pintura \bowtie_{ArtistasNombre=Nombre} \Pi_{Nombre}(Artistas))$
+						
+						\item Nombre del artista que realizo la escultura\\
+						
+						$\Pi_{Nombre, idObra}(Escultura \bowtie_{ArtistasNombre=Nombre} \Pi_{Nombre}(Artistas))$
+						
+						\item Nombre del artista que realizo la miscelanea\\
+						
+						$\Pi_{Nombre, idObra}(Miscelanea \bowtie_{ArtistasNombre=Nombre} \Pi_{Nombre}(Artistas))$
+						
+						\item Nombre del artista que realizo las permanentes\\
+						
+						$\Pi_{Nombre, idObra}(Permanentes \bowtie_{ArtistasNombre=Nombre}(\Pi_{Nombre}(Artistas)))$
+						
+						\item Nombre del artista que realizo las prestadas\\
+						
+						$\Pi_{Nombre,idObra}(Prestadas\bowtie_{ArtistasNombre=Nombre} (\Pi_{Nombre}(Artistas)))$	
+						
+						País de las obras que se realizaron con estilo Surrealista o impresionista.\\		
+						
+						Aunque el artista tiene estilos como atributo nosotros necesitamos el estilo de la obra. Entonces solo pidemos conocer el estilo de las pinturas y miscelanea.			\\
+						
+						$s \leftarrow ((Pintura \bowtie_{idObra=PinturaidObra} Pintura\_Estilo) \bowtie_{ArtistasNombre=Nombre} \Pi_{Nombre, Pais}(Artistas)$\\
+						
+						$\Pi_{pais} (\sigma_{Estilo = 'Surrealista' \lor Estilo = 'impresionista'}(s))$\\
+						
+						$t \leftarrow ((Miscelanea \bowtie_{idObra=Miscelanea} Miscelanea\_Estilo) \bowtie_{ArtistasNombre=Nombre} \Pi_{Nombre, Pais} (Artistas))$		
+					\end{enumerate} 
 				
 				\item Una lista con el nombre de los artistas y la cantidad de obras que realizó (entre pinturas,
-				esculturas y miscelánea).
+				esculturas y miscelánea).\\
+						
+					$j \leftarrow ((\Pi_{idObra, ArtistasNombre}(Pintura)\bowtie_{ArtistasNombre=Nombre})\Pi_{Nombre}(Artista)) \cup (\Pi_{idObra, ArtistasNombre}(Escultura)\bowtie_{ArtistasNombre=Nombre}\Pi_{Nombre}(Artista)) \cup (\Pi_{idObra, ArtistasNombre}(Miscelanea) \bowtie_{ArtistasNombre=Nombre} \Pi_{Nombre}(Artista)$\\
+					
+					$Nombre Y count(idObra)(j)$
 						
 				\item Lista con la cantidad de obras que se tiene por cada estilo (entre pinturas, esculturas y
-				miscelánea).
+				miscelánea).\\
+														
+				Misma explicación que el inciso a).
+				
+				$k \leftarrow ((\Pi_{idObra}(Pintura) \bowtie_{idObra=PinturaidObra} Pintura\_Estilo) \cup (\Pi_{idObra}(Miscelanea) \bowtie_{idObra=PinturaidObra} (Miscelanea_Estilo))$\\
+				
+				$EstiloYcount(idObra)(k)$
 										
-				\item Obtener el año en que menos obras se realizaron y la obra más costosa de ese año.
+				\item Obtener el año en que menos obras se realizaron y la obra más costosa de ese año.\\
+				
+				Solo las obras permanentes tienen costo.
+				
+				$f \leftarrow ((\Pi_{idObra, A\tilde{n}o}(Pintura) \cup \Pi_{idObra, A\tilde{n}o}(Escultura) \cup \Pi_{idObra, A\tilde{n}o}(Miscelanea)) \bowtie \Pi_{idObra, costo}(Permanentes)$\\
+				
+				$A \leftarrow A\tilde{n}oYcount(idObra)(f)$\\
+				$B \leftarrow A\tilde{n}oYmin(count)(A)$\\
+				$C \leftarrow (f \bowtie \Pi_{A\tilde{n}o}(B))$\\
+				$idObraYmax(costo)(C)$\\
 				
 				\item Toda la información (obras y artistas) de las obras que se obtuvieron en préstamo el 28 de
 				noviembre de año 2014 y que no han sido devueltas.
+				
+				$\rho_{Artistas(Nombre, Fecha\_Nac, Fecha\_def, Pais, Epoca, Artista.Descripcion)}(Artistas)$			
+				$f \leftarrow \sigma_{Fecha\_Pres = 28/nov/2014 \land Fecha\_Dev = null}(\Pi_{idObra, Fecha\_Pres, Fecha\_Dev}(Prestadas))$
+				
+				\begin{enumerate}
+					\item Pinturas
+					
+					$p \leftarrow ((((Pintura \bowtie_{idObra=PinturaidObra}(Pintura\_Tipo)) \bowtie_{idObra=PinturaidObra} Pintura\_Estilo) \bowtie_{idObra=PinturaidObra}(Pintura\_Material))\bowtie_{ArtistasNombre=Nombre}(Artistas)) \bowtie f$
+					
+					\item Esculturas
+					
+					$e \leftarrow (Escultura \bowtie_{idObra=EsculturaidObra}(Escultura\_Tipo)) \bowtie_{ArtistasNombre=Nombre}(Artistas)) \bowtie f$					
+					
+					\item Miscelaneas
+					
+					$m \leftarrow ((Miscelanea \bowtie_{idObra=MiscelaneaidObra} Miscelanea\_Estilo) \bowtie_{ArtistasNombre=Nombre}(Artistas)) \bowtie f$					
+					
+				\end{enumerate}
+				
 			\end{enumerate}
 		En caso de que el esquema no cubra los puntos anteriores, indica la modificación (o
 		modificaciones) que se tendrían que hacer. Incluye Modelo Relacional modificado (sí es el caso).
@@ -150,9 +235,12 @@
 				$Trabaja \leftarrow Trabaja - s$\\
 				$Empleado \leftarrow Empleado - ((\Pi_{CURP}(s)) \bowtie Empleado)$\\
 				
-				\item Aumentar el sueldo de los empleados que trabajan en Mr. Plow en un 10\%. \textbf{Revisar :(}\\ 
+				\item Aumentar el sueldo de los empleados que trabajan en Mr. Plow en un 10\%.\\ 
 				
-				$a' \leftarrow \Pi_{CURP, ideEmpresa, sueldo}(\sigma_{Empresa.nombre = 'Mr. Plow'}(Trabaja \bowtie Empresa))$
+				$b \leftarrow \sigma_{Empresa.nombre = 'Mr. Plow'}(Trabaja \bowtie Empresa)$\\
+				$a' \leftarrow \Pi_{CURP, ideEmpresa, sueldo}(b)$\\
+				$a \leftarrow \Pi_{CURP, ideEmpresa, sueldo + (sueldo \times .1)}(b)$\\
+				$Trabaja \leftarrow Trabaja - a'$\\				$Trabaja \leftarrow Trabaja \cup a$
 				
 				\item Una lista con la cantidad de empleados que se tienen por compañía\\
 				

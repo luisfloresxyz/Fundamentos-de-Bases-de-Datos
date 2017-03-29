@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.2.12)  27 MAR 2017 09:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.2.12)  29 MAR 2017 04:23
 entering extended mode
 **./Tarea04.tex
 (Tarea04.tex
@@ -381,13 +381,51 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-0.def"
 File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
 )
+Underfull \hbox (badness 10000) in paragraph at lines 37--39
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
+
+ []
+
+
+Overfull \hbox (36.11363pt too wide) in paragraph at lines 43--45
+\OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 Pintura .[]/[] \OT1/cmr/m/n/10 (\OML/cmm/m/i
+t/10 Pintura[]Tipo\OT1/cmr/m/n/10 )) \OML/cmm/m/it/10 .[]/[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--53
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 54--55
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--60
+Underfull \hbox (badness 10000) in paragraph at lines 56--57
 
+ []
+
+
+Overfull \hbox (22.68376pt too wide) in paragraph at lines 58--59
+[]$\OT1/cmr/m/n/10 [](\OML/cmm/m/it/10 Pintura .[]/[] \OT1/cmr/m/n/10 [](\OML
+/cmm/m/it/10 Artistas\OT1/cmr/m/n/10 ))$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
+
+ []
+
+
+Overfull \hbox (31.30577pt too wide) in paragraph at lines 62--63
+[]$\OT1/cmr/m/n/10 [](\OML/cmm/m/it/10 Escultura .[]/[] \OT1/cmr/m/n/10 [](\O
+ML/cmm/m/it/10 Artistas\OT1/cmr/m/n/10 ))$ 
  []
 
 
@@ -396,257 +434,434 @@ Underfull \hbox (badness 10000) in paragraph at lines 64--65
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 66--70
-
+Overfull \hbox (38.33537pt too wide) in paragraph at lines 66--67
+[]$\OT1/cmr/m/n/10 [](\OML/cmm/m/it/10 Miscelanea .[]/[] \OT1/cmr/m/n/10 [](\
+OML/cmm/m/it/10 Artistas\OT1/cmr/m/n/10 ))$ 
  []
 
 [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 71--73
+Underfull \hbox (badness 10000) in paragraph at lines 68--69
 
  []
 
 
-Overfull \hbox (7.04422pt too wide) in paragraph at lines 74--77
+Overfull \hbox (54.73064pt too wide) in paragraph at lines 70--71
+[]$\OT1/cmr/m/n/10 [](\OML/cmm/m/it/10 Permanentes .[]/[] \OT1/cmr/m/n/10 ([]
+(\OML/cmm/m/it/10 Artistas\OT1/cmr/m/n/10 )))$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 72--73
+
+ []
+
+
+Overfull \hbox (39.81152pt too wide) in paragraph at lines 74--75
+[]$\OT1/cmr/m/n/10 [](\OML/cmm/m/it/10 Prestadas .[]/[] \OT1/cmr/m/n/10 ([](\
+OML/cmm/m/it/10 Artistas\OT1/cmr/m/n/10 )))$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 78--79
+
+ []
+
+
+Overfull \hbox (65.0859pt too wide) in paragraph at lines 80--81
+[]$\OML/cmm/m/it/10 s \OMS/cmsy/m/n/10   \OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 Pin
+tura .[]/[] Pintura[]Estilo\OT1/cmr/m/n/10 ) \OML/cmm/m/it/10 .[]/[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--81
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--83
+
+ []
+
+
+Overfull \hbox (82.6152pt too wide) in paragraph at lines 84--85
+[]$\OML/cmm/m/it/10 t \OMS/cmsy/m/n/10   \OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 Mis
+celanea .[]/[] Miscelanea[]Estilo\OT1/cmr/m/n/10 ) \OML/cmm/m/it/10 .[]/[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--89
+
+ []
+
+
+Overfull \hbox (69.68623pt too wide) in paragraph at lines 90--91
+[]$\OML/cmm/m/it/10 j \OMS/cmsy/m/n/10   \OT1/cmr/m/n/10 (([](\OML/cmm/m/it/10
+ Pintura\OT1/cmr/m/n/10 ) \OML/cmm/m/it/10 .[]/[]\OT1/cmr/m/n/10 )[](\OML/cmm/
+m/it/10 Artista\OT1/cmr/m/n/10 )) \OMS/cmsy/m/n/10 [
+ []
+
+
+Overfull \hbox (53.06223pt too wide) in paragraph at lines 90--91
+\OT1/cmr/m/n/10 ([](\OML/cmm/m/it/10 Escultura\OT1/cmr/m/n/10 ) \OML/cmm/m/it/
+10 .[]/[] \OT1/cmr/m/n/10 [](\OML/cmm/m/it/10 Artista\OT1/cmr/m/n/10 )) \OMS/c
+msy/m/n/10 [
+ []
+
+
+Overfull \hbox (49.53624pt too wide) in paragraph at lines 90--91
+\OT1/cmr/m/n/10 ([](\OML/cmm/m/it/10 Miscelanea\OT1/cmr/m/n/10 ) \OML/cmm/m/it
+/10 .[]/[] \OT1/cmr/m/n/10 [](\OML/cmm/m/it/10 Artista\OT1/cmr/m/n/10 )$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 90--91
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--96
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--100
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--104
+
+ []
+
+
+Overfull \hbox (68.30421pt too wide) in paragraph at lines 107--108
+[]$\OML/cmm/m/it/10 f \OMS/cmsy/m/n/10   \OT1/cmr/m/n/10 (([](\OML/cmm/m/it/10
+ Pintura\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 [ \OT1/cmr/m/n/10 [](\OML/cmm/m/it/
+10 Escultura\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 [ \OT1/cmr/m/n/10 [](\OML/cmm/m
+/it/10 Miscelanea\OT1/cmr/m/n/10 )) \OML/cmm/m/it/10 .[]/
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 107--108
+
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 109--113
+
+ []
+
+
+Overfull \hbox (21.98921pt too wide) in paragraph at lines 117--119
+[]$\OML/cmm/m/it/10 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 Artistas\OT1/cmr/m/n/1
+0 )$
+ []
+
+
+Overfull \hbox (73.41512pt too wide) in paragraph at lines 117--119
+\OML/cmm/m/it/10 f \OMS/cmsy/m/n/10   \OML/cmm/m/it/10 []\OT1/cmr/m/n/10 ([](
+\OML/cmm/m/it/10 Prestadas\OT1/cmr/m/n/10 ))$ 
+ []
+
+
+Overfull \hbox (64.47812pt too wide) in paragraph at lines 123--124
+[]$\OML/cmm/m/it/10 p \OMS/cmsy/m/n/10   \OT1/cmr/m/n/10 ((((\OML/cmm/m/it/10 P
+intura .[]/[] \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 Pintura[]Tipo\OT1/cmr/m/n/10 ))
+ \OML/cmm/m/it/10 .[]/[]
+ []
+
+
+Overfull \hbox (93.37776pt too wide) in paragraph at lines 123--124
+\OML/cmm/m/it/10 Pintura[]Estilo\OT1/cmr/m/n/10 ) \OML/cmm/m/it/10 .[]/[] \OT1/
+cmr/m/n/10 (\OML/cmm/m/it/10 Pintura[]Material\OT1/cmr/m/n/10 )) \OML/cmm/m/it/
+10 .[]/[]
+ []
+
+
+Overfull \hbox (85.97482pt too wide) in paragraph at lines 127--128
+[]$\OML/cmm/m/it/10 e \OMS/cmsy/m/n/10   \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 Escu
+ltura .[]/[] \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 Escultura[]Tipo\OT1/cmr/m/n/10 )
+) \OML/cmm/m/it/10 .[]/[]
+ []
+
+
+Overfull \hbox (112.8567pt too wide) in paragraph at lines 131--132
+[]$\OML/cmm/m/it/10 m \OMS/cmsy/m/n/10   \OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 Mis
+celanea .[]/[] Miscelanea[]Estilo\OT1/cmr/m/n/10 ) \OML/cmm/m/it/10 .[]/[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 139--140
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 141--145
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 149--150
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--155
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 156--158
+
+ []
+
+
+Overfull \hbox (7.04422pt too wide) in paragraph at lines 159--162
 \OT1/cmr/m/n/10 []((\OML/cmm/m/it/10 Empleado .[]/ Trabaja\OT1/cmr/m/n/10 ) \O
 ML/cmm/m/it/10 .[]/ Empresa\OT1/cmr/m/n/10 )$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 74--77
+Underfull \hbox (badness 10000) in paragraph at lines 159--162
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 78--80
+Underfull \hbox (badness 10000) in paragraph at lines 163--165
 
  []
 
 
-Overfull \hbox (32.26273pt too wide) in paragraph at lines 81--85
+Overfull \hbox (32.26273pt too wide) in paragraph at lines 166--170
 \OML/cmm/m/it/10 s \OMS/cmsy/m/n/10   \OML/cmm/m/it/10 []\OT1/cmr/m/n/10 ((\OM
 L/cmm/m/it/10 Empleado .[]/ Trabaja\OT1/cmr/m/n/10 ) \OML/cmm/m/it/10 .[]/
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 81--85
+Underfull \hbox (badness 10000) in paragraph at lines 166--170
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 86--88
+Underfull \hbox (badness 10000) in paragraph at lines 171--173
 
  []
 
 
-Overfull \hbox (43.58144pt too wide) in paragraph at lines 89--92
+Overfull \hbox (43.58144pt too wide) in paragraph at lines 174--177
 \OT1/cmr/m/n/10 [](\OML/cmm/m/it/10 []\OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 Empl
 eado .[]/
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 89--92
+Underfull \hbox (badness 10000) in paragraph at lines 174--177
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 93--94
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--104
+Underfull \hbox (badness 10000) in paragraph at lines 180--189
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--106
-
- []
-
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 107--111
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 112--114
+Underfull \hbox (badness 10000) in paragraph at lines 192--196
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 197--199
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--120
+Underfull \hbox (badness 10000) in paragraph at lines 200--205
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--122
+Underfull \hbox (badness 10000) in paragraph at lines 206--207
 
  []
 
 
-Overfull \hbox (52.59158pt too wide) in paragraph at lines 123--126
+Overfull \hbox (52.59158pt too wide) in paragraph at lines 208--211
 \OT1/cmr/m/n/10 [](\OML/cmm/m/it/10 []\OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 Empl
 eado .[]/
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 123--126
+Underfull \hbox (badness 10000) in paragraph at lines 208--211
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
+Underfull \hbox (badness 10000) in paragraph at lines 212--213
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 129--134
+Underfull \hbox (badness 10000) in paragraph at lines 214--219
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 135--137
+Underfull \hbox (badness 10000) in paragraph at lines 220--222
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 138--142
+Underfull \hbox (badness 10000) in paragraph at lines 223--227
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
+Underfull \hbox (badness 10000) in paragraph at lines 228--229
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--152
+Underfull \hbox (badness 10000) in paragraph at lines 230--237
 
  []
 
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 157--158
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 238--239
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 159--163
+Underfull \hbox (badness 10000) in paragraph at lines 245--246
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--165
+Underfull \hbox (badness 10000) in paragraph at lines 247--251
 
  []
 
 
-Overfull \hbox (5.71524pt too wide) in paragraph at lines 166--176
+Underfull \hbox (badness 10000) in paragraph at lines 252--253
+
+ []
+
+
+Overfull \hbox (5.71524pt too wide) in paragraph at lines 254--264
 \OML/cmm/m/it/10 h \OMS/cmsy/m/n/10   \OML/cmm/m/it/10 []\OT1/cmr/m/n/10 ((\OM
 L/cmm/m/it/10 Empleado .[]/ Trabaja\OT1/cmr/m/n/10 ) \OML/cmm/m/it/10 .[]/ Empr
 esa\OT1/cmr/m/n/10 )$ 
  []
 
 
-Overfull \hbox (12.86284pt too wide) in paragraph at lines 166--176
+Overfull \hbox (12.86284pt too wide) in paragraph at lines 254--264
 \OML/cmm/m/it/10 Empleado \OMS/cmsy/m/n/10   \OML/cmm/m/it/10 Empleado \OMS/cms
 y/m/n/10   \OT1/cmr/m/n/10 [](\OML/cmm/m/it/10 h\OT1/cmr/m/n/10 )$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--181
+Underfull \hbox (badness 10000) in paragraph at lines 266--269
 
  []
 
 
-Overfull \hbox (43.37949pt too wide) in paragraph at lines 182--189
+Overfull \hbox (43.37949pt too wide) in paragraph at lines 270--277
 \OML/cmm/m/it/10 s \OMS/cmsy/m/n/10   \OT1/cmr/m/n/10 [](\OML/cmm/m/it/10 []\
 OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 Empleado .[]/
  []
 
 
-Overfull \hbox (67.99231pt too wide) in paragraph at lines 182--189
+Overfull \hbox (67.99231pt too wide) in paragraph at lines 270--277
 \OML/cmm/m/it/10 p \OMS/cmsy/m/n/10   \OT1/cmr/m/n/10 [](\OML/cmm/m/it/10 []\
 OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 Empleado .[]/
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 182--189
+Underfull \hbox (badness 10000) in paragraph at lines 270--277
 
  []
 
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 190--192
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 193--196
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 278--280
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 202--203
+Underfull \hbox (badness 10000) in paragraph at lines 281--284
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 204--207
+Underfull \hbox (badness 10000) in paragraph at lines 290--291
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 208--209
+Underfull \hbox (badness 10000) in paragraph at lines 292--295
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 210--212
+Underfull \hbox (badness 10000) in paragraph at lines 296--297
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--215
+Underfull \hbox (badness 10000) in paragraph at lines 298--300
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
+Underfull \hbox (badness 10000) in paragraph at lines 301--303
 
  []
 
 
-Overfull \hbox (57.0981pt too wide) in paragraph at lines 218--221
+Underfull \hbox (badness 10000) in paragraph at lines 304--305
+
+ []
+
+
+Overfull \hbox (57.0981pt too wide) in paragraph at lines 306--309
 \OML/cmm/m/it/10 Empleado \OMS/cmsy/m/n/10   \OML/cmm/m/it/10 Empleado \OMS/cms
 y/m/n/10 [ \OT1/cmr/m/n/10 ([]8541521456[]\OML/cmm/m/it/10 ;[] MoeSzyslak[];[] 
 Unacalle[];[] Springfield[]\OT1/cmr/m/n/10 )$ 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 218--221
+Underfull \hbox (badness 10000) in paragraph at lines 306--309
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--223
+Underfull \hbox (badness 10000) in paragraph at lines 310--311
 
  []
 
-[5] (Tarea04.aux
+[7] (Tarea04.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
- 4976 strings out of 493333
- 65296 string characters out of 3139197
+ 4978 strings out of 493333
+ 65329 string characters out of 3139197
  145706 words of memory out of 3000000
- 8393 multiletter control sequences out of 15000+200000
+ 8395 multiletter control sequences out of 15000+200000
  12562 words of font info for 55 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,7n,30p,813b,674s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -659,9 +874,9 @@ nts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
 sfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmsy5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.p
 fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on Tarea04.pdf (5 pages, 142846 bytes).
+Output written on Tarea04.pdf (7 pages, 149865 bytes).
 PDF statistics:
- 58 PDF objects out of 1000 (max. 8388607)
+ 66 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
