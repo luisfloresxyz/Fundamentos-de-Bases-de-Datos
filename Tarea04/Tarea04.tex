@@ -87,7 +87,7 @@
 				\item Una lista con el nombre de los artistas y la cantidad de obras que realizó (entre pinturas,
 				esculturas y miscelánea).\\
 						
-					$j \leftarrow ((\Pi_{idObra, ArtistasNombre}(Pintura)\bowtie_{ArtistasNombre=Nombre})\Pi_{Nombre}(Artista)) \cup (\Pi_{idObra, ArtistasNombre}(Escultura)\bowtie_{ArtistasNombre=Nombre}\Pi_{Nombre}(Artista)) \cup (\Pi_{idObra, ArtistasNombre}(Miscelanea) \bowtie_{ArtistasNombre=Nombre} \Pi_{Nombre}(Artista)$\\
+					$j \leftarrow ((\Pi_{idObra, ArtistasNombre}(Pintura)\bowtie_{ArtistasNombre=Nombre})\Pi_{Nombre}(Artista)) \cup (\Pi_{idObra, ArtistasNombre}(Escultura)\bowtie_{ArtistasNombre=Nombre}\Pi_{Nombre}(Artista)) \cup (\Pi_{idObra, ArtistasNombre}(Miscelanea) \bowtie_{ArtistasNombre=Nombre} \Pi_{Nombre}(Artista))$\\
 					
 					$Nombre Y count(idObra)(j)$
 						
@@ -96,7 +96,7 @@
 														
 				Misma explicación que el inciso a).
 				
-				$k \leftarrow ((\Pi_{idObra}(Pintura) \bowtie_{idObra=PinturaidObra} Pintura\_Estilo) \cup (\Pi_{idObra}(Miscelanea) \bowtie_{idObra=PinturaidObra} (Miscelanea_Estilo))$\\
+				$k \leftarrow ((\Pi_{idObra}(Pintura) \bowtie_{idObra=PinturaidObra} Pintura\_Estilo) \cup (\Pi_{idObra}(Miscelanea) \bowtie_{idObra=PinturaidObra} (Miscelanea\_Estilo))$\\
 				
 				$EstiloYcount(idObra)(k)$
 										
@@ -107,9 +107,9 @@
 				$f \leftarrow ((\Pi_{idObra, A\tilde{n}o}(Pintura) \cup \Pi_{idObra, A\tilde{n}o}(Escultura) \cup \Pi_{idObra, A\tilde{n}o}(Miscelanea)) \bowtie \Pi_{idObra, costo}(Permanentes)$\\
 				
 				$A \leftarrow A\tilde{n}oYcount(idObra)(f)$\\
-				$B \leftarrow A\tilde{n}oYmin(count)(A)$\\
-				$C \leftarrow (f \bowtie \Pi_{A\tilde{n}o}(B))$\\
-				$idObraYmax(costo)(C)$\\
+				$B \leftarrow Ymin(count)(A)$\\
+				$C \leftarrow \sigma_{A\tilde{n}o = B}$\\
+				$Ymax(costo)(C)$\\
 				
 				\item Toda la información (obras y artistas) de las obras que se obtuvieron en préstamo el 28 de
 				noviembre de año 2014 y que no han sido devueltas.
@@ -173,7 +173,7 @@
 				
 				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
 				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
-				$\Pi_{Empleado.nombre, Empleado.CURP}(\sigma_{Empleado.ciudad = Empresa.ciudad}((Empleado \bowtie Trabaja) \bowtie Empresa))$\\
+				$\Pi_{Empleado.nombre, CURP}(\sigma_{Empleado.ciudad = Empresa.ciudad}((Empleado \bowtie Trabaja) \bowtie Empresa))$\\
 				
 				\item Lista con el nombre de los empleados que viven en la misma calle y ciudad que su jefe.\\
 				
@@ -214,7 +214,7 @@
 				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
 				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
 				$s \leftarrow \sigma_{Empresa.nombre = 'CHR'}((Empleado \bowtie Trabaja) \bowtie Empresa))$\\
-				$m \leftarrow \Pi_{max}(CURP \Upsilon max(sueldo)(s))$\\
+				$m \leftarrow \Pi_{max}(Y max(sueldo)(s))$\\
 				$\Pi_{CURP}(\sigma_{sueldo > m}((Empleado \bowtie Trabaja) \bowtie Empresa) - s)$\\
 				
 				\item Lista con el nombre de las compañías de que están instaladas en cada ciudad en la que haya
@@ -247,7 +247,7 @@
 				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
 				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
 				$s \leftarrow Trabaja \bowtie Empresa$\\
-				${Empresa.nombre} \hspace{1mm} Y \hspace{1mm} {count(CURP.Trabaja)(s)}$\\
+				${idEmpresa} \hspace{1mm} Y \hspace{1mm} {count(CURP)(s)}$\\
 				
 				\item Cambiar la ubicación de Ziffcorp (y de todos sus empleados) a Shelbyville.\\
 				
@@ -283,23 +283,28 @@
 				$Empleado \bowtie f$\\
 				
 				\item Lista que muestre la CURP del jefe y el número de empleados que están a su cargo, agrupados
-				por compañía.
+				por compañía.\\
 				
-				
+				$a \leftarrow Jefe \bowtie_{CURPE=CURP} Empleado$\\
+				$b \leftarrow CURPJYcount(CURP)$\\
+				$\Pi_{idEmpresa, CURPJ, count}(b \bowtie_{CURPJ = CURPE} Trabaja)$\\
 				
 				\item Una lista de los empleados que ganan más de \$140,000 anuales y que no viven en Springfield.\\
 				
 				$\rho_{Empleado(CURP, Empleado.nombre, calle, Empleado.ciudad)}(Empleado)$\\
 				$\rho_{Empresa(idEmpresa, Empresa.nombre, Empresa.ciudad)}(Empresa)$\\
-				$\Pi_{CURP}(\sigma_{(sueldo \times 12) > 140 000 \land \lnot(Empleado.ciudad = 'Springfield')})$\\
+				$\Pi_{CURP}(\sigma_{(sueldo \times 12) > 140 000 \land \lnot(Empleado.ciudad = 'Springfield')}(Empleado \bowtie Trabaja))$\\
 				
 				\item La empresa que paga el mayor sueldo promedio.\\
 				
 				$p \leftarrow (idEmpresa \hspace{1mm} Y \hspace{1mm} avg(sueldo)(Trabaja))$\\
-				$\Pi_{idEmpresa}((idEmpresa \hspace{1mm} Y \hspace{1mm} max(avg)(p)))$\\
+				$a \leftarrow Ymax(avg)(p)$\\
+				$\Pi_{idEmpresa}(a \bowtie_{max = sueldo} Trabaja)$\\
 				
 				\item Moe Szyslak decide dejar su bar y entrar a trabajar a la planta nuclear, siendo su nuevo jefe
 				Carl Carlson. Refleja estos cambios en la base datos.\\
+				
+				Al no tener los datos completos no podemos hacer la consulta, pero se agregaron algunos datos para poner un ejemplo sobre lo que se pide.
 				
 				Como Moe Szyslak no esta en la base de datos, necesitamos insertar.\\
 				
@@ -311,8 +316,8 @@
 				
 				$n \leftarrow \Pi_{CURP}(\sigma_{Empleado.nombre = 'Carl Carlson'}(Empleado))$\\
 				$\rho_{n(CURPE)}(n)$\\
-				$Jefe \leftarrow \Pi_{CURPJ}(Jefe) \times n$
-							
+				$Jefe \leftarrow \Pi_{CURPJ}(Jefe) \times n$\\
+													
 			\end{enumerate}
 	\end{enumerate}	
 \end{document}
