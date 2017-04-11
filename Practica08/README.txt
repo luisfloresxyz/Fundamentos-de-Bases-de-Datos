@@ -34,3 +34,12 @@ Para correr este script, tan solo se debe seguir los siguientes pasos:
 
 Se agregarón los archivos de la práctica 7, tanto el reporte como los archivos 
 modificados, estos se especifican en el reporte.
+
+-------
+
+Se agregarón los archivos de la práctica 8, tanto el diagrama ya normalizado como el reporte
+el cual contiene la forma en que se normalizo las relaciones.
+
+Ya que no se podía ingresar a la página donde se especifica el nombre que debían llevar los archivos,
+El nuevo modelo relacional normalizado aparece como, Practica08.vpp
+y el reporte esta nombrado como, Reporte - Practica08.pdf
