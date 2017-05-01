@@ -1,0 +1,2 @@
+C47Ad,Platina,NISSAN,2007,true,4,5,true,taxi1@unam.mx
+gtd4A,Tsuru,NISSAN,2014,true,4,6,true,taxi2@unam.mx
