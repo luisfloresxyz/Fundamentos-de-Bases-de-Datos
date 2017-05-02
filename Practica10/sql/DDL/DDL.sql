@@ -77,7 +77,7 @@ CREATE TABLE APP.AGENCIA.CONTADORES(
 );
 
 CREATE TABLE APP.AGENCIA.VIAJES(
-	id_viaje			integer primary key IDENTITY(1,1),
+	id_viaje			bigint primary key IDENTITY(1,1),
 	lugar_comienzo		varchar(150) not null,
 	lugar_destino		varchar(255) not null,
 	num_personas		tinyint not null,
@@ -111,12 +111,13 @@ CREATE TABLE APP.AGENCIA.TRABAJADORES(
 );
 
 CREATE TABLE APP.AGENCIA.ASOCIACIONES(
-	nombre				varchar(25) primary key	
+	nombre				varchar(150) primary key	
 );
 
+--pendiente hasta tener a los taxistase
 CREATE TABLE  APP.AGENCIA.INGRESAR(
 	curp				varchar(18) foreign key references AGENCIA.PERSONAS(curp) ON UPDATE CASCADE not null,
-	nombre				varchar(25) foreign key references AGENCIA.ASOCIACIONES(nombre) ON UPDATE CASCADE not null,
+	nombre				varchar(150) foreign key references AGENCIA.ASOCIACIONES(nombre) ON UPDATE CASCADE not null,
 	fecha 				date
 );
 
@@ -127,9 +128,9 @@ CREATE TABLE APP.AGENCIA.AUTOMOVILES(
 	modelo				varchar(20) not null,
 	num_cilindros       tinyint not null,
 	llanta_refaccion    varchar(1) not null,
-	tipo 				varchar not null,
+	tipo 				varchar(250) not null,
 	esta_activo 		varchar(1) not null,
-	fecha_activo		varchar(1)
+	fecha_activo		date
 );
 
 CREATE TABLE APP.AGENCIA.DUENIOS(
@@ -153,7 +154,7 @@ CREATE TABLE APP.AGENCIA.TAXIS(
 );
 
 CREATE TABLE APP.AGENCIA.PERTENECER(
-	nombre				varchar(25) foreign key references AGENCIA.ASOCIACIONES(nombre) ON UPDATE CASCADE not null,
+	nombre				varchar(150) foreign key references AGENCIA.ASOCIACIONES(nombre) ON UPDATE CASCADE not null,
 	num_motor			varchar(17) foreign key references AGENCIA.AUTOMOVILES(num_motor) ON UPDATE CASCADE not null,
 	razon				varchar(255),
 	fecha				date
@@ -164,7 +165,7 @@ CREATE TABLE APP.AGENCIA.MULTAS(
 	num_placa			varchar(9) foreign key references AGENCIA.AGENTES(num_placa) ON UPDATE CASCADE not null,
 	num_motor			varchar(17) foreign key references AGENCIA.AUTOMOVILES(num_motor) ON UPDATE CASCADE not null,	
 	monto 				decimal(20) not null,
-	infraccion 			varchar(255) not null,
+	infraccion 			text not null,
 	hora 				time(7),
 	estado				varchar(255),
 	delegacion_municipio	varchar(255),
@@ -175,7 +176,7 @@ CREATE TABLE APP.AGENCIA.MULTAS(
 );
 
 CREATE TABLE APP.AGENCIA.COMENZAR(
-	id_viaje			integer foreign key references AGENCIA.VIAJES(id_viaje) ON UPDATE CASCADE not null,
+	id_viaje			bigint foreign key references AGENCIA.VIAJES(id_viaje) ON UPDATE CASCADE not null,
 	num_motor			varchar(17) foreign key references AGENCIA.AUTOMOVILES(num_motor) ON UPDATE CASCADE not null
 );
 
@@ -195,11 +196,10 @@ CREATE TABLE APP.AGENCIA.PEDIR(
 ALTER TABLE AGENCIA.PERSONAS add CONSTRAINT ck_curpper CHECK (curp LIKE '[A-Z][A-Z][A-Z][A-Z][0-9][0-9][0-9][0-9][0-9][0-9][A-Z][A-Z][A-Z][A-Z][A-Z][A-Z][0-9][0-9]');
 ALTER TABLE AGENCIA.DUENIOS add CONSTRAINT ck_curpdue CHECK (curp LIKE '[A-Z][A-Z][A-Z][A-Z][0-9][0-9][0-9][0-9][0-9][0-9][A-Z][A-Z][A-Z][A-Z][A-Z][A-Z][0-9][0-9]');
 ALTER TABLE AGENCIA.CHOFERES add CONSTRAINT ck_curpchofi CHECK (curp LIKE '[A-Z][A-Z][A-Z][A-Z][0-9][0-9][0-9][0-9][0-9][0-9][A-Z][A-Z][A-Z][A-Z][A-Z][A-Z][0-9][0-9]');
-ALTER TABLE AGENCIA.DUENIOS add CONSTRAINT ck_rfc CHECK (rfc LIKE '[A-Z][A-Z][A-Z][A-Z][0-9][0-9][0-9][0-9][0-9][0-9][A-Z][0-9][A-Z][0-9][A-Z][0-9]');
+ALTER TABLE AGENCIA.DUENIOS add CONSTRAINT ck_rfc CHECK (rfc LIKE '[A-Z][A-Z][A-Z][A-Z][0-9][0-9][0-9][0-9][0-9][0-9][A-Z][A-Z][A-Z]');
 ALTER TABLE AGENCIA.CONTADORES add CONSTRAINT ck_curpcont CHECK (curp_contador LIKE '[A-Z][A-Z][A-Z][A-Z][0-9][0-9][0-9][0-9][0-9][0-9][A-Z][A-Z][A-Z][A-Z][A-Z][A-Z][0-9][0-9]');
-ALTER TABLE AGENCIA.AUTOMOVILES add CONSTRAINT ck_num_cilindros CHECK(num_cilindros = 8 OR num_cilindros = 12);
-ALTER TABLE AGENCIA.AUTOMOVILES add CONSTRAINT ck_llanta_refaccion CHECK(llanta_refaccion = 0 OR llanta_refaccion = 1);
-ALTER TABLE AGENCIA.VIAJES add CONSTRAINT ck_num_personas CHECK(num_personas >=1  AND num_personas < 6);
+ALTER TABLE AGENCIA.AUTOMOVILES add CONSTRAINT ck_num_cilindros CHECK(num_cilindros = 8 OR num_cilindros = 4 OR num_cilindros = 6);
+ALTER TABLE AGENCIA.VIAJES add CONSTRAINT ck_num_personas CHECK(num_personas >=1  AND num_personas <=8);
 
 GO
 
