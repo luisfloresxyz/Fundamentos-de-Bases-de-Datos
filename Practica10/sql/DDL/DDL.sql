@@ -49,7 +49,7 @@ CREATE TABLE APP.AGENCIA.LICENCIAS(
 	fecha_expedicion 	date,
 	vigencia 			date
 );
---Pendiente hasta asignar choferes.
+
 CREATE TABLE APP.AGENCIA.TENER(	
 	curp 				varchar(18) foreign key references AGENCIA.PERSONAS(curp) ON UPDATE CASCADE ON DELETE CASCADE not null,
 	num_licencia 		bigint foreign key references AGENCIA.LICENCIAS(num_licencia) ON UPDATE CASCADE ON DELETE CASCADE not null 
@@ -114,7 +114,6 @@ CREATE TABLE APP.AGENCIA.ASOCIACIONES(
 	nombre				varchar(150) primary key	
 );
 
---pendiente hasta tener a los taxistase
 CREATE TABLE  APP.AGENCIA.INGRESAR(
 	curp				varchar(18) foreign key references AGENCIA.PERSONAS(curp) ON UPDATE CASCADE not null,
 	nombre				varchar(150) foreign key references AGENCIA.ASOCIACIONES(nombre) ON UPDATE CASCADE not null,
@@ -182,10 +181,9 @@ CREATE TABLE APP.AGENCIA.COMENZAR(
 
 CREATE TABLE APP.AGENCIA.RIESGOS(
 	num_motor			varchar(17) foreign key references AGENCIA.AUTOMOVILES(num_motor) ON UPDATE CASCADE ON DELETE CASCADE not null,
-	riesgo				varchar(255) primary key
+	riesgo				varchar(255) NOT NULL
 );
 
---Revisar
 CREATE TABLE APP.AGENCIA.PEDIR(
 	id_unam_alumno 		bigint foreign key references AGENCIA.ALUMNOS(id_unam),
 	id_unam_academico 	bigint foreign key references AGENCIA.ACADEMICOS(id_unam),
