@@ -1,6 +1,5 @@
 Jaime Daniel García Argueta 312104739
 Flores González Luis Brandon 312218342
-Pérez Villanueva Francisco Javier 308200430
 
 -------
 
@@ -55,3 +54,11 @@ Las instrucciones para correr el DDL.sql son las mismas que las que se indicarón
 práctica 6.
 
 Todo biene bien detallado en el reporte.
+
+----------
+
+Práctica 10
+
+Se agregarón los archivos correspondientes a la práctica: Reporte-practica10 y DML.sql
+
+En el reporte - practica 10.pdf viene la especificación.
