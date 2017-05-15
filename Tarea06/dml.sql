@@ -96,8 +96,24 @@ FROM APP2.EMPRESA.DIRIGIR d INNER JOIN APP2.EMPRESA.COLABORAR c ON d.curp = c.cu
 
 --o. Encontrar la compañía que tiene empleados en cada una de las ciudades que hayas
 --definido.
-
---Falta
+SELECT a.rfc AS rfc_compania, COUNT(a.ciudad) AS num_ciudades_definidas
+FROM (SELECT  DISTINCT t.rfc, e.ciudad
+	FROM APP2.EMPRESA.EMPLEADOS e INNER JOIN
+	APP2.EMPRESA.TRABAJAR t ON t.curp = e.curp) a
+	INNER JOIN
+	((SELECT DISTINCT ciudad
+	FROM APP2.EMPRESA.EMPLEADOS)
+	UNION
+	(SELECT DISTINCT ciudad
+	FROM APP2.EMPRESA.EMPRESAS)) b 
+	ON a.ciudad = b.ciudad
+GROUP BY a.rfc
+HAVING COUNT(a.ciudad) = (SELECT COUNT(f.ciudad)
+FROM ((SELECT DISTINCT ciudad
+	FROM APP2.EMPRESA.EMPLEADOS)
+	UNION
+	(SELECT DISTINCT ciudad
+	FROM APP2.EMPRESA.EMPRESAS)) f);
 
 --p. Empleados que dejaron de colaborar en proyectos, antes de la fecha de finalización de los
 --mismos.
@@ -154,8 +170,13 @@ FROM APP2.EMPRESA.SUPERVISAR
 GROUP BY curp_supervisor;
 
 --v. Obtener una lista de los directores de más de 50 años.
-
---Falta
+SELECT e.*, FLOOR(
+(CAST(CONVERT(CHAR(8), GETDATE(), 112) AS INT) -
+CAST(CONVERT(CHAR(8), e.fecha_nac, 112) AS INT))/10000) AS edad
+FROM APP2.EMPRESA.DIRIGIR d INNER JOIN APP2.EMPRESA.EMPLEADOS e ON d.curp = e.curp
+WHERE FLOOR(
+(CAST(CONVERT(CHAR(8), GETDATE(), 112) AS INT) -
+CAST(CONVERT(CHAR(8), e.fecha_nac, 112) AS INT))/10000) > 50;
 
 --w. Obtener una lista de los empleados cuyo apellido paterno comience con las letras A, D, G, J,
 --L, P o R.
