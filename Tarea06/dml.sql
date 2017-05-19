@@ -50,14 +50,15 @@ GROUP BY rfc;
 --aquellos empleados que colaboran en al menos dos proyectos y en donde el número de horas
 --que dediquen a algún proyecto sea mayor a 20.
 SELECT *
-FROM APP2.EMPRESA.EMPLEADOS e INNER JOIN (SELECT curp, COUNT(num_proy) AS  numero_proyectos, SUM(num_horas) AS num_horas
+FROM APP2.EMPRESA.EMPLEADOS e INNER JOIN 
+	(SELECT curp, COUNT(num_proy) AS  numero_proyectos, SUM(num_horas) AS num_horas
 	FROM APP2.EMPRESA.COLABORAR 
 	WHERE num_horas > 20
 	GROUP BY curp
 	HAVING COUNT(num_proy) >= 2) g ON e.curp = g.curp;
 
 --j. Encontrar la cantidad de empleados en cada compañía
-SELECT rfc, COUNT(curp)
+SELECT rfc, COUNT(curp) AS cantidad_empleados
 FROM APP2.EMPRESA.TRABAJAR t
 GROUP BY rfc;
 
@@ -65,7 +66,9 @@ GROUP BY rfc;
 SELECT n.nombre, n.rfc
 FROM (SELECT rfc, MAX(salario) AS salario
 	FROM APP2.EMPRESA.TRABAJAR t
-	GROUP BY rfc) m INNER JOIN (SELECT rfc, nombre, salario
+	GROUP BY rfc) m 
+	INNER JOIN 
+	(SELECT rfc, nombre, salario
 	FROM APP2.EMPRESA.EMPLEADOS e INNER JOIN APP2.EMPRESA.TRABAJAR t ON e.curp = t.curp) n 
 	ON m.rfc = n.rfc AND m.salario = n.salario;
 
@@ -74,18 +77,22 @@ FROM (SELECT rfc, MAX(salario) AS salario
 SELECT curp
 FROM APP2.EMPRESA.TRABAJAR
 WHERE salario > (SELECT AVG(p.salario_promedio) AS salario_promedio
-FROM (SELECT e.rfc, AVG(t.salario) AS  salario_promedio
-	FROM APP2.EMPRESA.EMPRESAS e INNER JOIN APP2.EMPRESA.TRABAJAR t ON e.rfc = t.rfc
-	GROUP BY e.rfc) p)
+				FROM (SELECT e.rfc, AVG(t.salario) AS  salario_promedio
+					FROM APP2.EMPRESA.EMPRESAS e INNER JOIN APP2.EMPRESA.TRABAJAR t ON e.rfc = t.rfc
+					GROUP BY e.rfc) p);
 
 --m. Encontrar la compañía que tiene menos empleados y listar toda la información de los mismos.
+--Nota: Hay varias compañias con el mismo minimo número de empleados(menos empleados).
 SELECT a.*
 FROM (SELECT rfc, COUNT(curp) AS num_empleados
 	FROM APP2.EMPRESA.TRABAJAR
-	GROUP BY rfc) e INNER JOIN (SELECT MIN(n.num_empleados) AS min_num_empleados
+	GROUP BY rfc) e 
+	INNER JOIN 
+	(SELECT MIN(n.num_empleados) AS min_num_empleados
 	FROM (SELECT rfc, COUNT(curp) AS num_empleados
-	FROM APP2.EMPRESA.TRABAJAR
-	GROUP BY rfc) AS n) m ON e.num_empleados = m.min_num_empleados
+		FROM APP2.EMPRESA.TRABAJAR
+		GROUP BY rfc) AS n) m 
+	ON e.num_empleados = m.min_num_empleados
 	INNER JOIN APP2.EMPRESA.TRABAJAR t ON t.rfc = e.rfc
 	INNER JOIN APP2.EMPRESA.EMPLEADOS a ON a.curp = t.curp;
 
@@ -98,8 +105,7 @@ FROM APP2.EMPRESA.DIRIGIR d INNER JOIN APP2.EMPRESA.COLABORAR c ON d.curp = c.cu
 --definido.
 SELECT a.rfc AS rfc_compania, COUNT(a.ciudad) AS num_ciudades_definidas
 FROM (SELECT  DISTINCT t.rfc, e.ciudad
-	FROM APP2.EMPRESA.EMPLEADOS e INNER JOIN
-	APP2.EMPRESA.TRABAJAR t ON t.curp = e.curp) a
+	FROM APP2.EMPRESA.EMPLEADOS e INNER JOIN APP2.EMPRESA.TRABAJAR t ON t.curp = e.curp) a
 	INNER JOIN
 	((SELECT DISTINCT ciudad
 	FROM APP2.EMPRESA.EMPLEADOS)
@@ -107,13 +113,13 @@ FROM (SELECT  DISTINCT t.rfc, e.ciudad
 	(SELECT DISTINCT ciudad
 	FROM APP2.EMPRESA.EMPRESAS)) b 
 	ON a.ciudad = b.ciudad
-GROUP BY a.rfc
-HAVING COUNT(a.ciudad) = (SELECT COUNT(f.ciudad)
-FROM ((SELECT DISTINCT ciudad
-	FROM APP2.EMPRESA.EMPLEADOS)
-	UNION
-	(SELECT DISTINCT ciudad
-	FROM APP2.EMPRESA.EMPRESAS)) f);
+	GROUP BY a.rfc
+	HAVING COUNT(a.ciudad) = (SELECT COUNT(f.ciudad)
+							  FROM ((SELECT DISTINCT ciudad
+									 FROM APP2.EMPRESA.EMPLEADOS)
+									 UNION
+									 (SELECT DISTINCT ciudad
+									 FROM APP2.EMPRESA.EMPRESAS)) f);
 
 --p. Empleados que dejaron de colaborar en proyectos, antes de la fecha de finalización de los
 --mismos.
@@ -134,10 +140,10 @@ FROM (SELECT curp
 --ciudad en que tienen sus instalaciones
 SELECT *
 FROM (SELECT m.rfc, COUNT(e.curp) AS num_empleados_misma_ciudad
-FROM APP2.EMPRESA.EMPLEADOS e INNER JOIN APP2.EMPRESA.TRABAJAR t ON e.curp = t.curp
-	INNER JOIN APP2.EMPRESA.EMPRESAS m ON m.rfc = t.rfc
-WHERE e.ciudad = m.ciudad
-GROUP BY m.rfc) d INNER JOIN APP2.EMPRESA.EMPRESAS e ON e.rfc = d.rfc
+	  FROM APP2.EMPRESA.EMPLEADOS e INNER JOIN APP2.EMPRESA.TRABAJAR t ON e.curp = t.curp
+	  INNER JOIN APP2.EMPRESA.EMPRESAS m ON m.rfc = t.rfc
+	  WHERE e.ciudad = m.ciudad
+	  GROUP BY m.rfc) d INNER JOIN APP2.EMPRESA.EMPRESAS e ON e.rfc = d.rfc
 WHERE num_empleados_misma_ciudad >= 2;
 
 --s. Proyecto que más empleados requiere (o requirió) y el número de horas que éstos le
@@ -148,14 +154,15 @@ FROM APP2.EMPRESA.COLABORAR c
 	INNER JOIN
 	(SELECT num_proy
 	FROM (SELECT num_proy, COUNT(curp) AS num_empleados
-	FROM APP2.EMPRESA.COLABORAR
-	GROUP BY num_proy) n
-	INNER JOIN
-	(SELECT MAX(n.num_empleados) AS max_num_empleados
-	FROM (SELECT num_proy, COUNT(curp) AS num_empleados
-	FROM APP2.EMPRESA.COLABORAR
-	GROUP BY num_proy) n) m
-	ON m.max_num_empleados = n.num_empleados) m ON m.num_proy = c.num_proy
+		  FROM APP2.EMPRESA.COLABORAR
+		  GROUP BY num_proy) n
+		  INNER JOIN
+	      (SELECT MAX(n.num_empleados) AS max_num_empleados
+		   FROM (SELECT num_proy, COUNT(curp) AS num_empleados
+				 FROM APP2.EMPRESA.COLABORAR
+				 GROUP BY num_proy) n) m
+				 ON m.max_num_empleados = n.num_empleados) m 
+	ON m.num_proy = c.num_proy
 	GROUP BY m.num_proy;
 
 --t. Empleados que comenzaron a colaborar en proyectos en la misma fecha de su cumpleaños
@@ -170,13 +177,11 @@ FROM APP2.EMPRESA.SUPERVISAR
 GROUP BY curp_supervisor;
 
 --v. Obtener una lista de los directores de más de 50 años.
-SELECT e.*, FLOOR(
-(CAST(CONVERT(CHAR(8), GETDATE(), 112) AS INT) -
-CAST(CONVERT(CHAR(8), e.fecha_nac, 112) AS INT))/10000) AS edad
+SELECT e.*, FLOOR((CAST(CONVERT(CHAR(8), GETDATE(), 112) AS INT) -
+				   CAST(CONVERT(CHAR(8), e.fecha_nac, 112) AS INT))/10000) AS edad
 FROM APP2.EMPRESA.DIRIGIR d INNER JOIN APP2.EMPRESA.EMPLEADOS e ON d.curp = e.curp
-WHERE FLOOR(
-(CAST(CONVERT(CHAR(8), GETDATE(), 112) AS INT) -
-CAST(CONVERT(CHAR(8), e.fecha_nac, 112) AS INT))/10000) > 50;
+WHERE FLOOR((CAST(CONVERT(CHAR(8), GETDATE(), 112) AS INT) -
+			 CAST(CONVERT(CHAR(8), e.fecha_nac, 112) AS INT))/10000) > 50;
 
 --w. Obtener una lista de los empleados cuyo apellido paterno comience con las letras A, D, G, J,
 --L, P o R.
@@ -192,19 +197,5 @@ WHERE DATEPART(M ,p.fecha_inicio) = 12;
 
 --y. Crea una vista con la información de los empleados y compañías en que trabajan, de aquellos
 --empleados que lo hagan en al menos tres compañías diferentes.
-CREATE VIEW companias_diferentas(curp_empleado, nombre_empleado, paterno_empleado, materno_empleado, fecha_nac_empleado, calle_empleado,
-		num_empleado, ciudad_empleado, codigo_postal_empleado, rfc_empresa, razon_social_empresa, calle_empresa, num_empresa, ciudad_empresa,
-		codigo_postal_empresa) AS 
-(SELECT em2.*, emp.*
-FROM (SELECT e.curp
-	FROM APP2.EMPRESA.EMPLEADOS e
-	INNER JOIN
-		(SELECT curp, COUNT(rfc) AS num_companias
-		FROM APP2.EMPRESA.TRABAJAR	
-		GROUP BY curp
-		HAVING COUNT(rfc) >= 3) n ON e.curp = n.curp) em1
-		INNER JOIN APP2.EMPRESA.EMPLEADOS em2 ON em1.curp = em2.curp
-		INNER JOIN APP2.EMPRESA.TRABAJAR tr ON tr.curp = em2.curp
-		INNER JOIN APP2.EMPRESA.EMPRESAS emp ON emp.rfc = tr.rfc);
-		
-		
+
+--Esta consulta esta en el archivo dml - y.sql

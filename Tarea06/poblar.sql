@@ -1,4 +1,8 @@
 
+--Si hay algun error, ejecutar más de una vez ya que puede haber error con 
+--la llave IDENTITY, es decir, error referencial. Si se ejecuta de nuevo
+--ya no habra errores en el log.
+
 DELETE APP2.EMPRESA.EMPRESAS;
 DELETE APP2.EMPRESA.EMPLEADOS;
 DELETE APP2.EMPRESA.PROYECTOS;
