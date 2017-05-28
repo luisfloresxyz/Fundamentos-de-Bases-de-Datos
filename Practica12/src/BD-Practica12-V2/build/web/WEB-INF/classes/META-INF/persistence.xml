@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="BD-Practica12-V2PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>Entidades.Choferes</class>
+    <class>Entidades.Academicos</class>
+    <class>Entidades.Duenios</class>
+    <class>Entidades.Trabajadores</class>
+    <class>Entidades.Aseguradoras</class>
+    <class>Entidades.Automoviles</class>
+    <class>Entidades.Personas</class>
+    <class>Entidades.Correos</class>
+    <class>Entidades.Agentes</class>
+    <class>Entidades.Asociaciones</class>
+    <class>Entidades.Contadores</class>
+    <class>Entidades.Licencias</class>
+    <class>Entidades.Alumnos</class>
+    <class>Entidades.Celulares</class>
+    <class>Entidades.Viajes</class>
+    <class>Entidades.Multas</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://DESKTOP-5BUMVBF\DESKTOP-5BUMVBF:1433;databaseName=APP"/>
+      <property name="javax.persistence.jdbc.user" value="sa"/>
+      <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+      <property name="javax.persistence.jdbc.password" value="A312218342"/>
+    </properties>
+  </persistence-unit>
+</persistence>

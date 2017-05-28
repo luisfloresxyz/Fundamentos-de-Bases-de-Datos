@@ -1,0 +1,143 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\title{Práctica 7. Álgebra relacional.}
+\author{Jaime Daniel García Argueta 312104739\\
+		Flores González Luis Brandon 312218342\\
+		Pérez Villanueva Francisco Javier 308200430}
+\date{3 de Abril del 2017}
+\begin{document}
+\maketitle
+
+Cambios hechos tanto en el diagrama como en el modelo relacional.\\
+\begin{enumerate}
+	\item Fecha\_nacimiento en Persona.
+	\item Edad como derivado en Persona.
+	\item Se agregaron atributos al atributo Domicilio de Persona.
+	\item Lugar en la relación Cometer es compuesto.
+	\item Hora\_inicio en Viaje.
+	\item Hora\_final en Viaje.
+	\item Se cambio Tiempo por Duración en Viaje.
+	\item El atributo Estado de Chofer se convierte a compuesto, con sub-atributos estaActivo y Fecha.
+	\item Se agrega el atributo Estado compuesto a Taxi.
+	\item Fecha a cada viaje(cuando se realizo).
+	\item Fecha a Cometer.
+	\item ViajeID de los usuarios ahora puede ser null.
+	\item Se elimino Fecha\_ingreso de la entidad Persona.
+	\item Se agrego la relación Ingresar de Chofer a Asociación, con atributo Fecha.
+	\item Se agrego el atributo Fecha ingreso a la relación pertenecer.\\\\\\\\
+\end{enumerate}
+
+Solución a ejercicios de la práctica.\\
+\begin{enumerate}
+	\item Conocer el nombre de todos los chóferes que tengan mas de 25 años.\\
+	$$a \leftarrow \sigma _{EsChofer = 's'} (Persona)$$
+	$$b \leftarrow \sigma _{Fecha\_nacimiento < 01/04/1992}(a)$$
+	$$\Pi_{Nombre,Paterno,Materno}(b)$$
+	\item Conocer el nombre y edad de todos los alumnos que hayan realizado mas de un viaje con la asociación.\\
+	$$\rho_{Alumno(ID\_UNAM,CURP,Viaje\_ID,Hora\_Entrada,Hora\_Salida,Facultad)}(Alumno)$$
+    $$\rho_{Viaje(Viaje\_ID,Destino,Duracion,Num\_Personas,Distancia,Hora\_inicio,Hora\_final,Fecha)}(Viaje)$$
+	$$a \leftarrow Alumno \bowtie Viaje$$
+	$$\rho_{Comenzar(Taxi\_num\_motor,Viaje\_ID)}(Comenzar)$$
+	$$b \leftarrow a \bowtie Comenzar$$
+	$$\rho_{Pertenecer(Asociacion\_nombre,Taxi\_num\_motor)}Pertenecer$$
+	$$c \leftarrow \sigma _{Asociacion = 'UNAM'}(b \bowtie Pertenecer)$$
+	$$d \leftarrow _{CURP}Y_{count(Viaje\_ID)}(C)$$
+	$$\rho _{d(CURP,count)(d)}$$
+	$$e \leftarrow (\Pi_{CURP,Fecha\_Nacimiento,Nombre,Materno,Paterno}(Persona)) \bowtie (\Pi_{CURP}(\sigma _{count > 1}(d)))$$
+	$$\Pi_{Nombre,Materno,Paterno,Fecha\_nacimiento}(e)$$
+	\item  Conocer los vehículos con mas de diez años de antigüedad.\\
+	$$a \leftarrow _{Taxi\_num\_motor,Fecha,Asociacion}(Pertenecer)$$
+	$$\rho_{a(Num\_motor,Fecha,Nombre)}(a)$$
+	$$b \leftarrow a \bowtie (\sigma_{Nombre = 'UNAM'}(Asociacion))$$
+	$$c \leftarrow \Pi _{NumMotor}(\sigma_{Fecha < 01/04/2010})$$	
+	\item Conocer los dueños de los vehículos con mas de diez años de antigüedad.\\
+	$$d \leftarrow \Pi_{Taxi\_num\_motor,PersonaCURP}(Taxi)$$
+	$$\rho_{e(NumMotor,CURP)}(d)$$
+	$$e \leftarrow d \bowtie c$$
+	$$\Pi_{CURP}(e \bowtie (\Pi_{CURP}(\sigma_{EsDueño = 's'}(Persona))))$$
+	\item Todos los viajes que hayan costado mas de \$100, así como el chófer que lo realizó, el dueño del automóvil y el usuario que lo hizo.\\
+	$$--$$
+	\item  El promedio de edad de los chóferes que hayan ingresado a la asociación entre el 2000 y 2016.\\
+	$$a \leftarrow \Pi _{CURP,Fecha}(\sigma_{EsChofer = 's'}(Persona))$$
+	$$\rho_{(CURP,AsociacionNombre,Fecha_Ingreso)}(Ingresar)$$
+	$$b \leftarrow \sigma _{AsociacionNombre = 'UNAM'(a \bowtie Ingresar)}$$
+	$$c \leftarrow \sigma_{Fecha\_Ingreso \geq 01/01/2000 \wedge Fecha\_Ingreso \leq 31/12/2016}(b)$$
+	$$d \leftarrow Y_{arg(Fecha)}(c)$$
+	\item Saber las personas que son dueños y chóferes al mismo tiempo.\\
+	$$\Pi_{CURP}(\sigma_{EsChofer = 's' \wedge EsDueño = 's'}(Persona))$$
+	\item Conocer el total que gasta al mes cada uno de los académicos en viajes.\\
+	$$--$$
+	\item Conocer las multas que se le hayan aplicado a los automoviles que no tengan seguro.\\
+	$$a \leftarrow \Pi_{NumMotor}(\sigma_{Aseguradora_ID = null}(Taxi))$$
+	$$\rho_{(Taxi,NumMotor)}(a)$$
+	$$a \bowtie Multa$$
+	\item Conocer los choferes que se les haya levantado una multa en la delegación Benito Juárez, Coyoacán y Tlalpan.\\
+	$$a \leftarrow \Pi_{Taxi\_Num\_Motor}$$
+	$$(\sigma_{Delegacion\_Municipio = 'Benito Juarez' \vee Delegacion\_Municipio = 'Coyoacan' \vee Delegacion\_Municipio = 'Tlalpan'}(Multa))$$
+	$$b \leftarrow \Pi_{PersonaCURP}(a \bowtie _{Taxi\_Num\_Motoe = 'NumMotor'}(Taxi))$$
+	$$c \leftarrow (\sigma _{EsChofer='s'}(Persona))$$
+	$$\rho _{c(CURP)(b)}$$
+	$$b \bowtie c$$
+	\item El nombre de los choferes que su seguro no cubre daños a terceros.\\
+	$$a \leftarrow \sigma_{Riesgo \neq 'Tercero'}(\Pi_{Riesgo,PersonaCurp}(\Pi_{NumMotor,PersonaCURP}(Taxi)$$
+	$$\bowtie_{NumMotor = Taxi\_Num\_Motor}Riesgo))$$
+	$$b \leftarrow \Pi_{CURP,Nombre,Materno,Paterno}(\sigma_{EsChofer = 's'}(Persona))$$
+	$$\Pi_{Nombre,Materno,Paterno}(a \bowtie b)$$
+	\item El nombre de los usuarios que han realizado viajes con mas de 100 km de distancia después de las 6 p.m.\\
+	$$a \leftarrow \Pi_{ID}(\sigma _{Distancia > 100 \wedge Hora_Inicio > 6:00:00}(Viaje))$$
+	$$\rho_{CURP,ID}(b)$$
+	$$c\leftarrow b \bowtie a$$
+	$$\Pi _{Nombre,Materno,Paterno}(c \bowtie Persona)$$
+	\item Eliminar a los vehículos que tengan mas de 5 años como inactivos.\\
+	$$a \leftarrow \sigma _{Fecha_Activo < 01/04/2012}(Taxi)$$
+	$$Taxi \leftarrow Taxi - a$$
+	\item Eliminar a los chóferes que tengan mas de 5 años sin conducir un taxi.\\
+	$$a \leftarrow \sigma _{Fecha_Activo < 01/04/2012 \wedge EsChofer = 's'}(Persona)$$
+	$$Persona \leftarrow Persona - a$$
+	\item Eliminar a los usuarios que no hayan realizado un viaje en más de 5 años.\\
+	$$a \leftarrow \Pi_{PersonaCURP,ViajeID}(Alumno)$$
+	$$c \leftarrow \Pi_{PersonaCURP,ViajeID}(Academico)$$
+	$$t \leftarrow \Pi_{PersonaCURP,ViajeID}(TrabajadorUniversidad)$$
+	$$n \leftarrow a \bigcup c \bigcup t$$	
+	$$\rho_{n(CURP,ID)}(n)$$
+	$$u \leftarrow \Pi _{CURP}(\sigma _{Fecha < 01/04/2012}(n \ bowtie Viaje))$$
+	$$Alumno \leftarrow Alumno - (Alumno \bowtie Viaje)$$
+	$$Academico \leftarrow Academico - (Academico \bowtie Viaje)$$
+	$$TrabajadorUniversidad \leftarrow TrabajadorUniversidad - (TrabajadorUniversidad \bowtie Viaje)$$		
+	\item Insertar a un alumno en la aplicación.\\
+	$$Alumno \leftarrow Alumno \bigcup (312218342,FOGL951231HMCLNS01,1000325802, $$
+	$$12:00,20:00,Ciencias)$$
+	\item Insertar y asignar un chófer a un vehículo.\\
+	$$Chofer \leftarrow Chofer \bigcup (AGST11231TOPQAS12P,San Lazaro,San Nicolas,Iztapalapa,Null,$$
+	$$Mexico,Estrella,Luna,calle ancha,15,5,09850,Jaime Argueta, Null,$$
+$$Null,Null,13ABZ,AGST11321TOPQAS12F,s,n,15/01/1995)$$
+	$$Taxi \leftarrow Taxi \bigcup (15AF1314HTUWACDSF,AGST11321TOPQAS12F,NULL,5431200052$$
+$$AD0031815ACD1400I,2015,nISAN,mARCH,4,5,TERCERO,S,01/04/1017)$$
+	\item Insertar la información de un viaje realizado por el chófer anteriormente insertado al alumno anteriormente insertado.\\
+	$$Comenzar \leftarrow Comenzar \bigcup (15AF1314HTUWACDSF,1000325802)$$
+	\item  Cambiar a la compañía 'El Cóndor' a todos los vehículos con mas de 10 años de antigüedad.\\
+	$$a \leftarrow \Pi _{Taxi\_Num\_Motor}(\sigma_{AsociacionNombre='UNAM'}(Pertenecer))$$
+	$$\rho_{a(NumMotor)(a)}$$
+	$$b \leftarrow \sigma _{Fecha < 01/04/2002}(a \bowtie Taxi)$$
+	$$c \leftarrow \Pi _{NumMotor}(b)$$
+	$$\rho_{c(TaxiNumMotor)}(c)$$
+	$$Temporal \leftarrow (Pertenecer \bowtie c)$$
+	$$Pertenecer \leftarrow Pertenecer - Tempotal$$
+	$$d \leftarrow ('El Condor' X (\Pi _{TaxiNumMotor,Razon,Fecha}(Temporal)))$$
+	$$\rho_{d(Asociacion,TaxiNumMotor,Razon,Fecha)}(d)$$
+	$$Pertenece \leftarrow Pertenece \bigcup d$$
+	\item Dar de baja a los chóferes que tengan más de 10 multas en un mes.\\
+	$$a \leftarrow _{TaxiNumMotor}Y_{count(ID)}$$
+	$$\rho_{a(numMotor,count)}(a)$$
+	$$b \leftarrow \sigma_{count > 10}(a)$$
+	$$c \leftarrow \Pi_{PersonaCurp}(b \bowtie Taxi)$$
+	$$\rho_{c(CURP)}(c)$$
+	$$Chofer \leftarrow \sigma _{EsChofer = 's'}(Persona)$$
+	$$d \leftarrow Chofer \bowtie c$$
+	$$Persona \leftarrow Persona - d$$
+	$$e \leftarrow d X n X d $$
+	$$Persona \leftarrow Persona\bigcup e$$	
+\end{enumerate}
+\end{document}

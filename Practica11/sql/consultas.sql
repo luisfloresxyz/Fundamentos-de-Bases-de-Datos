@@ -53,10 +53,10 @@ FROM APP.AGENCIA.PERSONAS per INNER JOIN APP.AGENCIA.CHOFERES ch ON ch.curp = pe
 WHERE i.fecha BETWEEN '01-01-2000' AND '31-12-2016';
 
 --7. Saber las personas que son dueños y chóferes al mismo tiempo.
-SELECT per.*
+SELECT per.curp, per.nombre, per.materno, per.paterno, per.fecha_nacimiento, per.calle_principal, per.colonia, per.delegacion_municipio, per.ciudad, per.codigo_postal
 FROM APP.AGENCIA.PERSONAS per INNER JOIN APP.AGENCIA.CHOFERES ch ON per.curp = ch.curp
 	INNER JOIN APP.AGENCIA.DUENIOS due ON due.curp = ch.curp;
-
+		
 --8. Conocer el total que gasta al mes cada uno de los académicos en viajes.
 
 --El costo del viaje es un atributo calculado que depende de varias cosas, como la distancia la cuenta se calcula

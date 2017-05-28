@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>PumaTaxi</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+        <b:navBar brand="PumaTaxi" brandHref="#" inverse="true" fixed="top">
+            <b:navbarLinks>
+                <b:navLink value="Vehiculos" href="./Vehiculo.xhtml"></b:navLink>
+                <b:navLink value="Multas" href="./Multa.xhtml"></b:navLink>
+                <b:dropMenu value="Empleados">
+                    <b:navLink value="Choferes" href="./ChoferIH.xhtml"></b:navLink>
+                    <b:navLink value="Dueños" href="./DuenioIH.xhtml"></b:navLink>
+                    <b:navLink value="General" href="./EmpleadoIH.xhtml"></b:navLink>
+                    <b:navLink></b:navLink>                    
+                </b:dropMenu>
+            </b:navbarLinks>            
+        </b:navBar>
+        <b:jumbotron>
+            <b:container>
+                <h1>Hello, world!</h1>
+                <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. 
+                    Use it as a starting point to create something more unique.
+                </p>
+                <p>
+                    <a href="https://github.com/TheCoder4eu/BootsFaces-examples/blob/master/src/main/webapp/jumbotron.xhtml" class="btn btn-lg btn-info">View Page Source »</a>
+                </p>
+            </b:container>
+
+        </b:jumbotron>
+        <b:container>
+            <b:row>
+                <b:column col-md="4">
+                    <h2>Heading</h2>
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
+                        ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    <p><b:button outcome="" value="View details »"/></p>
+                </b:column>
+                <b:column col-md="4">
+                    <h2>Heading</h2>
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
+                        ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    <p><b:button outcome="" value="View details »"/></p>
+                </b:column>
+                <b:column col-md="4">
+                    <h2>Heading</h2>
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
+                        ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                    <p><b:button outcome="" value="View details »"/></p>
+                </b:column>
+            </b:row>
+            <hr/>
+            <footer>
+                <p>© Company 2014</p>
+            </footer>
+            <h:outputText value="hola crayoli"/>                
+            <!--7<h:outputText value=""/>-->
+
+            <!--7. Saber las personas que son dueños y chóferes al mismo tiempo.-->
+
+            <p:dataTable var="personas" value="#{consulta.dameChoferDuenio()}">
+                <p:column headerText="CURP">
+                    <h:outputText value="#{personas.curp}" />
+                </p:column>                
+                
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{personas.nombre}" />
+                </p:column>                
+                
+                <p:column headerText="Apellido paterno">
+                    <h:outputText value="#{personas.paterno}" />
+                </p:column>                
+                
+                <p:column headerText="Apellido materno">
+                    <h:outputText value="#{personas.materno}" />
+                </p:column>                
+                
+                <p:column headerText="Colonia">
+                    <h:outputText value="#{personas.paterno}" />
+                </p:column>                
+                
+                <p:column headerText="Ciudad">
+                    <h:outputText value="#{personas.ciudad}" />
+                </p:column>                
+            </p:dataTable>
+
+            <!--9. Conocer las multas que se le hayan aplicado a los automóviles
+            que no tengan seguro.cUna precondición es que es necesario que todo 
+            automovil tenga seguro, pero suponiendo que tuvieran la consulta
+            sería la siguiente.-->
+            
+        </b:container>
+
+    </h:body>
+</html>

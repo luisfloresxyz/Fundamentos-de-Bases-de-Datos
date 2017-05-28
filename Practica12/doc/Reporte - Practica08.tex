@@ -1,0 +1,388 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\title{Práctica 8. Normalización.}
+\author{Jaime Daniel García Argueta 312104739\\
+		Flores González Luis Brandon 312218342\\
+		Pérez Villanueva Francisco Javier 308200430}
+\date{10 de Abril del 2017}
+\begin{document}
+\maketitle
+
+Cambios hechos tanto en el diagrama como en el modelo relacional.\\
+\begin{enumerate}
+	\item Se agrego lugar\_comienzo a la entidad viaje.
+	\item Se cambio el atributo duración a derivado en viaje.
+	\item Se cambio el atributo distancia a derivado en viaje.
+	\item Además se agregarón las convenciones de escritura al nuevo modelo relacional.
+\end{enumerate}
+
+\textbf{Nota}: Los nombres son del diagrama anterior, no del nuevo.\\
+
+Solución a ejercicios de la práctica.\\
+\begin{enumerate}
+
+	\item Normalizando \textbf{Persona}
+							$$Persona(CURP, calle\_principal, colonia, delegacion\_municipio, estado$$
+			$$, ciudad, calle\_1, calle\_2, referencia, num\_exterior, num\_interior$$
+			$$,codigo\_postal, nombre, materno, paterno, esta\_activo, fecha\_activo,$$ $$TarjetaCirculacion, RFC, EsChofer, EsDuenio, fecha\_nacimiento)$$\\
+			
+			La dependencia que empieza con CURP determina todos los datos de una persona, tales como dirección, nombre, fecha de nacimiento, etc. La que empieza con CURP, EsChofer determina los atributos extra que hace a una persona un chofer. Analogamente esto paso con CURP, EsDuenio.
+			
+			$$F = \{CURP \rightarrow calle\_principal, colonia, delegacion\_municipio, estado$$ $$,ciudad, calle\_1,calle\_2, referencia, num\_exterior, num\_interior$$
+			$$, codigo\_postal, nombre, materno, paterno, fecha\_nacimiento$$
+			$$CURP,EsChofer \rightarrow Esta\_Activo, Fecha\_Activo, TarjetaCirclacion$$
+			$$CURP,EsDuenio \rightarrow RFC\}$$
+				\begin{enumerate}
+					\item Hacer $F_{MIN}$\\
+					
+					\begin{enumerate}
+						\item Superfluos del lado izquierdo\\
+						$$CURP,EsChofer \rightarrow Esta\_Activo, Fecha\_Activo, TarjetaCirclacion$$
+						¿CURP es superfluo?
+						$$\{EsChofer\}+=\{EsChofer\}$$
+						Por lo tanto no es superfluo.\\\\
+						¿EsChofer es superfluo?
+						$$\{CURP\} = \{CURP, calle\_principal, colonia, delegacion\_municipio, estado$$ $$,ciudad, calle\_1,calle\_2, referencia, num\_exterior, num\_interior$$
+						$$, codigo\_postal, nombre, materno, paterno, fecha\_nacimiento\}$$\\
+						$$CURP,EsDuenio \rightarrow RFC$$
+						¿EsDuenio es superfluo?
+							$$\{CURP\} = \{CURP, calle\_principal, colonia, delegacion\_municipio, estado$$ $$,ciudad, calle\_1,calle\_2, referencia, num\_exterior, num\_interior$$
+						$$, codigo\_postal, nombre, materno, paterno, fecha\_nacimiento\}$$\\
+						Por lo tanto no es superfluo.\\
+						\item Superfluos del lado derecho.\\
+						No hay superfluos del lado derecho, ya que todo atributo del lado derecho de la dependencia funcional no se encuentra en la cerradura despues de eliminarlo.
+					\end{enumerate}
+				
+					\item Para cada DF en $F_{min}$
+						\begin{enumerate}
+							\item Crear una relación que contenga solo los atributos de la DF.
+								$$PERSONAS(CURP, calle\_principal, ..., fecha\_nacimiento)$$
+							$$CHOFERES(CURP, EsChofer, ..., TarjetaCirculacion)$$
+							$$DUENIOS(CURP, EsDuenio, RFC)$$
+							\item Eliminar un esquema si es subconjunto de otro.\\
+							Este punto no se cumple.
+						\end{enumerate}						
+					\item La llave candidata es CURP.
+				\end{enumerate}
+			\item Normalizando licencia.
+				$$Licencia(NumLicencia, FechaExpedicion, Vigencia)$$
+				
+				El número de licencia tan solo determina la de fecha de expedición y la vigencia.
+				
+				$$F = \{NumLicencia \rightarrow FechaExpedicion,Vigencia\}$$
+				\begin{enumerate}
+					\item Superfluos del lado izquierdo.
+						No hay dependencias que sean de esta forma.
+					\item Superfluos del lado derecho.
+						¿FechaExpedicion es superfluo?
+						$$\{NumLicencia\}+=\{NumLicencia,Vigencia\}$$
+						Como FechaExpedicion o aparece en la cerradura, no es superfluo.\\\\
+						¿Vigencia es superfluo?\\
+						Es analogo al caso anterior, es decir, no es superfluo.																
+				\end{enumerate}
+			Los pasos siguientes son innecesarios, ya que solo se tiene una dependencia funcional y solo una llave.\\
+			Por lo tanto, es la misma relación.
+			
+			\item Normalizando TenerLicencia.
+			
+			$$TenerLicencia(NumLicencia, FechaExpedicion, Vigencia, CURP,$$
+			$$ calle\_principal, colonia, delegacion\_municipio, estado$$
+			$$, ciudad, calle\_1, calle\_2, referencia, num\_exterior, num\_interior$$
+			$$,codigo\_postal, nombre, materno, paterno, esta\_activo, fecha\_activo,$$ $$TarjetaCirculacion, RFC, EsChofer, EsDuenio, fecha\_nacimiento)$$
+			
+			Estas tienen la misma explicación que los incisos anteriores, ya que son las mismas. Así que se defines las dependencias funcionales como:
+			
+			$$F = \{NumLicencia \rightarrow FechaExpedicion,Vigencia,$$
+			$$CURP \rightarrow calle\_principal, colonia, delegacion\_municipio, estado$$ $$,ciudad, calle\_1,calle\_2, referencia, num\_exterior, num\_interior$$
+			$$, codigo\_postal, nombre, materno, paterno, fecha\_nacimiento$$
+			$$CURP,EsChofer \rightarrow Esta\_Activo, Fecha\_Activo, TarjetaCirclacion$$
+			$$CURP,EsDuenio \rightarrow RFC\}$$
+			
+			Como se puede observar las depencias son las mismas que los dos ejercicios anteriores, por lo que tendremos el mismo $F_{MIN}$ y las mismas relaciones resultantes.\\
+			
+			Lo único que cambia es el ultimo paso, ya que no hay un esquema que contenga llaves candidatas dentro de la cerradura, se tiene que crear una nueva relación con los atributos de una llave candidata, en este caso es: $$NumLicencia,CURP$$
+			Así que la nueva relación sería: $$TENER\_LICENCIA(NumLicencia, CURP)$$
+
+			\item Normalizando Ingresar
+			$$Ingresar(PersonaCURP, AsociacionNombre, Fecha)$$						
+			La fecha en que se ingreso, dependen de la persona y la asociación a donde pertenecerá
+			
+			$$F = \{PersonaCURP,AsociacionNombre \rightarrow Fecha\}$$
+			
+			No es necesario hacer todos los pasos para normalizarla, ya que ya esta en 3NF debido a que $$PersonaCURP, AsociacionNombre$$ es una super llave.
+			
+			\item Normalizar Contador
+			
+			$$Contador(CURP, ContadorCURP, Ganancia)$$
+			
+			La ganancia depende de la persona(CURP) además la persona(CURP) es controlado por otro contador(ContadorCURP) y tendra su ganancia. Aquí la semántica nos podría confundir ya que se podría pensar en que la siguiente DF es la correcta. $$ContadorCURP \rightarrow Ganancia, CURP$$ Pero esto no cumple la definición de dependencia funcional, debido a que ContadorCURP puede relacionar con varios CURP(contadores).\\
+			
+			Entonces la forma correcta es la siguiente.
+			
+			
+			$$F = \{CURP \rightarrow Ganancia,$$
+			$$CURP \rightarrow ContadorCURP, Ganancia\}$$
+			
+			Usando descomposición y después unión. 
+			
+			$$F = \{CURP \rightarrow Ganancia, ContadorCURP\}$$
+			
+			Ya que obtuvimos esta nueva dependencia funcional, podemos decir que este caso es análogo al inciso anterior. Es decir, la relación es la misma.
+			
+			\item Normalizando Asociacion
+			
+			$$Asociacion(Nombre)$$
+			
+			La asociación solo depende del nombre.
+			
+			$$F = \{Nombre \rightarrow Nombre\}$$
+			
+			Como es trivial, queda la misma relación.
+			
+			\item Normalizando Viaje
+			
+			$$Viaje(ID, LugarDestino, LugarComienzo, NumPersonas, Hora\_inicio, Hora\_final, Fecha)$$
+			
+			Como cada viaje tiene su identificador único.  Todos los atributos propios del viaje dependen de este identificador único.
+			
+			$$F = \{ID \rightarrow LugarDestino,...,Fecha \}$$
+			
+			Por lo tanto, como ID es una super llave, entonces ya esta en 3FN. En otra palabras, resulta la misma relación.
+			
+			\item Normalizando Comenzar.
+			
+			$$Comenzar(TaxiNumMotor, ViajeID)$$
+			
+			Ya que comenzar es una relación, donde solo necesita llaves de sus entidades. Este solo depende TaxiNumMotor y ViajeID.
+			
+			$$F = \{TaxiNumMontor, ViajeID \rightarrow TaxiNumMontor, ViajeID\}$$
+			
+			Como es una dependencia trivial, el resultado es la misma relación.
+						
+			\item  Normalizando \textbf{Multa}\\
+			$$Multa(ID, AgenteNumPlaca, TaxiNumMotor, Monto, Infraccion, Hora, Estado, $$ 
+			$$Delegacion\_ municipio, 
+			colonia, ciudad, Calle, Fecha,)$$\\
+			$$F = \lbrace ID \rightarrow AgenteNumPlaca TaxiNumMotor Monto Infraccion Hora
+			Estado Delegacion\_municipio colonia ciudad Calle Fecha\rbrace$$\\
+			\begin{enumerate}
+				\item Hacer $F_{MIN}$\\
+				
+				\begin{enumerate}
+					\item Superfluos del lado izquierdo\\
+					No hay Superfluos por la izquierda ya que la clausula es unica por lo que no hay suficientes dependencias para comparar.
+					Por lo tanto no es superfluo.\\
+					\item Superfluos del lado derecho.\\
+					No hay superfluos del lado derecho, ya que nuevamente al ser unica la dependencia no hay tal posibilidad por lo que F es minimo.
+				\end{enumerate}
+				\item Para cada DF en $F_{min}$
+				\begin{enumerate}
+					\item Crear una relación que contenga solo los atributos de la DF.
+					$$Multa(ID AgenteNumPlaca TaxiNumMotor Monto Infraccion Hora Estado $$
+					$$Delegacion\_ municipio 
+					colonia ciudad Calle Fecha)$$
+					\item Eliminar un esquema si es subconjunto de otro.\\
+					Este punto no se cumple.
+				\end{enumerate}						
+				\item Como la llave candidata es ID la relacion es la misma.
+			\end{enumerate}
+			
+			\item  Normalizando Taxi\\
+			$$Taxi(NumeroMotor PersonaCURP PersonaCURP2 AseguradoraID ContadorCURP $$$$Año Marca Modelo NumCilindros LlantaRefaccion Tipo Esta\_ activo Fecha\_ activo)$$\\
+			$$F=\{NumMotor\rightarrow Ano Marca Modelo NumCilindros LlantaRefaccion$$$$
+			Tipo Esta\_ activoFecha\_ activo\}$$		
+			\begin{enumerate}
+				\item Hacer $F_{MIN}$\\
+				
+				\begin{enumerate}
+					\item Superfluos del lado izquierdo\\
+					No hay Superfluos por la izquierda ya que la clausula es unica por lo que no hay suficientes dependencias para comparar.
+					Por lo tanto no es superfluo.\\
+					\item Superfluos del lado derecho.\\
+					No hay superfluos del lado derecho, ya que nuevamente al ser unica la dependencia no hay tal posibilidad por lo que F es minimo.
+				\end{enumerate}
+				\item Para cada DF en $F_{min}$
+				\begin{enumerate}
+					\item Crear una relación que contenga solo los atributos de la DF.
+					$$R(NumMotor Año Marca Modelo NumCiindros LlantaRefaccion$$ $$Tipo Fecha\_ activo Esta\_ activo)$$
+					\item Eliminar un esquema si es subconjunto de otro.\\
+					Este punto no se cumple.
+				\end{enumerate}						
+				\item Como la llave candidata es (NumMotor PersonaCURP PersonaCURP2 AseguradoraID ContadorCURP) se agrega una nueva relacion por lo que quedan de la siguiente manera\\
+				$$Automoviles(NumMotor Año Marca Modelo NumCiindros LlantaRefaccion$$ $$Tipo Fecha\_ activo Esta\_ activo)$$ 
+				$$Taxis(NumMotor PersonaCURP PersonaCURP2 AseguradoraID ContadorCURP)$$
+				
+			\end{enumerate}
+			
+			\item  Normalizando Alumno\\
+			$$Alumno(ID\_ UNAM PersonaCurp HoraEntrada HoraSalida Facultad ViajeID)$$\\
+			$$F = \lbrace ID\_ UNAM \rightarrow PersonaCURP HoraEntrada HoraSalida Facultad\rbrace$$		
+			\begin{enumerate}
+				\item Hacer $F_{MIN}$\\
+				
+				\begin{enumerate}
+					\item Superfluos del lado izquierdo\\
+					No hay Superfluos por la izquierda ya que la clausula es unica por lo que no hay suficientes dependencias para comparar.
+					Por lo tanto no es superfluo.\\
+					\item Superfluos del lado derecho.\\
+					No hay superfluos del lado derecho, ya que nuevamente al ser unica la dependencia no hay tal posibilidad por lo que F es minimo.
+				\end{enumerate}
+				\item Para cada DF en $F_{min}$
+				\begin{enumerate}
+					\item Crear una relación que contenga solo los atributos de la DF.
+					$$R(ID\_ UNAM PersonaCurp HoraEntrada HoraSalida Facultad)$$
+					\item Eliminar un esquema si es subconjunto de otro.\\
+					Este punto no se cumple.
+				\end{enumerate}						
+				\item Como la llave candidata es (ID\_ UNAM ViajeID) se agrega una nueva relacion por lo que quedan de la siguiente manera\\
+				$$Alumno(ID\_ UNAM PersonaCurp HoraEntrada HoraSalida Facultad)$$
+				$$Pedir(ID\_ UNAM ViajeID)$$
+				
+			\end{enumerate}
+			
+			\item  Normalizando Academico\\
+			$$Academico(ID\_ UNAM PersonaCurp HoraEntrada HoraSalida Instituto ViajeID)$$\\
+			$$F = \lbrace ID\_ UNAM \rightarrow PersonaCURP HoraEntrada HoraSalida Instituto\rbrace$$		
+			\begin{enumerate}
+				\item Hacer $F_{MIN}$\\
+				
+				\begin{enumerate}
+					\item Superfluos del lado izquierdo\\
+					No hay Superfluos por la izquierda ya que la clausula es unica por lo que no hay suficientes dependencias para comparar.
+					Por lo tanto no es superfluo.\\
+					\item Superfluos del lado derecho.\\
+					No hay superfluos del lado derecho, ya que nuevamente al ser unica la dependencia no hay tal posibilidad por lo que F es minimo.
+				\end{enumerate}
+				\item Para cada DF en $F_{min}$
+				\begin{enumerate}
+					\item Crear una relación que contenga solo los atributos de la DF.
+					$$R(ID\_ UNAM PersonaCurp HoraEntrada HoraSalida Instituto)$$
+					\item Eliminar un esquema si es subconjunto de otro.\\
+					Este punto no se cumple.
+				\end{enumerate}						
+				\item Como la llave candidata es (ID\_ UNAM ViajeID) se agrega una nueva relacion por lo que quedan de la siguiente manera\\
+				$$Academico(ID\_ UNAM PersonaCurp HoraEntrada HoraSalida Instituto)$$
+				$$Pedir(ID\_ UNAM ViajeID)$$
+			\end{enumerate}	
+			\item  Normalizando Trabajador\\
+			$$Trabajador(ID\_ UNAM PersonaCurp HoraEntrada HoraSalida Facultad ViajeID)$$\\
+			$$F = \lbrace ID\_ UNAM \rightarrow PersonaCURP HoraEntrada HoraSalida Unidad\rbrace$$		
+			\begin{enumerate}
+				\item Hacer $F_{MIN}$\\
+				
+				\begin{enumerate}
+					\item Superfluos del lado izquierdo\\
+					No hay Superfluos por la izquierda ya que la clausula es unica por lo que no hay suficientes dependencias para comparar.
+					Por lo tanto no es superfluo.\\
+					\item Superfluos del lado derecho.\\
+					No hay superfluos del lado derecho, ya que nuevamente al ser unica la dependencia no hay tal posibilidad por lo que F es minimo.
+				\end{enumerate}
+				\item Para cada DF en $F_{min}$
+				\begin{enumerate}
+					\item Crear una relación que contenga solo los atributos de la DF.
+					$$R(ID\_ UNAM PersonaCurp HoraEntrada HoraSalida Unidad)$$
+					\item Eliminar un esquema si es subconjunto de otro.\\
+					Este punto no se cumple.
+				\end{enumerate}						
+				\item Como la llave candidata es (ID\_ UNAM ViajeID) se agrega una nueva relacion por lo que quedan de la siguiente manera\\
+				$$Alumno(ID\_ UNAM PersonaCurp HoraEntrada HoraSalida Unidad)$$
+				$$Pedir(ID\_ UNAM ViajeID)$$
+			\end{enumerate}	
+			\item  Normalizando Agente\\
+			
+			$$Agente(NumPlaca PersonaCURP Sector)$$\\
+			$$F = \lbrace NumPlacaPersonaCURP \rightarrow Sector\rbrace$$\\
+			\begin{enumerate}
+				\item Hacer $F_{MIN}$\\
+				
+				\begin{enumerate}
+					\item Superfluos del lado izquierdo\\
+					No hay Superfluos por la izquierda ya que la clausula es unica por lo que no hay suficientes dependencias para comparar.
+					Por lo tanto no es superfluo.\\
+					\item Superfluos del lado derecho.\\
+					No hay superfluos del lado derecho, ya que nuevamente al ser unica la dependencia no hay tal posibilidad por lo que F es minimo.
+				\end{enumerate}
+				\item Para cada DF en $F_{min}$
+				\begin{enumerate}
+					\item Crear una relación que contenga solo los atributos de la DF.
+					$$Agente(NumPlaca PersonaCURP Sector)$$
+					
+					\item Eliminar un esquema si es subconjunto de otro.\\
+					Este punto no se cumple.
+				\end{enumerate}						
+				\item Como la llave candidata es NumPlaca, PersonaCURP la relacion es la misma.
+			\end{enumerate}
+			\item  Normalizando Aseguradora\\
+			$$Aseguradora(ID Direccion Compañia)$$\\
+			$$F = \lbrace ID\rightarrow Direccion Compañia\rbrace$$\\
+			\begin{enumerate}
+				\item Hacer $F_{MIN}$\\
+				
+				\begin{enumerate}
+					\item Superfluos del lado izquierdo\\
+					No hay Superfluos por la izquierda ya que la clausula es unica por lo que no hay suficientes dependencias para comparar.
+					Por lo tanto no es superfluo.\\
+					\item Superfluos del lado derecho.\\
+					No hay superfluos del lado derecho, ya que nuevamente al ser unica la dependencia no hay tal posibilidad por lo que F es minimo.
+				\end{enumerate}
+				\item Para cada DF en $F_{min}$
+				\begin{enumerate}
+					\item Crear una relación que contenga solo los atributos de la DF.
+					$$Aseguradora(ID Direccion Compañia)$$
+					
+					\item Eliminar un esquema si es subconjunto de otro.\\
+					Este punto no se cumple.
+				\end{enumerate}						
+				\item Como la llave candidata es NumPlaca, PersonaCURP la relacion es la misma.
+			\end{enumerate}
+			\item  Normalizando Pertenecer \\
+			$$Pertenecer(AsoscioacionNombre TaxiNumMotor RazonAsociacion Fecha)$$\\
+			$$F = \lbrace AsoscioacionNombre TaxiNumMotor \rightarrow RazonAsociacion Fecha\rbrace$$\\
+			\begin{enumerate}
+				\item Hacer $F_{MIN}$\\
+				
+				\begin{enumerate}
+					\item Superfluos del lado izquierdo\\
+					No hay Superfluos por la izquierda ya que la clausula es unica por lo que no hay suficientes dependencias para comparar.
+					Por lo tanto no es superfluo.\\
+					\item Superfluos del lado derecho.\\
+					No hay superfluos del lado derecho, ya que nuevamente al ser unica la dependencia no hay tal posibilidad por lo que F es minimo.
+				\end{enumerate}
+				\item Para cada DF en $F_{min}$
+				\begin{enumerate}
+					\item Crear una relación que contenga solo los atributos de la DF.
+					$$Pertenecer(AsoscioacionNombre TaxiNumMotor RazonAsociacion Fecha)$$
+					
+					\item Eliminar un esquema si es subconjunto de otro.\\
+					Este punto no se cumple.
+				\end{enumerate}						
+				\item Como la llave candidata es AsoscioacionNombre,TaxiNumMotor la relacion es la misma.
+			\end{enumerate}
+			\item  Normalizando Asociacion\\			
+			$$Asociacion(Nombre)$$\\
+			$$F = \lbrace Nombre\rightarrow Nombre\rbrace$$\\
+			\begin{enumerate}
+				\item Hacer $F_{MIN}$\\
+				
+				\begin{enumerate}
+					\item Superfluos del lado izquierdo\\
+					No hay Superfluos por la izquierda ya que la clausula es unica por lo que no hay suficientes dependencias para comparar.
+					Por lo tanto no es superfluo.\\
+					\item Superfluos del lado derecho.\\
+					No hay superfluos del lado derecho, ya que nuevamente al ser unica la dependencia no hay tal posibilidad por lo que F es minimo.
+				\end{enumerate}
+				\item Para cada DF en $F_{min}$
+				\begin{enumerate}
+					\item Crear una relación que contenga solo los atributos de la DF.
+					$$Asociacion(Nombre)$$
+					
+					\item Eliminar un esquema si es subconjunto de otro.\\
+					Este punto no se cumple.
+				\end{enumerate}						
+				\item Como la llave candidata es Nombre la relacion es la misma.
+			\end{enumerate}
+			
+		\end{enumerate}
+	\end{document}
