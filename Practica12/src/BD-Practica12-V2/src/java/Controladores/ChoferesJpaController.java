@@ -8,6 +8,7 @@ package Controladores;
 import Controladores.exceptions.NonexistentEntityException;
 import Controladores.exceptions.PreexistingEntityException;
 import Entidades.Choferes;
+import Entidades.Personas;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,6 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.Table;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -35,6 +37,10 @@ public class ChoferesJpaController implements Serializable {
     }
     private EntityManagerFactory emf = null;
 
+    public ChoferesJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("BD-Practica12-V2PU");
+    }
+    
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
@@ -176,6 +182,8 @@ public class ChoferesJpaController implements Serializable {
         //}
     }
     
-
     
+
+            
+            
 }

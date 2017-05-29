@@ -18,13 +18,24 @@ import Entidades.Viajes;
 import java.util.ArrayList;
 import java.util.List;
 import Entidades.Multas;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.LinkedList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import java.util.Date;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.persistence.Persistence;
+import javax.persistence.Table;
 
 /**
  *
  * @author Luis
  */
+@Table(name = "AUTOMOVILES", schema="Agencia")
+@ManagedBean
+@RequestScoped
 public class AutomovilesJpaController implements Serializable {
 
     public AutomovilesJpaController(EntityManagerFactory emf) {
@@ -34,6 +45,10 @@ public class AutomovilesJpaController implements Serializable {
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
+    }
+    
+    public AutomovilesJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("BD-Practica12-V2PU");
     }
 
     public void create(Automoviles automoviles) throws PreexistingEntityException, Exception {
@@ -246,4 +261,35 @@ public class AutomovilesJpaController implements Serializable {
         }
     }
     
+    /**
+     * Conocer los vehículos con mas de diez años de antigüedad.
+     *
+     * @return
+     * @throws java.text.ParseException
+     */
+    public List<Automoviles> getMayores10() throws ParseException {
+        EntityManager em = getEntityManager();
+        List<Object[]> results;
+        results = em.createNativeQuery("SELECT *\n" +
+"	FROM APP.AGENCIA.AUTOMOVILES\n" +
+"	WHERE FLOOR(\n" +
+"	(CAST(CONVERT(CHAR(8), GETDATE(), 112) AS INT) -\n" +
+"	CAST(CONVERT(CHAR(8), anio, 112) AS INT))/10000) > 10").getResultList();
+        List<Automoviles> autos = new LinkedList<>();
+        for (int i = 0; i < results.size(); i++) {
+            Automoviles nuevo = new Automoviles();            
+            nuevo.setNumMotor((String) results.get(i)[0]);
+            nuevo.setAnio(null);
+            nuevo.setMarca((String) results.get(i)[2]);
+            nuevo.setModelo((String) results.get(i)[3]);
+            nuevo.setNumCilindros((short) results.get(i)[4]);
+            nuevo.setLlantaRefaccion((String) results.get(i)[5]);
+            nuevo.setTipo((String) results.get(i)[6]);
+            nuevo.setEstaActivo((String) results.get(i)[7]);
+            nuevo.setFechaActivo(null);
+            autos.add(nuevo);
+        }
+        return autos;
+    }
+
 }

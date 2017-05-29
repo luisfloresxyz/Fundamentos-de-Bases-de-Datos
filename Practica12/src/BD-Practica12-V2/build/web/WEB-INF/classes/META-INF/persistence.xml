@@ -18,9 +18,10 @@
     <class>Entidades.Celulares</class>
     <class>Entidades.Viajes</class>
     <class>Entidades.Multas</class>
+    <class>Entidades.Choferes_mayores_25</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://DESKTOP-5BUMVBF\DESKTOP-5BUMVBF:1433;databaseName=APP"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://DESKTOP-5BUMVBF\DESKTOP-5BUMVBF:1433;databaseName=master"/>
       <property name="javax.persistence.jdbc.user" value="sa"/>
       <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
       <property name="javax.persistence.jdbc.password" value="A312218342"/>

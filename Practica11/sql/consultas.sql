@@ -68,9 +68,9 @@ FROM APP.AGENCIA.PERSONAS per INNER JOIN APP.AGENCIA.CHOFERES ch ON per.curp = c
 --suponiendo que tuvieran la consulta sería la siguiente.
 SELECT mul.*
 FROM APP.AGENCIA.MULTAS mul INNER JOIN
-	(SELECT  *
+	(SELECT  num_motor
 FROM APP.AGENCIA.TAXIS 
-WHERE id_aseguradora = null) tax ON mul.num_motor = tax.num_motor;
+WHERE id_aseguradora is NULL) tax ON mul.num_motor = tax.num_motor;
 
 --10. Conocer los choferes que se les haya levantado una multa en la delegación
 --Benito Juárez, Coyoacán y Tlalpan.

@@ -15,21 +15,35 @@ import javax.persistence.criteria.Root;
 import Entidades.Agentes;
 import Entidades.Automoviles;
 import Entidades.Multas;
+import java.math.BigInteger;
+import java.util.LinkedList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Table;
 
 /**
  *
  * @author Luis
  */
+@Table(name = "MULTAS", schema="Agencia")
+@ManagedBean
+@RequestScoped
 public class MultasJpaController implements Serializable {
 
     public MultasJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
+    
     private EntityManagerFactory emf = null;
 
+    public MultasJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("BD-Practica12-V2PU");
+    }
+    
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
@@ -200,4 +214,27 @@ public class MultasJpaController implements Serializable {
         }
     }
     
+    public List<Multas> getMultasSinSeguro() {
+        EntityManager em = getEntityManager();
+        List<Object[]> results;
+        results = em.createQuery("SELECT  num_motor FROM Taxis WHERE id_aseguradora is NULL").getResultList();
+        List<Multas> multas = new LinkedList<>();
+        for (int i = 0; i < results.size() - 1; i++) {
+            Multas nueva = new Multas();
+            nueva.setIdMulta((Integer) results.get(i)[0]);            
+            nueva.setNumPlaca(new Agentes((String) results.get(i)[0]));
+            nueva.setNumMotor(new Automoviles((String) results.get(i)[3]));
+            nueva.setMonto((BigInteger) results.get(i)[4]);
+            nueva.setInfraccion((String) results.get(i)[5]);
+            nueva.setHora(null);
+            nueva.setEstado((String) results.get(i)[7]);
+            nueva.setDelegacionMunicipio((String) results.get(i)[8]);
+            nueva.setColonia((String) results.get(i)[9]);
+            nueva.setCiudad((String) results.get(i)[10]);
+            nueva.setCalle((String) results.get(i)[11]);
+            nueva.setFecha(null);
+            multas.add(nueva);
+        }
+        return multas;
+    }
 }

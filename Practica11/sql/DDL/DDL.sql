@@ -146,7 +146,7 @@ CREATE TABLE APP.AGENCIA.CHOFERES(
 
 CREATE TABLE APP.AGENCIA.TAXIS(
 	num_motor			varchar(17) foreign key references AGENCIA.AUTOMOVILES(num_motor) ON UPDATE CASCADE ON DELETE CASCADE not null,
-	id_aseguradora		integer 	foreign key references AGENCIA.ASEGURADORAS(id_aseguradora) ON UPDATE CASCADE not null,
+	id_aseguradora		integer 	foreign key references AGENCIA.ASEGURADORAS(id_aseguradora) ON UPDATE CASCADE,
 	curp_contador		varchar(18) foreign key references AGENCIA.CONTADORES(curp_contador) ON UPDATE CASCADE not null,
 	curp_chofer			varchar(18) foreign key references AGENCIA.CHOFERES(curp) ON UPDATE CASCADE,
 	curp_duenio			varchar(18) foreign key references AGENCIA.DUENIOS(curp) ON UPDATE CASCADE ON DELETE CASCADE

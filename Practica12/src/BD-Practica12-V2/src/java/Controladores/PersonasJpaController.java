@@ -24,8 +24,11 @@ import Entidades.Alumnos;
 import Entidades.Agentes;
 import Entidades.Personas;
 import java.util.LinkedList;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Table;
 
 /**
@@ -33,6 +36,8 @@ import javax.persistence.Table;
  * @author Luis
  */
 @Table(name = "PERSONAS", schema="Agencia")
+@ManagedBean
+@RequestScoped
 public class PersonasJpaController implements Serializable {
 
     public PersonasJpaController(EntityManagerFactory emf) {
@@ -40,6 +45,10 @@ public class PersonasJpaController implements Serializable {
     }
     private EntityManagerFactory emf = null;
 
+    public PersonasJpaController() {
+       this.emf = Persistence.createEntityManagerFactory("BD-Practica12-V2PU");
+    }
+    
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
@@ -507,7 +516,8 @@ public class PersonasJpaController implements Serializable {
     public List<Personas> getChoferYDuenio(){
         EntityManager em = getEntityManager();                    
         List<Object[]> results;              
-        results = em.createQuery("SELECT p.curp, p.nombre, p.materno, p.paterno, p.colonia, p.ciudad FROM Personas p INNER JOIN Choferes c ON p.curp = c.curp INNER JOIN Duenios d ON d.curp = c.curp").getResultList();
+        results = em.createNativeQuery("SELECT p.curp, p.nombre, p.materno, p.paterno, p.colonia, p.ciudad FROM APP.AGENCIA.PERSONAS p INNER JOIN APP.AGENCIA.CHOFERES ch ON p.curp = ch.curp\n" +
+"	INNER JOIN APP.AGENCIA.DUENIOS due ON due.curp = ch.curp").getResultList();
         List<Personas> personasLista = new LinkedList<>();
         for(int i = 0; i < results.size() - 1; i++){
             Personas nueva = new Personas();
