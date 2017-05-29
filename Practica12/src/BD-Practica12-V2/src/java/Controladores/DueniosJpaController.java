@@ -8,12 +8,18 @@ package Controladores;
 import Controladores.exceptions.NonexistentEntityException;
 import Controladores.exceptions.PreexistingEntityException;
 import Entidades.Duenios;
+import Entidades.Personas;
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
+import javax.persistence.Table;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -21,6 +27,9 @@ import javax.persistence.criteria.Root;
  *
  * @author Luis
  */
+@Table(name = "DUENIOS", schema="Agencia")
+@ManagedBean
+@RequestScoped
 public class DueniosJpaController implements Serializable {
 
     public DueniosJpaController(EntityManagerFactory emf) {
@@ -28,6 +37,10 @@ public class DueniosJpaController implements Serializable {
     }
     private EntityManagerFactory emf = null;
 
+      public DueniosJpaController() {
+       this.emf = Persistence.createEntityManagerFactory("BD-Practica12-V2PU");        
+    }
+    
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
@@ -141,4 +154,43 @@ public class DueniosJpaController implements Serializable {
         }
     }
     
+    /**
+     * 4. Conocer los dueños de los vehículos con mas de diez años de antigüedad.
+     * @return 
+     */
+    public List<Personas> getDueniosAutos10(){
+        EntityManager em = getEntityManager();                    
+        List<Object[]> results;              
+        results = em.createNativeQuery("SELECT p.curp, p.nombre, p.paterno, p.materno\n" +
+"	FROM APP.AGENCIA.DUENIOS d INNER JOIN APP.AGENCIA.TAXIS t ON d.curp = t.curp_duenio\n" +
+"	INNER JOIN\n" +
+"	(SELECT *\n" +
+"	FROM APP.AGENCIA.AUTOMOVILES\n" +
+"	WHERE FLOOR(\n" +
+"	(CAST(CONVERT(CHAR(8), GETDATE(), 112) AS INT) -\n" +
+"	CAST(CONVERT(CHAR(8), anio, 112) AS INT))/10000) > 10) aut ON aut.num_motor = t.num_motor\n" +
+"	INNER JOIN APP.AGENCIA.PERSONAS p ON p.curp = t.curp_duenio").getResultList();
+        List<Personas> personasLista = new LinkedList<>();
+        for(int i = 0; i < results.size() - 1; i++){
+            Personas nueva = new Personas();
+            nueva.setCurp((String) results.get(i)[0]);
+            nueva.setNombre((String) results.get(i)[1]);
+            nueva.setMaterno((String) results.get(i)[2]);
+            nueva.setPaterno((String) results.get(i)[3]);
+            nueva.setColonia(null);
+            nueva.setCiudad(null);
+            nueva.setCallePrincipal(null);            
+            nueva.setDelegacionMunicipio(null);
+            nueva.setEstado(null);            
+            nueva.setCalle1(null);
+            nueva.setCalle2(null);
+            nueva.setReferencia(null);
+            nueva.setNumExterior(null);
+            nueva.setNumInterior(null);
+            nueva.setCodigoPostal(null);
+            nueva.setFechaNacimiento(null);
+            personasLista.add(nueva);
+        }        
+        return personasLista;
+    }               
 }

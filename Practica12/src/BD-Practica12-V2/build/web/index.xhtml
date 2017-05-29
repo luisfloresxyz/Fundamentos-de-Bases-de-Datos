@@ -10,8 +10,9 @@
     </h:head>
     <!-- Add 50px padding top to the body for the navbar -->
     <h:body style="padding-top: 50px; padding-bottom: 20px;">
-        <b:navBar brand="PumaTaxi" brandHref="#" inverse="true" fixed="top">
+         <b:navBar brand="PumaTaxi" brandHref="#" inverse="true" fixed="top">
             <b:navbarLinks>
+                <b:navLink value="Inicio" href="./index.xhtml"></b:navLink>
                 <b:navLink value="Vehiculos" href="./Vehiculo.xhtml"></b:navLink>
                 <b:navLink value="Multas" href="./Multa.xhtml"></b:navLink>
                 <b:dropMenu value="Empleados">
@@ -21,15 +22,13 @@
                     <b:navLink></b:navLink>                    
                 </b:dropMenu>
             </b:navbarLinks>            
-        </b:navBar>
+         </b:navBar>
         <b:jumbotron>
             <b:container>
-                <h1>Hello, world!</h1>
-                <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. 
-                    Use it as a starting point to create something more unique.
-                </p>
-                <p>
-                    <a href="https://github.com/TheCoder4eu/BootsFaces-examples/blob/master/src/main/webapp/jumbotron.xhtml" class="btn btn-lg btn-info">View Page Source »</a>
+                <h1>Hola</h1>
+                <p>Aquí podras consultar la información del sistema actual de
+                    taxis de la UNAM. Ten en cuenta que esta es una primera
+                    versión por lo que faltan datos que mostrar.
                 </p>
             </b:container>
 
@@ -37,74 +36,28 @@
         <b:container>
             <b:row>
                 <b:column col-md="4">
-                    <h2>Heading</h2>
+                    <h2>Vehiculos</h2>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
                         ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><b:button outcome="" value="View details »"/></p>
+                    <p><b:button  value="Consultar datos »" href="./Vehiculo.xhtml"/></p>
                 </b:column>
                 <b:column col-md="4">
-                    <h2>Heading</h2>
+                    <h2>Multas</h2>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
                         ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><b:button outcome="" value="View details »"/></p>
+                    <p><b:button value="Consultar datos »" href="./Multa.xhtml"/></p>
                 </b:column>
                 <b:column col-md="4">
-                    <h2>Heading</h2>
+                    <h2>Empleados</h2>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
                         ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><b:button outcome="" value="View details »"/></p>
+                    <p><b:button value="Consultar datos »" href="EmpleadoIH.xhtml"/></p>
                 </b:column>
             </b:row>
             <hr/>
             <footer>
                 <p>© Company 2014</p>
-            </footer>            
-            <h:outputText value="holis"/>
-            <h:outputText value="#{multa.multas}"/>
-                                               
-            <!--7. Saber las personas que son dueños y chóferes al mismo tiempo.-->
-
-            <p:dataTable var="personas" value="#{personasJpaController.choferYDuenio}" rows="10"
-                         paginator="true"
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} 
-                         {PreviousPageLink} {PageLinks} {NextPageLink} 
-                         {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15">
-                <p:column headerText="CURP">
-                    <h:outputText value="#{personas.curp}" />
-                </p:column>                
-
-                <p:column headerText="Nombre">
-                    <h:outputText value="#{personas.nombre}" />
-                </p:column>                
-
-                <p:column headerText="Apellido paterno">
-                    <h:outputText value="#{personas.paterno}" />
-                </p:column>                
-
-                <p:column headerText="Apellido materno">
-                    <h:outputText value="#{personas.materno}" />
-                </p:column>                
-
-                <p:column headerText="Colonia">
-                    <h:outputText value="#{personas.paterno}" />
-                </p:column>                
-
-                <p:column headerText="Ciudad">
-                    <h:outputText value="#{personas.ciudad}" />
-                </p:column>                
-            </p:dataTable>           
-            
-            
-
-            <!--9. Conocer las multas que se le hayan aplicado a los automóviles
-            que no tengan seguro.Una precondición es que es necesario que todo 
-            automovil tenga seguro, pero suponiendo que tuvieran la consulta
-            sería la siguiente.-->
-
-
-
-
+            </footer>                                                                           
         </b:container>
 
     </h:body>

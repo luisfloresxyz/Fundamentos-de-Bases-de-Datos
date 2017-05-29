@@ -27,7 +27,7 @@
             <b:container>
                 <h1>Hello, world!</h1>
                 <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. 
-                   Use it as a starting point to create something more unique.
+                    Use it as a starting point to create something more unique.
                 </p>
                 <p>
                     <a href="https://github.com/TheCoder4eu/BootsFaces-examples/blob/master/src/main/webapp/jumbotron.xhtml" class="btn btn-lg btn-info">View Page Source »</a>
@@ -40,39 +40,55 @@
                 <b:column col-md="4">
                     <h2>Heading</h2>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
-                       ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                        ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
                     <p><b:button outcome="" value="View details »"/></p>
                 </b:column>
                 <b:column col-md="4">
                     <h2>Heading</h2>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
-                       ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                        ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
                     <p><b:button outcome="" value="View details »"/></p>
                 </b:column>
                 <b:column col-md="4">
                     <h2>Heading</h2>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
-                       ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                        ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
                     <p><b:button outcome="" value="View details »"/></p>
                 </b:column>
             </b:row>
             <hr/>
             <footer>
-            <p>© Company 2014</p>
-            </footer>
-            <h:outputText value="hola crayoli"/>                
-                        <!--1. Conocer el nombre de todos los chóferes que tengan mas de 25 años.-->
-            <p:dataTable var="choferes" value="#{choferes_mayores_25JpaController.choferes}" rows="10"
+                <p>© Company 2014</p>
+            </footer>            
+            <h:outputText value="holis"/>
+            <h:outputText value="#{multa.multas}"/>
+                                
+             <!--4. Conocer los dueños de los vehículos con mas de diez años de antigüedad.-->
+            <p:dataTable var="personas" value="#{dueniosJpaController.dueniosAutos10}" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} 
                          {PreviousPageLink} {PageLinks} {NextPageLink} 
                          {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
                 <p:column headerText="CURP">
-                    <h:outputText value="#{choferes.nombre.toString()}" />
+                    <h:outputText value="#{personas.curp}" />
                 </p:column>                
-            </p:dataTable>
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{personas.nombre}" />
+                </p:column>                
+
+                <p:column headerText="Apellido paterno">
+                    <h:outputText value="#{personas.paterno}" />
+                </p:column>                
+
+                <p:column headerText="Apellido materno">
+                    <h:outputText value="#{personas.materno}" />
+                </p:column>                
+                
+            </p:dataTable>       
+            
         </b:container>
 
     </h:body>
-</html>
+</html>            

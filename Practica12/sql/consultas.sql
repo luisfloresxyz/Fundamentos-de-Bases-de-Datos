@@ -28,14 +28,15 @@
 	(CAST(CONVERT(CHAR(8), GETDATE(), 112) AS INT) -
 	CAST(CONVERT(CHAR(8), anio, 112) AS INT))/10000) > 10;
 --4. Conocer los dueños de los vehículos con mas de diez años de antigüedad.
-	SELECT d.*
+	SELECT p.curp, p.nombre, p.paterno, p.materno
 	FROM APP.AGENCIA.DUENIOS d INNER JOIN APP.AGENCIA.TAXIS t ON d.curp = t.curp_duenio
 	INNER JOIN
 	(SELECT *
 	FROM APP.AGENCIA.AUTOMOVILES
 	WHERE FLOOR(
 	(CAST(CONVERT(CHAR(8), GETDATE(), 112) AS INT) -
-	CAST(CONVERT(CHAR(8), anio, 112) AS INT))/10000) > 10) aut ON aut.num_motor = t.num_motor;
+	CAST(CONVERT(CHAR(8), anio, 112) AS INT))/10000) > 10) aut ON aut.num_motor = t.num_motor
+	INNER JOIN APP.AGENCIA.PERSONAS p ON p.curp = t.curp_duenio;
 
 --5. Todos los viajes que hayan costado mas de $100, así como el chófer que lo
 --realizó, el dueño del automóvil y el usuario que lo hizo.
@@ -66,11 +67,11 @@ FROM APP.AGENCIA.PERSONAS per INNER JOIN APP.AGENCIA.CHOFERES ch ON per.curp = c
 --tengan seguro.
 --Una precondición es que es necesario que todo automovil tenga seguro, pero
 --suponiendo que tuvieran la consulta sería la siguiente.
-SELECT mul.*
+SELECT mul.id_multa, mul.num_placa, mul.num_motor, mul.monto, mul.infraccion
 FROM APP.AGENCIA.MULTAS mul INNER JOIN
 	(SELECT  *
 FROM APP.AGENCIA.TAXIS 
-WHERE id_aseguradora = null) tax ON mul.num_motor = tax.num_motor;
+WHERE id_aseguradora is null) tax ON mul.num_motor = tax.num_motor;
 
 --10. Conocer los choferes que se les haya levantado una multa en la delegación
 --Benito Juárez, Coyoacán y Tlalpan.
