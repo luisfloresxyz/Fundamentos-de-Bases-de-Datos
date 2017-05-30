@@ -10,7 +10,7 @@
     </h:head>
     <!-- Add 50px padding top to the body for the navbar -->
     <h:body style="padding-top: 50px; padding-bottom: 20px;">
-         <b:navBar brand="PumaTaxi" brandHref="#" inverse="true" fixed="top">
+        <b:navBar brand="PumaTaxi" brandHref="#" inverse="true" fixed="top">
             <b:navbarLinks>
                 <b:navLink value="Inicio" href="./index.xhtml"></b:navLink>
                 <b:navLink value="Vehiculos" href="./Vehiculo.xhtml"></b:navLink>
@@ -22,47 +22,11 @@
                     <b:navLink></b:navLink>                    
                 </b:dropMenu>
             </b:navbarLinks>            
-         </b:navBar>
-        <b:jumbotron>
-            <b:container>
-                <h1>Hello, world!</h1>
-                <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. 
-                    Use it as a starting point to create something more unique.
-                </p>
-                <p>
-                    <a href="https://github.com/TheCoder4eu/BootsFaces-examples/blob/master/src/main/webapp/jumbotron.xhtml" class="btn btn-lg btn-info">View Page Source »</a>
-                </p>
-            </b:container>
-
-        </b:jumbotron>
-        <b:container>
-            <b:row>
-                <b:column col-md="4">
-                    <h2>Heading</h2>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
-                        ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><b:button outcome="" value="View details »"/></p>
-                </b:column>
-                <b:column col-md="4">
-                    <h2>Heading</h2>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
-                        ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><b:button outcome="" value="View details »"/></p>
-                </b:column>
-                <b:column col-md="4">
-                    <h2>Heading</h2>
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
-                        ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                    <p><b:button outcome="" value="View details »"/></p>
-                </b:column>
-            </b:row>
-            <hr/>
-            <footer>
-                <p>© Company 2014</p>
-            </footer>            
-            <h:outputText value="holis"/>
-            <h:outputText value="#{multa.multas}"/>
-                                  <p:dataTable var="multas" value="#{multasJpaController.multasSinSeguro}" rows="10"
+        </b:navBar>
+        <b:container>           
+            <br/>   
+            <b:alert severity="info">Conocer las multas que se le hayan aplicado a los <strong>automóviles que no tengan seguro</strong>.</b:alert>
+            <p:dataTable var="multas" value="#{multasJpaController.multasSinSeguro}" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} 
                          {PreviousPageLink} {PageLinks} {NextPageLink} 
@@ -83,7 +47,7 @@
                 <p:column headerText="Apellido materno">
                     <h:outputText value="#{multas.infraccion}" />
                 </p:column>                
-                
+
             </p:dataTable>                               
         </b:container>
 

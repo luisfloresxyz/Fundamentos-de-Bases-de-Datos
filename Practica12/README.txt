@@ -71,3 +71,12 @@ Se agregarón los archivos correspondientes a la práctica: Reporte-practica11 y c
 en la carpeta sql.
 
 En el reporte - practica 11.pdf viene la especificación.
+
+-----
+
+Práctica 12
+
+Se agregarón los archivos correspondientes a la práctica: Reporte-practica12 y la carpeta de Netbeans para poder ejecutar 
+el sitio de Internet, esta esta dentro de src con el nombre de BD-Practica12-V2.
+
+En el reporte - practica 12.pdf viene la especificación y forma de compilar.
