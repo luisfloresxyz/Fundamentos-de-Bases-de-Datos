@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>PumaTaxi</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+        <b:navBar brand="PumaTaxi" brandHref="#" inverse="true" fixed="top">
+            <b:navbarLinks>
+                <b:navLink value="Inicio" href="./index.xhtml"></b:navLink>
+                <b:navLink value="Vehiculos" href="./Vehiculo.xhtml"></b:navLink>
+                <b:navLink value="Multas" href="./Multa.xhtml"></b:navLink>
+                <b:dropMenu value="Empleados">
+                    <b:navLink value="Choferes" href="./ChoferIH.xhtml"></b:navLink>
+                    <b:navLink value="Dueños" href="./DuenioIH.xhtml"></b:navLink>
+                    <b:navLink value="General" href="./EmpleadoIH.xhtml"></b:navLink>
+                    <b:navLink></b:navLink>                    
+                </b:dropMenu>
+            </b:navbarLinks>            
+        </b:navBar>      
+        <b:container>
+            <br/>
+            <b:alert severity="info">Conocer los dueños de los vehículos con mas de <strong>diez años de antigüedad</strong>. </b:alert>
+             <!--4. Conocer los dueños de los vehículos con mas de diez años de antigüedad.-->
+            <p:dataTable var="personas" value="#{dueniosJpaController.dueniosAutos10}" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} 
+                         {PreviousPageLink} {PageLinks} {NextPageLink} 
+                         {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:column headerText="CURP">
+                    <h:outputText value="#{personas.curp}" />
+                </p:column>                
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{personas.nombre}" />
+                </p:column>                
+
+                <p:column headerText="Apellido paterno">
+                    <h:outputText value="#{personas.paterno}" />
+                </p:column>                
+
+                <p:column headerText="Apellido materno">
+                    <h:outputText value="#{personas.materno}" />
+                </p:column>                
+                
+            </p:dataTable>       
+            
+        </b:container>
+
+    </h:body>
+</html>            

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>PumaTaxi</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+        <b:navBar brand="PumaTaxi" brandHref="#" inverse="true" fixed="top">
+            <b:navbarLinks>
+                <b:navLink value="Inicio" href="./index.xhtml"></b:navLink>
+                <b:navLink value="Vehiculos" href="./Vehiculo.xhtml"></b:navLink>
+                <b:navLink value="Multas" href="./Multa.xhtml"></b:navLink>
+                <b:dropMenu value="Empleados">
+                    <b:navLink value="Choferes" href="./ChoferIH.xhtml"></b:navLink>
+                    <b:navLink value="Dueños" href="./DuenioIH.xhtml"></b:navLink>
+                    <b:navLink value="General" href="./EmpleadoIH.xhtml"></b:navLink>
+                    <b:navLink></b:navLink>                    
+                </b:dropMenu>
+            </b:navbarLinks>            
+        </b:navBar>      
+        <b:container>
+            <br />
+            <b:alert severity="info">Conocer el nombre de todos los chóferes que tengan <strong>mas de 25 años.</strong> </b:alert>
+             <!--1. Conocer el nombre de todos los chóferes que tengan mas de 25 años.-->
+            <p:dataTable var="choferes" value="#{choferes_mayores_25JpaController.choferes}" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} 
+                         {PreviousPageLink} {PageLinks} {NextPageLink} 
+                         {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{choferes.nombre.toString()}" />
+                </p:column>                
+            </p:dataTable>                                                    
+        </b:container>
+
+    </h:body>
+</html>

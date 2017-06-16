@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>PumaTaxi</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+         <b:navBar brand="PumaTaxi" brandHref="#" inverse="true" fixed="top">
+            <b:navbarLinks>
+                <b:navLink value="Inicio" href="./index.xhtml"></b:navLink>
+                <b:navLink value="Vehiculos" href="./Vehiculo.xhtml"></b:navLink>
+                <b:navLink value="Multas" href="./Multa.xhtml"></b:navLink>
+                <b:dropMenu value="Empleados">
+                    <b:navLink value="Choferes" href="./ChoferIH.xhtml"></b:navLink>
+                    <b:navLink value="Dueños" href="./DuenioIH.xhtml"></b:navLink>
+                    <b:navLink value="General" href="./EmpleadoIH.xhtml"></b:navLink>
+                    <b:navLink></b:navLink>                    
+                </b:dropMenu>
+            </b:navbarLinks>            
+         </b:navBar>
+        <b:jumbotron>
+            <b:container>
+                <h1>Hola</h1>
+                <p>Aquí podras consultar la información del sistema actual de
+                    taxis de la UNAM. Ten en cuenta que esta es una primera
+                    versión por lo que faltan datos que mostrar.
+                </p>
+            </b:container>
+
+        </b:jumbotron>
+        <b:container>
+            <b:row>
+                <b:column col-md="4">
+                    <h2>Vehiculos</h2>
+                    <p>Se muestra la información relacionada con los vehiculos, 
+                    esta información depende de las consultas solicitadas por 
+                    el cliente.</p>
+                    <p><b:button  value="Consultar datos »" href="./Vehiculo.xhtml"/></p>
+                </b:column>
+                <b:column col-md="4">
+                    <h2>Multas</h2>
+                    <p>Se muestra la información relacionada con las multas, 
+                    esta información depende de las consultas solicitadas por 
+                    el cliente. </p>
+                    <p><b:button value="Consultar datos »" href="./Multa.xhtml"/></p>
+                </b:column>
+                <b:column col-md="4">
+                    <h2>Empleados</h2>
+                    <p>Se muestra la información relacionada con los empleados, 
+                    esta información depende de las consultas solicitadas por 
+                    el cliente.</p>
+                    <p><b:button value="Consultar datos »" href="EmpleadoIH.xhtml"/></p>
+                </b:column>
+            </b:row>
+            <hr/>
+            <footer>
+                <p>© Company 2017</p>
+            </footer>                                                                           
+        </b:container>
+
+    </h:body>
+</html>
