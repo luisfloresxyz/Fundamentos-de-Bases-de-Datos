@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Farmacia | Clientes</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+      <b:navBar brand="Farmacia" brandHref="#" inverse="true" fixed="top">
+            <b:navbarLinks>
+                <b:navLink value="Inicio" href="./index.xhtml"></b:navLink>
+                <b:navLink value="Clientes" href="./Clientes.xhtml"></b:navLink>
+                <b:navLink value="Medicos" href="./Medicos.xhtml"></b:navLink>
+                <b:navLink value="Responsables" href="./Responsables.xhtml"></b:navLink>
+                <b:navLink value="Sucursales" href="./Sucursales.xhtml"></b:navLink>
+            </b:navbarLinks>            
+         </b:navBar>
+        
+        <b:container>
+           
+            <br />
+            <!--2. Clientes que obtuvierón alguna consultas gratis.-->
+            <b:alert severity="info">Clientes que obtuvierón alguna <strong>consultas gratis. </strong></b:alert>           
+            <p:dataTable var="clientes" value="#{clientesJpaController.clientesConsultaGratis}" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} 
+                         {PreviousPageLink} {PageLinks} {NextPageLink} 
+                         {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:column headerText="CURP">
+                    <h:outputText value="#{clientes.curp.toString()}" />
+                </p:column>                
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{clientes.nombre.toString()}" />
+                </p:column>                
+
+                <p:column headerText="Apellido paterno">
+                    <h:outputText value="#{clientes.paterno.toString()}" />
+                </p:column>                
+
+                <p:column headerText="Apellido materno">
+                    <h:outputText value="#{clientes.materno.toString()}" />
+                </p:column>                
+
+                  
+            </p:dataTable>    
+        </b:container>
+
+    </h:body>
+</html>

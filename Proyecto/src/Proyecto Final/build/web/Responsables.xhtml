@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Farmacia | Responsables</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+        <b:navBar brand="Farmacia" brandHref="#" inverse="true" fixed="top">
+            <b:navbarLinks>
+                <b:navLink value="Inicio" href="./index.xhtml"></b:navLink>
+                <b:navLink value="Clientes" href="./Clientes.xhtml"></b:navLink>
+                <b:navLink value="Medicos" href="./Medicos.xhtml"></b:navLink>
+                <b:navLink value="Responsables" href="./Responsables.xhtml"></b:navLink>
+                <b:navLink value="Sucursales" href="./Sucursales.xhtml"></b:navLink>
+            </b:navbarLinks>            
+         </b:navBar>
+        <b:container>           
+            <br />
+            <!--4. Médicos que son responsables en el turno matutino.-->
+            <b:alert severity="info">Médicos que son responsables en el <strong>turno matutino</strong>. </b:alert>
+            <p:dataTable var="personas" value="#{medicosJpaController.responsables}" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} 
+                         {PreviousPageLink} {PageLinks} {NextPageLink} 
+                         {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:column headerText="CURP">
+                    <h:outputText value="#{personas.curp.toString()}" />
+                </p:column>                
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{personas.nombre.toString()}" />
+                </p:column>                
+
+                <p:column headerText="Apellido paterno">
+                    <h:outputText value="#{personas.paterno.toString()}" />
+                </p:column>                
+
+                <p:column headerText="Apellido materno">
+                    <h:outputText value="#{personas.materno.toString()}" />
+                </p:column>                
+              
+            </p:dataTable>           
+            
+            
+
+            <!--9. Conocer las multas que se le hayan aplicado a los automóviles
+            que no tengan seguro.Una precondición es que es necesario que todo 
+            automovil tenga seguro, pero suponiendo que tuvieran la consulta
+            sería la siguiente.-->
+
+
+
+
+        </b:container>
+
+    </h:body>
+</html>

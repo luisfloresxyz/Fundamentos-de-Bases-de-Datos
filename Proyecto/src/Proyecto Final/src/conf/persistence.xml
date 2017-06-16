@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="BD-Practica12-V2PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>Entidades.TelefonosClientes</class>
+    <class>Entidades.Intendencias</class>
+    <class>Entidades.Especialidades</class>
+    <class>Entidades.EspecificacionesAdicionales</class>
+    <class>Entidades.Mostradores</class>
+    <class>Entidades.IngredientesActivos</class>
+    <class>Entidades.Medicos</class>
+    <class>Entidades.TelefonosEmpleados</class>
+    <class>Entidades.Consultas</class>
+    <class>Entidades.Clientes</class>
+    <class>Entidades.Recetas</class>
+    <class>Entidades.Generales</class>
+    <class>Entidades.TelefonosSucursales</class>
+    <class>Entidades.Choferes</class>
+    <class>Entidades.Empleados</class>
+    <class>Entidades.CorreosElectronicosEmpleados</class>
+    <class>Entidades.Medicamentos</class>
+    <class>Entidades.CorreosElectronicosClientes</class>
+    <class>Entidades.MonederosElectronicos</class>
+    <class>Entidades.Sucursales</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://DESKTOP-5BUMVBF\DESKTOP-5BUMVBF:1433;databaseName=master"/>
+      <property name="javax.persistence.jdbc.user" value="sa"/>
+      <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+      <property name="javax.persistence.jdbc.password" value="A312218342"/>
+    </properties>
+  </persistence-unit>
+</persistence>

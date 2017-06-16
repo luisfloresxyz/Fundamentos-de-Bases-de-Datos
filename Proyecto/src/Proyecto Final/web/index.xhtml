@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Farmacia | Inicio</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+         <b:navBar brand="Farmacia" brandHref="#" inverse="true" fixed="top">
+            <b:navbarLinks>
+                <b:navLink value="Inicio" href="./index.xhtml"></b:navLink>
+                <b:navLink value="Clientes" href="./Clientes.xhtml"></b:navLink>
+                <b:navLink value="Medicos" href="./Medicos.xhtml"></b:navLink>
+                <b:navLink value="Responsables" href="./Responsables.xhtml"></b:navLink>
+                <b:navLink value="Sucursales" href="./Sucursales.xhtml"></b:navLink>
+            </b:navbarLinks>            
+         </b:navBar>
+        <b:jumbotron>
+            <b:container>
+                <h1>Hola</h1>
+                <p>Aquí podras consultar la información del sistema actual
+                    de la farmacia. Ten en cuenta que esta es una primera
+                    versión por lo que faltan datos que mostrar.
+                </p>
+            </b:container>
+
+        </b:jumbotron>
+        <b:container>
+            <b:row>
+                <b:column col-md="4">
+                    <h2>Clientes</h2>
+                    <p>Se muestra la información relacionada con los clientes, 
+                    esta información depende de las consultas solicitadas por 
+                    el cliente.</p>
+                    <p><b:button  value="Consultar datos »" href="./Clientes.xhtml"/></p>
+                </b:column>
+                <b:column col-md="4">
+                    <h2>Medicos</h2>
+                    <p>Se muestra la información relacionada con los medicos, 
+                    esta información depende de las consultas solicitadas por 
+                    el cliente. </p>
+                    <p><b:button value="Consultar datos »" href="./Medicos.xhtml"/></p>
+                </b:column>
+                <b:column col-md="4">
+                    <h2>Sucursales</h2>
+                    <p>Se muestra la información relacionada con las sucursales, 
+                    esta información depende de las consultas solicitadas por 
+                    el cliente.</p>
+                    <p><b:button value="Consultar datos »" href="Sucursales.xhtml"/></p>
+                </b:column>
+            </b:row>
+            <hr/>
+            <footer>
+                <p>© Company 2017</p>
+            </footer>                                                                           
+        </b:container>
+
+    </h:body>
+</html>
