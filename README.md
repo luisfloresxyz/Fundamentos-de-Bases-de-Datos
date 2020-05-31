@@ -1,6 +1,7 @@
 # Fundamentos-de-Bases-de-Datos
 
-Proyectos y prácticas del curso fundamentos de bases de datos.
+Proyectos, prácticas y tareas del curso fundamentos de bases de datos. Teniendo como resultado el diseño y creación de una base de datos en SQL-Server, al igual que consultas y la conexión a una aplicación web hecha en Java con el framework primafaces.
+
 
 Proyecto: aplicación de los conocimientos de todo el curso para el diseño y construcción de una base de datos; usando el modelo E/R, traducción al modelo relacional, normalización, consultas, reportes y conexión a una aplicación en Java.
 
