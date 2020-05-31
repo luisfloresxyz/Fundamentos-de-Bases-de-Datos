@@ -3,9 +3,10 @@
 Proyectos, prácticas y tareas del curso fundamentos de bases de datos. Teniendo como resultado el diseño y creación de una base de datos en SQL-Server, al igual que consultas y la conexión a una aplicación web hecha en Java con el framework primafaces.
 
 
-Proyecto: aplicación de los conocimientos de todo el curso para el diseño y construcción de una base de datos; usando el modelo E/R, traducción al modelo relacional, normalización, consultas, reportes y conexión a una aplicación en Java.
+## Proyecto ## 
+Aplicación de los conocimientos de todo el curso para el diseño y construcción de una base de datos; usando el modelo E/R, traducción al modelo relacional, normalización, consultas, reportes y conexión a una aplicación en Java.
 
-Prácticas: 
+## Prácticas ##
 1. Instalación de SQL-Server
 2. Creación de un programa en Java para la persistencia de datos usando archivos; para lograr identificar las complicaciones de no usar una base de datos.
 3. Diseño del modelo E/R dado un conjunto de casos de uso como requerimientos.
@@ -18,7 +19,7 @@ Prácticas:
 9. Especificación de un script DML para poblar la base de datos.
 10. Consultas y reportes en SQL Server.
 
-Tareas:
+## Tareas ##
 1. Conceptos básicos de las bases de datos.
 2. Diseño de diferentes modelos E/R, partiendo de diferentes requerimientos.
 3. Traducción al modelo relacional partiendo del modelo E/R.
