@@ -12,9 +12,11 @@ Prácticas:
 4. Refinamiento del modelo E/R usando ahora modelo E/R extendido.
 5. Traducción del modelo E/R al modelo relacional.
 6. Especificación de un script DDL con instrucciones para la creación de la base de datos correspondiente al modelo relacional.
-7. Consultas con algebra relacional y con SQL-Server.
+7. Consultas con algebra relacional.
 8. Normalización del modelo relacional.
 9. Se agregan restricciones al modelo relacional y al esquema con SQL.
+9. Especificación de un script DML para poblar la base de datos.
+10. Consultas y reportes en SQL Server.
 
 Tareas:
 1. Conceptos básicos de las bases de datos.
